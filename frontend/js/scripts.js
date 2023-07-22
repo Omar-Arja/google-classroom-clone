@@ -43,7 +43,9 @@ pages.myFetchSignup = () => {
                 // redirect: 'follow',
             }).then(response => response.json())
             .then(data => {
-                console.log(data.status)
+                if (data.status == 'signed up successfully'){
+                    window.location.href='index.html'
+                }
             }).catch(error => console.log(error))
             
         }
@@ -122,7 +124,7 @@ pages.handleResponse = (data, email=null)=>{
             
             localStorage.setItem('role', data.role)
             
-            console.log('sign in successful')
+            
             break
         default : 
             console.log("handleResponse Error")
