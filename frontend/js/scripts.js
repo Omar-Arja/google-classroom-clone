@@ -13,13 +13,13 @@ pages.myFetchSignup = () => {
         const password = document.getElementById('password-input')
         const ver_password = document.getElementById('ver-pass-input')
         
-        const role = document.getElementsByName('role')
-        let chosen_role = ''
+        // const role = document.getElementsByName('role')
+        // let chosen_role = ''
         
-        for (i = 0; i < role.length; i++) {
-            if (role[i].checked)
-                chosen_role = role[i].value
-        }
+        // for (i = 0; i < role.length; i++) {
+        //     if (role[i].checked)
+        //         chosen_role = role[i].value
+        // }
         
         const first_name_val = first_name.value
         const last_name_val = last_name.value
@@ -27,7 +27,7 @@ pages.myFetchSignup = () => {
         const password_val = password.value
         const ver_password_val = ver_password.value
         
-        if ((password_val == ver_password_val) && chosen_role && first_name_val
+        if ((password_val == ver_password_val) && first_name_val
             && last_name_val && email_val && password_val && ver_password_val){
             
             const signup_data = new FormData()
@@ -35,7 +35,7 @@ pages.myFetchSignup = () => {
             signup_data.append('last_name', last_name_val)
             signup_data.append('email', email_val)
             signup_data.append('password', password_val)
-            signup_data.append('role', chosen_role)
+            // signup_data.append('role', chosen_role)
             
             fetch(pages.base_url + 'signup.php', {
                 method: 'POST',
@@ -146,4 +146,37 @@ pages.handleResponse = (data, email=null)=>{
         default : 
             console.log("handleResponse Error")
     }
+}
+
+
+pages.openSidebar = () => {
+    const open_sidebar = document.getElementById('sidebar-btn')
+    const sidebar = document.getElementById('mySidebar')
+    open_sidebar.onclick = () => {
+        sidebar.classList.add('show');
+    }
+}
+
+pages.closeSidebar = () => {
+    const sidebar = document.getElementById('mySidebar')
+    
+    window.onclick = function(event) {
+        if (event.target == sidebar) {
+            sidebar.classList.remove('show');
+        }
+    }
+
+}
+
+pages.addClassCard = (class_name, class_section, class_link) => {
+    return `
+    <div class="class-card">
+        <div class="class-card-background-image">
+            <div class="class-title-section">
+                <a href="${class_link}" class="class-title">${class_name}</a>
+                <a href="${class_link}" class="class-section">${class_section}</a>
+            </div>
+        </div>
+    </div>
+    `
 }
