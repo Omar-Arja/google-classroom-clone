@@ -13,7 +13,9 @@ form {
     align-items: center; 
 }
   
-.login_email, .login_password {
+.login_email,
+.login_password,
+.signup {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,6 +28,8 @@ form {
     height: auto;
     min-height: 500px;
     width: 470px;
+    border-radius: 15px;
+    
 }
 
 .login_email h1{
@@ -48,14 +52,20 @@ form {
     align-items: flex-start;
 }
 
-.signinEmail,.signinPassword {
+.signinEmail,
+.signinPassword,
+.signup-first-name,
+.signup-last-name,
+.signup-email,
+.signup-password,
+.signup-password-ver {
     padding: 13px 15px;
     height: 28px+13px;
     width: 100%;
     align-self: flex-start;
 }
 
-.forgetEmail, .signup, .forgetPassword{
+.forgetEmail, .signup-button, .forgetPassword{
     padding: 10px 20px 10px 0;
     font-family: "Roboto", "Noto Sans Myanmar", sans-serif; 
     font-weight: 500; 
@@ -79,7 +89,8 @@ form {
 .signinPrivately a{
     text-decoration: none;
     font-size: 14px;
-    font-weight: 500; 
+    font-weight: 500;
+    align-self: self-start; 
 }
 
 .buttons{
@@ -95,6 +106,7 @@ form {
     background-color: #1a73e8;
     border-radius: 5px;
     width: 80px;
+    height: 36px;
     border: none;
 }
 
@@ -125,4 +137,27 @@ form {
 .showPassBox{
     display: flex;
     margin-top: 10px;
+}
+
+.signInEmail{
+/* display: none; */
+}
+
+
+/* //////////Signup Password */
+.signup{
+    grid-row-gap: 20px;
+}
+
+.signup h1{
+    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+.role{
+    display: flex;
+    width: 75%;
+    justify-content: space-around;
 }
