@@ -75,13 +75,13 @@ form {
 
 .forgetEmail, .signup-button, .forgetPassword{
     padding: 10px 20px 10px 0;
-    font-family: "Roboto", "Noto Sans Myanmar", sans-serif; 
+    cursor: pointer; font-family: "Roboto", "Noto Sans Myanmar", sans-serif; 
     font-weight: 500; 
     font-size: 14px; 
     color: rgb(26, 115, 232); 
     background-color: transparent; 
     border: none; 
-    cursor: pointer; 
+    
 }
 
 

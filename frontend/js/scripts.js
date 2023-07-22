@@ -125,7 +125,7 @@ pages.userInfo = () => {
 
     userIcon.addEventListener('click', function(){
     if (userInfoTab.style.display === 'none') {
-        userInfoTab.style.display = 'flex';
+        userInfoTab.style.display = 'block';
         pages.displayUserInfo();
     } else {
         userInfoTab.style.display = 'none';
@@ -133,17 +133,23 @@ pages.userInfo = () => {
     });
 }
 
-pages.displayUserInfo=()=> {
+pages.displayUserInfo = () => {
     const userInfoContainer = document.querySelector('.user-info');
-    
   
-    // Update the user info content inside the container
-    userInfoContainer.innerHTML = `
-      <p>Name: ${user.name}</p>
-      <p>Age: ${user.age}</p>
-      <p>Email: ${user.email}</p>
-    `;
-  }
+    const firstName = localStorage.getItem("first_name");
+    const lastName = localStorage.getItem("last_name");
+    const role = localStorage.getItem("role");
+    const email = localStorage.getItem("email");
+  
+  
+    const fullNameElement = document.getElementById("full-name-disp");
+    const emailElement = document.getElementById("email-disp");
+    const roleElement = document.getElementById("role-disp");
+  
+    fullNameElement.textContent = `${firstName} ${lastName}`;
+    emailElement.textContent = `Email: ${email}`; 
+    roleElement.textContent = `Role: ${role}`;
+  };
 
 
 

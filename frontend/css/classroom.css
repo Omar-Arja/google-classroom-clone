@@ -91,18 +91,40 @@ nav {
     border: 1px solid #ccc;
     padding: 10px;
     z-index: 9999; 
-    width: 400px;
-    height: 200px;
+    width: 335px;
+    height: 165px;
     border-radius: 40px;
     transition: left 0.4s, opacity 0.4s;
   }
 
 .user-info{
+    padding-left: 20px;
+    padding-top: 20px;
     display: flex;
-    flex-direction: column;
+    grid-row-gap:10px ;
+    justify-content: space-around;
 }
 
+.user-info img {
+    width: 64px;
+    height: 64px;
+    align-self: center;
+}
 
+.edit-information{
+    display: block;
+    position: relative;
+    top:20px;
+    left:20px;
+    color: rgb(255, 255, 255);
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    background-color: #1a73e8;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
 
 
 .class-cards-container{
