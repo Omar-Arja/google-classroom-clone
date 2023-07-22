@@ -48,6 +48,7 @@ pages.myFetchSignup = () => {
             
         }
     })
+}
 
 pages.myFetchSigninEmail= () =>{
 
