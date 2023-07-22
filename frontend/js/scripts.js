@@ -1,7 +1,7 @@
 
 const pages = {}
 
-pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
+pages.base_url = 'http://localhost/GoogleClassroom/'
 
 pages.myFetchSignup = () => {
         const signup_btn = document.getElementById('signup-btn')
@@ -114,7 +114,6 @@ pages.closeSidebar = () => {
             sidebar.classList.remove('show');
         }
     }
-
 }
 
 pages.addClassCard = (class_name, class_section, class_link) => {
