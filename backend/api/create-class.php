@@ -9,7 +9,6 @@ function generateCode() {
     for ($i = 0; $i < 7; $i++) {
         $code .= $characters[rand(0, $charactersLength - 1)];
     }
-    echo $code;
 }
 
 if (isset($_POST['user_id']) && isset($_POST['class_name']) && isset($_POST['class_section']) && isset($_POST['class_subject']) && isset($_POST['class_room'])) {
