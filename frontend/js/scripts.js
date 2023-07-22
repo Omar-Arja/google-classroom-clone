@@ -69,7 +69,7 @@ pages.myFetchSigninEmail= () =>{
     })
     .then(response => response.json())
     .then(data => {
-        pages.handleResponse(data)
+        pages.handleResponse(data, email)
     })
 
     .catch(error => 
@@ -78,20 +78,52 @@ pages.myFetchSigninEmail= () =>{
 });
 }
 
+pages.myFetchSigninPassword = () => {
+    const password_next_btn = document.getElementById('password-next')
+    password_next_btn.addEventListener('click', e => {
+        e.preventDefault()
+        const password = document.getElementById('signin-password')
 
-pages.handleResponse = (data)=>{
+        const password_val = password.value
+
+        const pass_data = new FormData()
+
+        pass_data.append('email', localStorage.getItem('email'))
+        pass_data.append('password', password_val)
+
+        fetch(pages.base_url + 'password.php', {
+            method: 'POST',
+            body:pass_data
+        }).then(response => response.json())
+        .then(data => {
+            pages.handleResponse(data)
+        }).catch(error => 
+            console.log('Error In Email API: ', error)
+        )
+    })
+}
+pages.handleResponse = (data, email=null)=>{
     const response = data.status;
     switch (response){
-        case 'this email does not exist':
+        case 'this email does not exist' && 'wrong password':
             break
         case 'email found':
+
+            localStorage.setItem('email', email)
             let email_tab = document.querySelector(".signin-email");
             let password_tab = document.querySelector(".signin-password");
 
             email_tab.style.display = "none";
             password_tab.style.display = "flex";
             break;
-
+        case 'logged in':
+            localStorage.setItem('first_name', data.first_name)
+            localStorage.setItem('last_name', data.last_name)
+            
+            localStorage.setItem('role', data.role)
+            
+            console.log('sign in successful')
+            break
         default : 
             console.log("handleResponse Error")
     }
