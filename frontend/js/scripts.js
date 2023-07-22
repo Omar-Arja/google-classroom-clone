@@ -1,6 +1,6 @@
 const pages = {};
 
-pages.base_url = "http://localhost/GoogleClassroom/";
+pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 
 pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
@@ -138,8 +138,8 @@ pages.handleResponse = (data, email = null) => {
     case "logged in":
       localStorage.setItem("first_name", data.first_name);
       localStorage.setItem("last_name", data.last_name);
-      localStorage.setItem("role", data.role);
-
+      localStorage.setItem("user_id", data.user_id);
+      window.location.href="classroom.html"
       break;
     default:
       console.log("handleResponse Error");
@@ -176,3 +176,24 @@ pages.addClassCard = (class_name, class_section, class_link) => {
     </div>
     `;
 };
+
+
+pages.showClassesDashboard = () => {
+    const user_id = localStorage.getItem('user_id')
+    const show_classes_form_data = new FormData
+    show_classes_form_data.append('user_id', user_id)
+    fetch(pages.base_url+'classes.php', {
+        method: "POST",
+        body: show_classes_form_data,
+        })
+        .then((response) => response.json())
+        .then((data) => {
+        data.forEach(element => { 
+            document.querySelector('.class-cards-container').innerHTML += pages.addClassCard(
+                element.class_name, element.class_section, '#'
+            )
+            
+        });
+        })
+
+}
