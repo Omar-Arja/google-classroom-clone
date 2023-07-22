@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="../css/log.css">
 </head>
 <body>
-    <form>
+    <form class="signin-email">
         <div class="login_email">
             <img src="../assets/Images/google.svg" alt="Google Logo">
             <h1>Sign in</h1>
             <h2>Use your Google Account</h2>
             <div class="signinSection">
-                <input class="signinEmail" type="text" placeholder="Email">
+                <input class="signinEmail" id="signin-email" type="email" placeholder="Email">
                 <button class="forgetEmail">Forget email?</button>
             </div>
             <div class="signinPrivately">
@@ -21,14 +21,14 @@
                 <a href="https://support.google.com/chrome/answer/6130773?hl=en" target="_blank">Learn more</a>
             </div>
             <div class="buttons">
-                <button class="signup">Create account</button>
-                <button class="next">Next</button>
+                <a href="signup.html" class="signup-button">Create account</a>
+                <button class="next" id="next">Next</button>
             </div>
         </div>
     </form>
 
-    <form>
-        <div class="login_password">
+    <form class="signin-password" >
+        <div class="login_password" class="display-none">
             <img src="../assets/Images/google.svg" alt="Google Logo">
             <h1>Welcome</h1>
             <div class="emailInfo">
@@ -36,7 +36,7 @@
                 <p class="email">test@test.com</p>
             </div>
             <div class="signinSection">
-                <input class="signinPassword" type="text" placeholder="Enter your password">
+                <input class="signinPassword" id="signin-email" type="password" placeholder="Enter your password">
                 <div class="showPassBox">
                     <input type="checkbox" id="showPassword">
                     <label for="showPassword">Show password</label>
@@ -49,7 +49,9 @@
         </div>
     </form>
 
-    
-    
+    <script src="../js/scripts.js"></script>
+    <!-- <script>
+        pages.loadFor("index")
+    </script>  -->
 </body>
 </html>

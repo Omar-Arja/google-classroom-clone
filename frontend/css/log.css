@@ -12,6 +12,7 @@ form {
     justify-content: center;
     align-items: center; 
 }
+
   
 .login_email,
 .login_password,
@@ -28,8 +29,15 @@ form {
     height: auto;
     min-height: 500px;
     width: 470px;
-    border-radius: 15px;
-    
+    border-radius: 15px;  
+}
+
+.signin-email{
+    display: flex;
+
+}
+.signin-password{
+    display: flex;
 }
 
 .login_email h1{
@@ -139,13 +147,11 @@ form {
     margin-top: 10px;
 }
 
-.signInEmail{
-/* display: none; */
-}
 
 
 /* //////////Signup Password */
 .signup{
+    display: flex;
     grid-row-gap: 20px;
 }
 
@@ -161,3 +167,5 @@ form {
     width: 75%;
     justify-content: space-around;
 }
+
+
