@@ -48,7 +48,7 @@ pages.myFetchSignup = () => {
             
         }
     })
-
+}
 pages.myFetchSigninEmail= () =>{
 
     const nextButton = document.getElementById("next");
@@ -68,7 +68,9 @@ pages.myFetchSigninEmail= () =>{
         body:data
     })
     .then(response => response.json())
-    .then(data => {})
+    .then(data => {
+        handleResponse(data)
+    })
 
     .catch(error => 
         console.log('Error In Email API: ', error)
