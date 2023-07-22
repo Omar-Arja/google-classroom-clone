@@ -24,7 +24,10 @@ if (isset($_POST['user_id']) && isset($_POST['class_name']) && isset($_POST['cla
     $query->bind_param('isssssi', $user_id, $class_name, $class_section, $class_subject, $class_room, $class_code, $usertype_id);
     $query->execute();
     $response['status'] = "class created successfully";
+
 } else {
     $response['status'] = "Error";
     $response['message'] = "User ID not set";
 }
+
+echo json_encode($response);
