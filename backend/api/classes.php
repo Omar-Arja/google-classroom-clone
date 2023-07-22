@@ -18,11 +18,9 @@ if (isset($_POST['user_id'])) {
     $query->execute();
     $query->store_result();
     $query->bind_result($class_id, $class_name, $class_section, $class_subject, $class_room, $total_number_students, $class_code, $usertype_id);
-    $query->fetch();
-    $role = $roleMapping[$usertype_id];
     $classes = array();
 
-    while ($row = $query->fetch()) {
+    while ($query->fetch()) {
         $class = array(
             'class_id' => $class_id,
             'class_name' => $class_name,
@@ -31,7 +29,7 @@ if (isset($_POST['user_id'])) {
             'class_room' => $class_room,
             'total_number_students' => $total_number_students,
             'class_code' => $class_code,
-            'role' => $role
+            'role' => $roleMapping[$usertype_id]
         );
         $classes[] = $class;
     }
