@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/log.css">
+</head>
+<body>
+    <form class="signin-email">
+        <div class="login_email">
+            <img src="../assets/Images/google.svg" alt="Google Logo">
+            <h1>Sign in</h1>
+            <h2>Use your Google Account</h2>
+            <div class="signinSection">
+                <input class="signinEmail" id="signin-email" type="email" placeholder="Email">
+                <button class="forgetEmail">Forget email?</button>
+            </div>
+            <div class="signinPrivately">
+                <p>Not your computer? Use Guest mode to sign in privately.</p>
+                <a href="https://support.google.com/chrome/answer/6130773?hl=en" target="_blank">Learn more</a>
+            </div>
+            <div class="buttons">
+                <a href="signup.html" class="signup-button">Create account</a>
+                <button class="next" id="next" >Next</button>
+            </div>
+        </div>
+    </form>
+
+    <form class="signin-password" >
+        <div class="login_password" class="display-none">
+            <img src="../assets/Images/google.svg" alt="Google Logo">
+            <h1>Welcome</h1>
+            <div class="emailInfo">
+                <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon">
+                <p class="email">test@test.com</p>
+            </div>
+            <div class="signinSection">
+                <input class="signinPassword" id="signin-email" type="password" placeholder="Enter your password">
+                <div class="showPassBox">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword">Show password</label>
+                </div>    
+            </div>
+            <div class="buttons">
+                <button class="forgetPassword">Create account</button>
+                <button class="next">Next</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="../js/scripts.js"></script>
+    <script>
+        pages.myFetchSigninEmail()
+    </script>
+</body>
+</html>
