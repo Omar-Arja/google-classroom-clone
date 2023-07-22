@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Classes</title>
-    <link rel="stylesheet" href="../css/classroom.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/classroom.css" />
+  </head>
+  <body>
     <div class="sidebar" id="mySidebar">
-        <div class="sidebar-content">
-            
-        </div>
+      <div class="sidebar-content"></div>
     </div>
     <header>
-        <nav>
-            <div class="left-section">
-                <button class="sidebar-btn" id="sidebar-btn">☰</button>
-                <img src="../assets/Images/google.svg" alt="Google Logo">
-                <span class="classroom-text">Classroom</span>
+      <nav>
+        <div class="left-section">
+          <button class="sidebar-btn" id="sidebar-btn">☰</button>
+          <img src="../assets/Images/google.svg" alt="Google Logo" />
+          <span class="classroom-text">Classroom</span>
+        </div>
+        <div class="right-section">
+          <img
+            class="icon"
+            id="add-class-button"
+            src="../assets/Images/plus-icon.jpg"
+            alt="Plus icon"
+          />
+          <img
+            class="icon"
+            src="../assets/Images/9-dots.png"
+            alt="Apps menu icon"
+          />
+          <img
+            class="userIcon"
+            src="../assets/Images/default-profile-icon.jpg"
+            alt="Default icon"
+          />
+        </div>
+        <div class="user-info-tab">
+          <div class="user-info">
+            <img
+              class="userIcon"
+              id="icon-disp"
+              src="../assets/Images/default-profile-icon.jpg"
+              alt="Default Icon"
+            />
+            <div>
+              <h1 id="full-name-disp"></h1>
+              <div id="email-disp"></div>
+              <div id="role-disp"></div>
             </div>
-            <div class="right-section">
-                <img class="icon" id="add-class-button"  src="../assets/Images/plus-icon.jpg" alt="Plus icon">
-                <img class="icon" src="../assets/Images/9-dots.png" alt="Apps menu icon">
-                <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon">
-            </div>
-            <div class="user-info-tab">
-                <div class="user-info">
-                    <img class="userIcon" id="icon-disp" src="../assets/Images/default-profile-icon.jpg" alt="Default Icon">
-                    <div>
-                        <h1 id="full-name-disp"></h1>          
-                        <div id="email-disp"></div>
-                        <div id="role-disp"></div>
-                    </div>
-                </div>
-                <button class="edit-information" id="edit-information">Edit information</button>
-            </div>
-        </nav>
-
+          </div>
+          <button class="edit-information" id="edit-information">
+            Edit information
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <div class="class-cards-container"> 
-        <!-- Add class cards here -->
+    <div class="class-cards-container">
+      <!-- Add class cards here -->
     </div>
-    <main>
-    </main>
+    <main></main>
     <script src="../js/scripts.js"></script>
     <script>
-        pages.openSidebar()
-        pages.closeSidebar()
-        pages.showClassesDashboard()
+      pages.openSidebar();
+      pages.closeSidebar();
+      pages.showClassesDashboard();
     </script>
-</body>
+  </body>
 </html>

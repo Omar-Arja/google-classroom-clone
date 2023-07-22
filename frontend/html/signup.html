@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="../css/log.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/log.css" />
+  </head>
+  <body>
     <form>
-        <div class="signup">
-            <img src="../assets/Images/google.svg" alt="Google Logo">
-            <h1>Create a Google Account</h1>
-            <input class="signup-first-name" type="text" placeholder="First Name" id='first-name-input'>
-            <input class="signup-last-name" type="text" placeholder="Last Name" id="last-name-input">
-            <input class="signup-email" type="text" placeholder="Email" id="email-input">
-            <input class="signup-password" type="text" placeholder="Password" id="password-input">
-            <input class="signup-password-ver" type="text" placeholder="Verify Password" id="ver-pass-input">   
-            <!-- <div class="role">
+      <div class="signup">
+        <img src="../assets/Images/google.svg" alt="Google Logo" />
+        <h1>Create a Google Account</h1>
+        <input
+          class="signup-first-name"
+          type="text"
+          placeholder="First Name"
+          id="first-name-input"
+        />
+        <input
+          class="signup-last-name"
+          type="text"
+          placeholder="Last Name"
+          id="last-name-input"
+        />
+        <input
+          class="signup-email"
+          type="text"
+          placeholder="Email"
+          id="email-input"
+        />
+        <input
+          class="signup-password"
+          type="text"
+          placeholder="Password"
+          id="password-input"
+        />
+        <input
+          class="signup-password-ver"
+          type="text"
+          placeholder="Verify Password"
+          id="ver-pass-input"
+        />
+        <!-- <div class="role">
                 <div>
                     <input type="radio" id="role-teacher" name="role" value="teacher">
                     <label for="teacher" class="checkbox-label">Teacher</label>
@@ -26,12 +51,12 @@
                     <label for="student" class="checkbox-label">Student</label>
                 </div>
             </div>  -->
-            <button class="next" id="signup-btn">Finish</button>
-        </div>
+        <button class="next" id="signup-btn">Finish</button>
+      </div>
     </form>
     <script src="../js/scripts.js"></script>
     <script>
-        pages.myFetchSignup()
+      pages.myFetchSignup();
     </script>
-</body>
+  </body>
 </html>
