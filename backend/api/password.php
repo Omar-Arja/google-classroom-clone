@@ -11,7 +11,7 @@ $roleMapping = array(
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$query = $mysqli->prepare('select user_id, first_name, last_name, email, password, role
+$query = $mysqli->prepare('select user_id, first_name, last_name, email, password, usertype_id
 from users
 where email=?');
 $query->bind_param('s', $email);
