@@ -14,6 +14,7 @@ body, h1, h2, p, ul, li, span{
     object-fit: cover;
     border-radius: 50%;
     margin-right: 20px;
+    cursor: pointer; 
 }
 
 nav { 
@@ -75,17 +76,34 @@ nav {
 .sidebar-content{
     width: 300px;
     height: 100%;
-    
     display: flex;
     flex-flow: column wrap;
     background-color: #FFFFFF;
     border-right: 1px solid rgba(0,0,0,0.2);
 }
 
-.sidebar.show {
-    top: 0;
-    opacity: 1;
+.user-info-tab {
+    display: none;
+    position: fixed;
+    top: 69px; 
+    right: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 9999; 
+    width: 400px;
+    height: 200px;
+    border-radius: 40px;
+    transition: left 0.4s, opacity 0.4s;
+  }
+
+.user-info{
+    display: flex;
+    flex-direction: column;
 }
+
+
+
 
 .class-cards-container{
     display: flex;
