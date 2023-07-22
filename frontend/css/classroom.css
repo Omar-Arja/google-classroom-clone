@@ -1,0 +1,31 @@
+/* Reset default styles for better consistency */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+
+.icon,.userIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+nav { 
+    pad: 20px 20px;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.left-section{
+    display: flex;
+}
+
+.left-sectionn h1 {
+    display: inline-block;
+}
