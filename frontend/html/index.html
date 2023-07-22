@@ -36,7 +36,7 @@
                 <p class="email">test@test.com</p>
             </div>
             <div class="signinSection">
-                <input class="signinPassword" type="password" placeholder="Enter your password">
+                <input class="signinPassword" id="signin-password" type="password" placeholder="Enter your password">
                 <div class="showPassBox">
                     <input type="checkbox" id="showPassword">
                     <label for="showPassword">Show password</label>
@@ -44,7 +44,7 @@
             </div>
             <div class="buttons">
                 <button class="forgetPassword">Create account</button>
-                <button class="next">Next</button>
+                <button class="next" id="password-next">Next</button>
             </div>
         </div>
     </form>
@@ -52,6 +52,7 @@
     <script src="../js/scripts.js"></script>
     <script>
         pages.myFetchSigninEmail()
+        pages.myFetchSigninPassword()
     </script>
 </body>
 </html>
