@@ -98,23 +98,55 @@ pages.handleResponse = (data)=>{
 }
 
 
-pages.openSidebar = () => {
-    const open_sidebar = document.getElementById('sidebar-btn')
-    const sidebar = document.getElementById('mySidebar')
+pages.sidebar = () => {
+    const open_sidebar = document.getElementById('sidebar-btn');
+    const sidebarContainer = document.getElementById('mySidebar');
+  
     open_sidebar.onclick = () => {
-        sidebar.classList.add('show');
+      // Toggle the 'show' class using if...else
+      if (sidebarContainer.classList.contains('show')) {
+        sidebarContainer.classList.remove('show');
+      } else {
+        sidebarContainer.classList.add('show');
+      }
+    };
+  
+    window.onclick = function (event) {
+      // Check if the clicked element is the sidebar or its child element
+      if (event.target === sidebarContainer || sidebarContainer.contains(event.target)) {
+        sidebarContainer.classList.remove('show');
+      }
+    };
+  };  
+  
+pages.userInfo = () => {
+    const userIcon = document.querySelector('.userIcon');
+    const userInfoTab = document.querySelector('.user-info-tab');
+
+    userIcon.addEventListener('click', function(){
+    if (userInfoTab.style.display === 'none') {
+        userInfoTab.style.display = 'flex';
+        pages.displayUserInfo();
+    } else {
+        userInfoTab.style.display = 'none';
     }
+    });
 }
 
-pages.closeSidebar = () => {
-    const sidebar = document.getElementById('mySidebar')
+pages.displayUserInfo=()=> {
+    const userInfoContainer = document.querySelector('.user-info');
     
-    window.onclick = function(event) {
-        if (event.target == sidebar) {
-            sidebar.classList.remove('show');
-        }
-    }
-}
+  
+    // Update the user info content inside the container
+    userInfoContainer.innerHTML = `
+      <p>Name: ${user.name}</p>
+      <p>Age: ${user.age}</p>
+      <p>Email: ${user.email}</p>
+    `;
+  }
+
+
+
 
 pages.addClassCard = (class_name, class_section, class_link) => {
     return `
