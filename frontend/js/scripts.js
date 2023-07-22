@@ -1,7 +1,7 @@
 
 const pages = {}
 
-pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
+pages.base_url = 'http://localhost/GoogleClassroom/'
 
 pages.myFetchSignup = () => {
         const signup_btn = document.getElementById('signup-btn')
@@ -60,6 +60,10 @@ pages.myFetchSigninEmail= () =>{
 
     let email = document.getElementById("signin-email").value;
 
+    if (email===''){
+        let warning = document.getElementById("signin-email");
+        warning.style.backgroundColor = 'lightcoral';
+    }
 
     const data = new FormData();
     data.append("email", email)
@@ -81,15 +85,25 @@ pages.myFetchSigninEmail= () =>{
 }
 
 pages.myFetchSigninPassword = () => {
-    const password_next_btn = document.getElementById('password-next')
+    const password_next_btn = document.getElementById('password-next');
+    const showPasswordCheckbox = document.getElementById('showPassword');
+    const password = document.getElementById('signin-password')
+
+    showPasswordCheckbox.addEventListener("change", function(){
+      if (showPasswordCheckbox.checked) {
+            password.type = 'text';
+          } else {
+            password.type = 'password';
+          }  
+    })
+
     password_next_btn.addEventListener('click', e => {
         e.preventDefault()
         const password = document.getElementById('signin-password')
-
         const password_val = password.value
+        
 
         const pass_data = new FormData()
-
         pass_data.append('email', localStorage.getItem('email'))
         pass_data.append('password', password_val)
 
@@ -107,7 +121,7 @@ pages.myFetchSigninPassword = () => {
 pages.handleResponse = (data, email=null)=>{
     const response = data.status;
     switch (response){
-        case 'this email does not exist' && 'wrong password':
+        case 'this email does not exist' || 'wrong password':
             break
         case 'email found':
 
@@ -117,11 +131,14 @@ pages.handleResponse = (data, email=null)=>{
 
             email_tab.style.display = "none";
             password_tab.style.display = "flex";
+            
+            let email_text = document.getElementById("email")
+            email_text.innerText = email
             break;
+
         case 'logged in':
             localStorage.setItem('first_name', data.first_name)
             localStorage.setItem('last_name', data.last_name)
-            
             localStorage.setItem('role', data.role)
             
             

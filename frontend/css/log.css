@@ -87,18 +87,19 @@ form {
 
 .signinPrivately{ 
     font-family: roboto,"Noto Sans Myanmar UI",arial,sans-serif;
+    align-self: self-start;
 }
 
 .signinPrivately p {
     color: rgb(95, 99, 104);
     font-size:  14px;
+    
 }
 
 .signinPrivately a{
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    align-self: self-start; 
 }
 
 .buttons{
@@ -139,14 +140,17 @@ form {
     height: 20px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .showPassBox{
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
+.showPassBox input{
+    margin-right: 10px;
+}
 
 
 /* //////////Signup Password */
