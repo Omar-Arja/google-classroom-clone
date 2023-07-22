@@ -1,7 +1,8 @@
-const nextButton = document.getElementById("next");
+pages.myFetchSigninEmail= () =>{
 
+    const nextButton = document.getElementById("next");
 
-nextButton.addEventListener("click", function(e){
+    nextButton.addEventListener("click", function(e){
     e.preventDefault();
 
     let email = document.getElementById("signin-email").value;
@@ -9,21 +10,23 @@ nextButton.addEventListener("click", function(e){
 
     const data = new FormData();
     data.append("email", email)
+    
 
-    fetch('http://localhost/FullStackMiniProject/signin.php', {
+    fetch(pages.base_url + 'email.php', {
         method: 'POST',
         body:data
     })
     .then(response => response.json())
-    .then(data => handleResponse(data))
+    .then(data => {})
 
     .catch(error => 
         console.log('Error In Email API: ', error)
     );
 });
+}
 
 
-function handleResponse(data){
+pages.handleResponse = (data)=>{
     const response = data.status;
     switch (response){
         case 'this email does not exist':
