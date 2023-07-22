@@ -9,7 +9,7 @@ $password = $_POST['password'];
 $role = $_POST['role'];
 
 
-// map role to usertye_id
+// map role to usertype_id
 $roleMapping = array(
     "teacher" => 1,
     "student" => 2
@@ -17,11 +17,11 @@ $roleMapping = array(
 
 $role = $roleMapping[$role];
 
-$check_username = $mysqli->prepare('select email from users where email=?');
-$check_username->bind_param('s', $email);
-$check_username->execute();
-$check_username->store_result();
-$username_exists = $check_username->num_rows();
+$check_email = $mysqli->prepare('select email from users where email=?');
+$check_email->bind_param('s', $email);
+$check_email->execute();
+$check_email->store_result();
+$username_exists = $check_email->num_rows();
 
 if ($username_exists == 0) {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
