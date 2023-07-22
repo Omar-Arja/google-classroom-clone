@@ -6,19 +6,20 @@ nextButton.addEventListener("click", function(e){
 
     let email = document.getElementById("signin-email").value;
 
-    // For example, using fetch:
+
+    const data = new FormData();
+    data.append("email", email)
+
     fetch('http://localhost/FullStackMiniProject/signin.php', {
         method: 'POST',
-        body: JSON.stringify({ 
-            email: email }),
+        body:data
     })
     .then(response => response.json())
-    .then(data => {
-        handleResponse(data);
-    })
-    .catch(error => {
-        console.error('Error In Email API: ', error);
-    });
+    .then(data => handleResponse(data))
+
+    .catch(error => 
+        console.log('Error In Email API: ', error)
+    );
 });
 
 
