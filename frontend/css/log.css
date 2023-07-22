@@ -37,7 +37,7 @@ form {
 
 }
 .signin-password{
-    display: flex;
+    display: none;
 }
 
 .login_email h1{
