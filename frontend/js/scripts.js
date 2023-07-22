@@ -69,7 +69,7 @@ pages.myFetchSigninEmail= () =>{
     })
     .then(response => response.json())
     .then(data => {
-        handleResponse(data)
+        pages.handleResponse(data)
     })
 
     .catch(error => 
