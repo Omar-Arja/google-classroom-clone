@@ -96,3 +96,23 @@ pages.handleResponse = (data)=>{
             console.log("handleResponse Error")
     }
 }
+
+
+pages.openSidebar = () => {
+    const open_sidebar = document.getElementById('sidebar-btn')
+    const sidebar = document.getElementById('mySidebar')
+    open_sidebar.onclick = () => {
+        sidebar.classList.add('show');
+    }
+}
+
+pages.closeSidebar = () => {
+    const sidebar = document.getElementById('mySidebar')
+    
+    window.onclick = function(event) {
+        if (event.target == sidebar) {
+            sidebar.classList.remove('show');
+        }
+    }
+
+}

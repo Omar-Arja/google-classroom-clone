@@ -1,5 +1,5 @@
 /* Reset default styles for better consistency */
-body, h1, h2, p, ul, li {
+body, h1, h2, p, ul, li, span{
     margin: 0;
     padding: 0;
 }
@@ -14,18 +14,73 @@ body, h1, h2, p, ul, li {
 }
 
 nav { 
-    pad: 20px 20px;
     display: flex;
-    width: 100vw;
+    width: 98vw;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+
 }
 
 .left-section{
     display: flex;
+    align-items: center;
 }
 
-.left-sectionn h1 {
-    display: inline-block;
+
+.sidebar-btn{
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    background-color: #FFFFFF;
+    font-size: 1.5em;
+    font-weight: 500;
+    border-radius: 100px;
+    margin-right: 5px;
+
+}
+
+.sidebar-btn:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.classroom-text{
+    font-size: 1.5rem;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.sidebar{
+    position: fixed; 
+    z-index: 1;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0);
+    left: -100%;
+    opacity: 0;
+    transition: left 0.4s, opacity 0.4s;
+}
+.sidebar.show {
+    left: 0;
+    opacity: 1;
+}
+.sidebar-content{
+    width: 300px;
+    height: 100%;
+    
+    display: flex;
+    flex-flow: column wrap;
+    background-color: #FFFFFF;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.sidebar.show {
+    top: 0;
+    opacity: 1;
 }
