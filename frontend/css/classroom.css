@@ -61,7 +61,7 @@ nav {
     z-index: 1;
     top: 0;
     width: 100%; 
-    height: 100%; 
+    height: 100vh; 
     overflow: auto;
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0);
@@ -75,9 +75,8 @@ nav {
 }
 .sidebar-content{
     width: 300px;
-    height: 100%;
-    display: flex;
-    flex-flow: column wrap;
+    height: 100vh;
+    /* height: fit-content; */
     background-color: #FFFFFF;
     border-right: 1px solid rgba(0,0,0,0.2);
 }
@@ -179,3 +178,54 @@ nav {
     color: #FFFFFF;
 }
 
+.sidebar-content, .sidebar-teaching, .sidebar-enrolled,.sidebar-class-details{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.role-in-class{
+    color: rgba(0,0,0,0.6);
+    font-weight: 700;
+}
+
+.sidebar-title{
+    border-top: 1px solid rgba(158, 157, 157, 0.6);
+    padding: 20px;
+}
+.sidebar-class{
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-bottom: 5px; 
+    cursor: pointer;
+    width: 255px;
+}
+
+.sidebar-class:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: 0.6s;
+}
+
+.class-icon{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    cursor: pointer; 
+}
+
+.sidebar-class-name{
+    font-size: 0.9rem;
+}
+
+.sidebar-class-section{
+    font-size: 0.7rem;
+}
+
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
