@@ -115,15 +115,21 @@
     flex-direction: column;
     width: fill;
     margin-top: 15px;
-    margin-left: 13%;
-    margin-right: 13%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
   
   .inside-class-people h2 {
     margin-bottom: 10px;
-    border-bottom: 4px solid #000; /* Add a thick black bottom border */
+    border-bottom: 2px solid #000; /* Add a thick black bottom border */
     padding-bottom: 5px; /* Add some padding to create space between h2 and ul */
-  }
+    margin-top: 20px;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.5rem;
+    color: rgb(32,33,36);    
+}
   
   .teacher-list,
   .student-list {
@@ -134,24 +140,26 @@
   .person {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0.5px solid #ccc;
     padding: 5px 0;
   }
   
-  .person-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+  .userIcon {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
   }
   
   .person-name {
     flex: 1;
   }
   
-  .teacher-list .person-icon {
-    /* Add specific styling for teacher icons if needed */
-  }
-  
-  .student-list .person-icon {
-    /* Add specific styling for student icons if needed */
+  #studentCount{
+    letter-spacing: .01785714em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
   }
