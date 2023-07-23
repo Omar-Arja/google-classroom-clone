@@ -15,7 +15,7 @@ class Class {
 
   displayClassCard() {
     return `
-      <div class="class-card">
+      <div class="class class-card" data-class-id="${this.class_id}">
         <div class="class-card-background-image">
           <div class="class-title-section">
             <a href="#" class="class-title">${this.class_name}</a>
@@ -26,22 +26,21 @@ class Class {
     `;
   }
 
-  addSideBarItem () {
+  addSideBarItem() {
     return `
-    <div class="sidebar-class">
-    <img
-      class="class-icon"
-      src="../assets/Images/default-profile-icon.jpg"
-      alt="Default Icon"
-    />
-    <div class="sidebar-class-details">
-      <span class="sidebar-class-name">${this.class_name}</span>
-      <span class="sidebar-class-section">${this.class_section}</span>
-    </div>
-    </div>
-      `;
-  };
-
+      <div class="class sidebar-class" data-class-id="${this.class_id}">
+        <img
+          class="class-icon"
+          src="../assets/Images/default-profile-icon.jpg"
+          alt="Default Icon"
+        />
+        <div class="sidebar-class-details">
+          <span class="sidebar-class-name">${this.class_name}</span>
+          <span class="sidebar-class-section">${this.class_section}</span>
+        </div>
+      </div>
+    `;
+  }
 }
 
 
@@ -57,14 +56,6 @@ pages.myFetchSignup = () => {
     const email = document.getElementById("email-input");
     const password = document.getElementById("password-input");
     const ver_password = document.getElementById("ver-pass-input");
-
-    // const role = document.getElementsByName('role')
-    // let chosen_role = ''
-
-    // for (i = 0; i < role.length; i++) {
-    //     if (role[i].checked)
-    //         chosen_role = role[i].value
-    // }
 
     const first_name_val = first_name.value;
     const last_name_val = last_name.value;
@@ -211,36 +202,36 @@ pages.closeSidebar = () => {
 };
 
 pages.userInfo = () => {
-    const userIcon = document.querySelector('.userIcon');
-    const userInfoTab = document.querySelector('.user-info-tab');
+  const userIcon = document.querySelector('.userIcon');
+  const userInfoTab = document.querySelector('.user-info-tab');
 
-    userIcon.addEventListener('click', function(){
+  userIcon.addEventListener('click', function () {
     if (userInfoTab.style.display === 'none') {
-        userInfoTab.style.display = 'block';
-        pages.displayUserInfo();
+      userInfoTab.style.display = 'block';
+      pages.displayUserInfo();
     } else {
-        userInfoTab.style.display = 'none';
+      userInfoTab.style.display = 'none';
     }
-    });
+  });
 }
 
 pages.displayUserInfo = () => {
-    const userInfoContainer = document.querySelector('.user-info');
-  
-    const firstName = localStorage.getItem("first_name");
-    const lastName = localStorage.getItem("last_name");
-    const role = localStorage.getItem("role");
-    const email = localStorage.getItem("email");
-  
-  
-    const fullNameElement = document.getElementById("full-name-disp");
-    const emailElement = document.getElementById("email-disp");
-    const roleElement = document.getElementById("role-disp");
-  
-    fullNameElement.textContent = `${firstName} ${lastName}`;
-    emailElement.textContent = `Email: ${email}`; 
-    roleElement.textContent = `Role: ${role}`;
-  };
+  const userInfoContainer = document.querySelector('.user-info');
+
+  const firstName = localStorage.getItem("first_name");
+  const lastName = localStorage.getItem("last_name");
+  const role = localStorage.getItem("role");
+  const email = localStorage.getItem("email");
+
+
+  const fullNameElement = document.getElementById("full-name-disp");
+  const emailElement = document.getElementById("email-disp");
+  const roleElement = document.getElementById("role-disp");
+
+  fullNameElement.textContent = `${firstName} ${lastName}`;
+  emailElement.textContent = `Email: ${email}`;
+  roleElement.textContent = `Role: ${role}`;
+};
 
 
 pages.showClassesDashboard = () => {
@@ -273,6 +264,17 @@ pages.showClassesDashboard = () => {
         } else if (element.role === 'student') {
           document.querySelector('.sidebar-enrolled').innerHTML += class_obj.addSideBarItem(element.class_name, element.class_section, element.class_id);
         }
+
+        // Add event listener to the classes
+        const classes = document.querySelectorAll('.class');
+        classes.forEach(item => {
+          item.addEventListener('click', (event) => {
+            const classId = event.currentTarget.dataset.classId;
+            console.log('Class ID clicked:', classId);
+          });
+        });
+
+
       });
     });
 }
