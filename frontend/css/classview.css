@@ -111,7 +111,7 @@
 }
 
 .inside-class-people {
-    display: flex;
+    display: none;
     flex-direction: column;
     width: fill;
     margin-top: 15px;

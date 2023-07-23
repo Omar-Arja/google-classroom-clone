@@ -33,7 +33,7 @@ nav {
 }
 
 .middleSection{
-  display: block;
+  display: none;
 }
 
 .stream-nav-btn,

@@ -298,23 +298,22 @@ pages.createClass = () => {
   
 };
 
-pages.enterClass =(response='null') => {
+pages.enterClass =() => {
     document.getElementById("class-cards-container").style.display = "none";
+    document.getElementById("middleSection").style.display = "block";
     document.getElementById("goole-nav-icon").remove();
-    let title = document.getElementById("nav-title").value
-    title = response;
     pages.showStream();
 }
  
 
 pages.showStream=()=>{
-    document.getElementById("inside-class-stream").style.display = "flex";
-    document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-stream").style.display = "flex";
+  document.getElementById("inside-class-people").style.display = "none";
 }
 
 pages.showPeople=()=>{
-    document.getElementById("inside-class-stream").style.display = "none";
-    document.getElementById("inside-class-people").style.display = "flex";
+  document.getElementById("inside-class-stream").style.display = "none";
+  document.getElementById("inside-class-people").style.display = "flex";
 }
 
 
