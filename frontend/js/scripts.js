@@ -99,22 +99,25 @@ pages.handleResponse = (data)=>{
 
 pages.assignments = () => {
     const index_url = pages.base_url + "send_assignment.php";
-    document.getElementById("btn1").addEventListener("click", (e) => {
-    e.preventDefault()
-    const files = document.getElementById("file_input").files;
-   
-    if(files.length > 0 ){
+    const submit_file_btn = document.getElementById("btn1")
+    submit_file_btn.addEventListener("click", e => {
+        e.preventDefault()
+        const files = document.getElementById("file_input").files;
+        // const user_id = localStorage.getItem('user_id')
+    // const assignment_id = localStorage.getItem('assignment_id')
+        if(files.length > 0 ){
 
-         const form_data = new FormData();
+            const form_data = new FormData();
 
-         for (const file of files) {
-            form_data.append('submission[]', file)
-         }
-
-        fetch(index_url, {
-            method: "POST",
-            body: form_data,
-        })
+            for (const file of files) {
+                form_data.append('submissions[]', file)
+            }
+            // form_data.append('user_id', user_id).
+        // form_data.append('assignment_id', assignment_id)
+            fetch(index_url, {
+                method: "POST",
+                body: form_data,
+                })
         //  for(const [key,value] of form_data){
         //     console.log(key)
         //     console.log(value)
