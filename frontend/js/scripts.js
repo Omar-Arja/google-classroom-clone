@@ -99,34 +99,42 @@ pages.handleResponse = (data)=>{
 
 pages.assignments = () => {
     const index_url = pages.base_url + "send_assignment.php";
-    alert(index_url);
-    console.log("hi1");
-    document.getElementById("btn1").addEventListener("click", () => {
-
+    document.getElementById("btn1").addEventListener("click", (e) => {
+    e.preventDefault()
     const files = document.getElementById("file_input").files;
    
     if(files.length > 0 ){
 
          const form_data = new FormData();
-         form_data.append("file1", files[0]);
-         form_data.append("id_assignment", 1);
-         form_data.append("id_user", 1);
+
+         for (const file of files) {
+            form_data.append('submission[]', file)
+         }
+
+        fetch(index_url, {
+            method: "POST",
+            body: form_data,
+        })
+        //  for(const [key,value] of form_data){
+        //     console.log(key)
+        //     console.log(value)
+        //  }
          
-         try {
-            const data = new FormData();
-            data.append("fileData", files[0])
-            data.append("id_assignment", 1)
-            data.append("id_user", 1)
+        //  try {
+        //     const data = new FormData();
+        //     data.append("fileData", files[0])
+        //     data.append("id_assignment", 1)
+        //     data.append("id_user", 1)
 
           
-            fetch(index_url, {
-              method: "POST",
-              body: data
-            })
-          } catch (error) {
-            console.log(error)
-          }
-         console.log("finished")
+        //     fetch(index_url, {
+        //       method: "POST",
+        //       body: data
+        //     })
+        //   } catch (error) {
+        //     console.log(error)
+        //   }
+        //  console.log("finished")
 
     }
 
