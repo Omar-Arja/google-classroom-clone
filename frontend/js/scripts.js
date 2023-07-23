@@ -164,6 +164,39 @@ pages.closeSidebar = () => {
   };
 };
 
+pages.userInfo = () => {
+    const userIcon = document.querySelector('.userIcon');
+    const userInfoTab = document.querySelector('.user-info-tab');
+
+    userIcon.addEventListener('click', function(){
+    if (userInfoTab.style.display === 'none') {
+        userInfoTab.style.display = 'block';
+        pages.displayUserInfo();
+    } else {
+        userInfoTab.style.display = 'none';
+    }
+    });
+}
+
+pages.displayUserInfo = () => {
+    const userInfoContainer = document.querySelector('.user-info');
+  
+    const firstName = localStorage.getItem("first_name");
+    const lastName = localStorage.getItem("last_name");
+    const role = localStorage.getItem("role");
+    const email = localStorage.getItem("email");
+  
+  
+    const fullNameElement = document.getElementById("full-name-disp");
+    const emailElement = document.getElementById("email-disp");
+    const roleElement = document.getElementById("role-disp");
+  
+    fullNameElement.textContent = `${firstName} ${lastName}`;
+    emailElement.textContent = `Email: ${email}`; 
+    roleElement.textContent = `Role: ${role}`;
+  };
+
+
 pages.addClassCard = (class_name, class_section, class_link) => {
   return `
     <div class="class-card">

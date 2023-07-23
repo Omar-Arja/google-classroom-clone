@@ -64,22 +64,15 @@
           />
         </div>
         <div class="user-info-tab">
-          <div class="user-info">
-            <img
-              class="userIcon"
-              id="icon-disp"
-              src="../assets/Images/default-profile-icon.jpg"
-              alt="Default Icon"
-            />
-            <div>
-              <h1 id="full-name-disp"></h1>
-              <div id="email-disp"></div>
-              <div id="role-disp"></div>
+            <div class="user-info">
+                <img class="userIcon" id="icon-disp" src="../assets/Images/default-profile-icon.jpg" alt="Default Icon">
+                <div>
+                    <h1 id="full-name-disp"></h1>          
+                    <div id="email-disp"></div>
+                    <div id="role-disp"></div>
+                </div>
             </div>
-          </div>
-          <button class="edit-information" id="edit-information">
-            Edit information
-          </button>
+            <button class="edit-information" id="edit-information">Edit information</button>
         </div>
       </nav>
     </header>
@@ -92,6 +85,7 @@
     <script>
       pages.openSidebar();
       pages.closeSidebar();
+      pages.userInfo();
       pages.showClassesDashboard();
     </script>
   </body>
