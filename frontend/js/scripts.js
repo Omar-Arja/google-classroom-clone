@@ -177,6 +177,23 @@ pages.addClassCard = (class_name, class_section, class_link) => {
     `;
 };
 
+pages.addSideBarItem = (class_name, class_section, class_link) => {
+  return `
+  <div class="sidebar-class">
+  <img
+    class="class-icon"
+    src="../assets/Images/default-profile-icon.jpg"
+    alt="Default Icon"
+  />
+  <div class="sidebar-class-details">
+    <span class="sidebar-class-name">${class_name}</span>
+    <span class="sidebar-class-section">${class_section}</span>
+  </div>
+  </div>
+    `;
+};
+
+
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id')
@@ -192,7 +209,14 @@ pages.showClassesDashboard = () => {
         document.querySelector('.class-cards-container').innerHTML += pages.addClassCard(
           element.class_name, element.class_section, '#'
         )
-
+        if (element.role == 'teacher') {
+          document.querySelector('.sidebar-teaching').innerHTML += pages.addSideBarItem(
+            element.class_name, element.class_section, '#')
+        }
+        else if (element.role == 'student') {
+          document.querySelector('.sidebar-enrolled').innerHTML += pages.addSideBarItem(
+            element.class_name, element.class_section, '#')
+        }
       });
     })
 
