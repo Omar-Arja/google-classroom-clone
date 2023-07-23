@@ -32,6 +32,28 @@ nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.middleSection{
+  display: none;
+}
+
+.stream-nav-btn,
+.people-nav-btn{
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  height: 50px;
+  width: 75px;
+  border: none;
+  background-color: #fff;
+}
+
+.stream-nav-btn:hover,
+.people-nav-btn:hover {
+  background-color: #e0e0e0;
+}
+
+
 .left-section {
   display: flex;
   align-items: center;
@@ -135,6 +157,7 @@ nav {
   flex-wrap: wrap;
   padding: 25px;
   gap: 3rem;
+  background-color: #1a73e8;
 }
 
 .class-card {

@@ -93,6 +93,7 @@ pages.myFetchSignup = () => {
     }
   });
 };
+
 pages.myFetchSigninEmail = () => {
   const nextButton = document.getElementById("next");
 
@@ -155,6 +156,7 @@ pages.myFetchSigninPassword = () => {
       .catch((error) => console.log("Error In Email API: ", error));
   });
 };
+
 pages.handleResponse = (data, email = null) => {
   const response = data.status;
   switch (response) {
@@ -178,6 +180,10 @@ pages.handleResponse = (data, email = null) => {
       localStorage.setItem("user_id", data.user_id);
       window.location.href = "classroom.html"
       break;
+
+    case "class created successfully":
+        pages.hideBox()
+        pages.enterClass()
     default:
       console.log("handleResponse Error");
   }
@@ -233,7 +239,6 @@ pages.displayUserInfo = () => {
   roleElement.textContent = `Role: ${role}`;
 };
 
-
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
   const show_classes_form_data = new FormData();
@@ -264,8 +269,7 @@ pages.showClassesDashboard = () => {
         } else if (element.role === 'student') {
           document.querySelector('.sidebar-enrolled').innerHTML += class_obj.addSideBarItem();
         }
-
-        // Add event listener to the classes
+         // Add event listener to the classes
         const classes = document.querySelectorAll('.class');
         classes.forEach(item => {
           item.addEventListener('click', (event) => {
@@ -273,8 +277,103 @@ pages.showClassesDashboard = () => {
             console.log('Class ID clicked:', classId);
           });
         });
-
-
+        
       });
-    });
+    })
+}
+
+pages.showBox = () => {
+    document.getElementById("overlay").style.display = "block";
+};
+
+pages.hideBox = () => {
+    document.getElementById("overlay").style.display = "none";
+};
+
+pages.cancelBox = () => {
+    pages.hideBox();
+};
+
+pages.createClass = () => {
+    const classname = document.getElementById("inputClassname").value;
+    const section = document.getElementById("inputSection").value;
+    const subject = document.getElementById("inputSubject").value;
+    const room = document.getElementById("inputRoom").value;
+
+    // localStorage.setItem("user_id", data.user_id);
+
+    const pass_data = new FormData();
+    pass_data.append("user_id", localStorage.getItem("user_id"));
+    pass_data.append("class_name", classname);
+    pass_data.append("class_subject", section);
+    pass_data.append("class_section", subject);
+    pass_data.append("class_room", room);
+
+    fetch(pages.base_url + "create-class.php", {
+      method: "POST",
+      body: pass_data,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        pages.handleResponse(data);
+      })
+      .catch((error) => console.log("Error In  Create Class: ", error));
+  
+};
+
+pages.enterClass =() => {
+    document.getElementById("class-cards-container").style.display = "none";
+    document.getElementById("middleSection").style.display = "block";
+    document.getElementById("goole-nav-icon").remove();
+    pages.showStream();
+}
+ 
+
+pages.showStream=()=>{
+  document.getElementById("inside-class-stream").style.display = "flex";
+  document.getElementById("inside-class-people").style.display = "none";
+}
+
+pages.showPeople=()=>{
+  document.getElementById("inside-class-stream").style.display = "none";
+  document.getElementById("inside-class-people").style.display = "flex";
+}
+
+
+// pages.addStudent('kahled','student')
+
+pages.addStudent = (name,role) => {
+    const student_list = document.querySelector(".student-list");
+    const teacher_list = document.querySelector(".teacher-list");
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+    div.classList.add("person");
+    
+    const img = document.createElement("img");
+    img.src = "../assets/Images/default-profile-icon.jpg";
+    img.classList.add("userIcon");
+  
+    const span = document.createElement("span");
+    span.classList.add("person-name");
+    span.textContent = name ;
+  
+    div.appendChild(img);
+    div.appendChild(span);
+    li.appendChild(div);
+    if (role == 'teacher'){
+        teacher_list.appendChild(li);
+    }
+    else{
+        student_list.appendChild(li);
+    }
+    
+  
+    pages.updateStudentCount();
+};
+
+pages.updateStudentCount = () => {
+    const student_list = document.querySelector(".student-list");
+    const student_count = document.getElementById("studentCount");
+    const count = student_list.children.length;
+    student_count.textContent = `${count} students`;
 }
