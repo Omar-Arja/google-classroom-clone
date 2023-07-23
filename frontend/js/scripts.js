@@ -277,7 +277,7 @@ pages.showClassesDashboard = () => {
     });
 }
 
-pages.resetPassword = () => {
+pages.resetPasswordEmail = () => {
   const forgot_password_btn = document.getElementById('forgot-password-btn')
 
   forgot_password_btn.addEventListener('click', e => {
@@ -295,7 +295,14 @@ pages.resetPassword = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.status == "email found"){
-          
+          const email = localStorage.getItem('email')
+          const form_data = new FormData()
+          form_data.append('email', email)
+          fetch(pages.base_url + 'reset-password-email.php', {
+            method: "POST",
+            body: form_data,
+          })
+            .catch((error) => console.log("Error In Email API: ", error));
         }
       })
 
