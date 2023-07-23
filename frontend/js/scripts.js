@@ -1,8 +1,8 @@
 
 const pages = {}
 
-pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
-
+//pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
+pages.base_url = 'http://localhost/SEF/google-classroom-clone/backend/api/';
 pages.myFetchSignup = () => {
         const signup_btn = document.getElementById('signup-btn')
         signup_btn.addEventListener('click', (e) =>{
@@ -96,3 +96,42 @@ pages.handleResponse = (data)=>{
             console.log("handleResponse Error")
     }
 }
+
+
+pages.assignments = () => {
+    const index_url = pages.base_url + "send_assignment.php";
+    alert(index_url);
+    console.log("hi1");
+    document.getElementById("btn1").addEventListener("click", () => {
+
+    const files = document.getElementById("file_input").files;
+   
+    if(files.length > 0 ){
+
+         const form_data = new FormData();
+         form_data.append("file1", files[0]);
+         form_data.append("id_assignment", 1);
+         form_data.append("id_user", 1);
+         
+         try {
+            const data = new FormData();
+            data.append("fileData", files[0])
+            data.append("id_assignment", 1)
+            data.append("id_user", 1)
+
+          
+            fetch(index_url, {
+              method: "POST",
+              body: data
+            })
+          } catch (error) {
+            console.log(error)
+          }
+         console.log("finished")
+
+    }
+
+
+
+    });
+};[]

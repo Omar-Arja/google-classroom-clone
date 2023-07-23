@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>assignments</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    
+    <section class="parent">
+        <img src="../assets/Images/document-text.svg" class="icon icon_document">
+        <div class="sub_left">
+            <h1 class="title" id="assignment_title">title assignment</h1>
+            <p class="sub_title" id="assignment_sub_title">teacher name and date</p>
+            <div class="sub_description">
+            <p class="bold" id="assignment_points">100 points</p>
+            <p class="bold" id="due_date">due date2</p>
+            </div>
+            <hr class="dark">
+            <p id="assignment_description">Thank you for asking for another group project! I understand you cannot spend one hour without assignments ;) 
+
+                This time, you are tasked with cloning Google Classroom platform, including both the Student and Teacher sides. The project is due next Thursday, and here are the key functionalities you need to implement: </p>
+                <hr class="light">
+                <img src="../assets/Images/people-svgrepo-com.svg" class="icon"> <span class="sub_title">Class Comments</span>
+        </div>
+        <div class="sub_right">
+         <div class="section_upload">
+            <div class="upload_box_head">
+                <div class="text text_gray">Add Your work</div>
+                <div class="text text_green"> Assigned</div>
+            </div>
+            <p id="demo"></p>
+            <label id="file-label"></label>
+            <div class="box1"><button id="add_file" class="button1 light">+ Add or Create</button></div>
+            <div class="box1"><button class="button1 dark">Mark as done</button></div>
+
+        </div>
+        <div class="section_upload">
+            <div class="box1">
+                <img src="../assets/Images/people-svgrepo-com.svg" class="icon"> <span class="sub_title">Private Comments</span>
+            </div>
+            
+
+        </div>
+        </div>
+        
+    </section>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      
+        <h1 class="sub_title" id="assignment_title">Add File</h1>
+        <form id="form1">
+        <input type="file" id="file_input" name="filename" placeholder="Link..">
+        
+        <span><input type="reset" id="reset" value="Cancel">
+            <input type="submit" id="btn1" value="Add File"></span>
+       
+        </form>
+      
+    </div>
+  
+     </div>
+     <script>
+        // Get the modal
+        const modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        const btn = document.getElementById("add_file");
+        
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+        
+    
+    <script src="../js/scripts.js"></script>
+    <script>
+        pages.assignments()
+    </script>    
+</body>
+</html>
