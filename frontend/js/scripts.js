@@ -304,4 +304,39 @@ pages.enterClass =(class_id) => {
     document.getElementById("inside-class-people").style.display = "flex";
 
 }
+ 
+  pages.addStudent = (name,role) => {
+    const student_list = document.querySelector(".student-list");
+    const teacher_list = document.querySelector(".teacher-list");
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+    div.classList.add("person");
+    
+    const img = document.createElement("img");
+    img.src = "../assets/Images/default-profile-icon.jpg";
+    img.classList.add("userIcon");
+  
+    const span = document.createElement("span");
+    span.classList.add("person-name");
+    span.textContent = name ;
+  
+    div.appendChild(img);
+    div.appendChild(span);
+    li.appendChild(div);
+    if (role == 'teacher'){
+        teacher_list.appendChild(li);
+    }
+    else{
+        student_list.appendChild(li);
+    }
+    
+  
+    pages.updateStudentCount();
+  };
 
+  pages.updateStudentCount = () => {
+    const student_list = document.querySelector(".student-list");
+    const student_count = document.getElementById("studentCount");
+    const count = student_list.children.length;
+    student_count.textContent = `${count} students`;
+  };
