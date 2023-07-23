@@ -56,6 +56,7 @@ pages.myFetchSignup = () => {
     }
   });
 };
+
 pages.myFetchSigninEmail = () => {
   const nextButton = document.getElementById("next");
 
@@ -118,6 +119,7 @@ pages.myFetchSigninPassword = () => {
       .catch((error) => console.log("Error In Email API: ", error));
   });
 };
+
 pages.handleResponse = (data, email = null) => {
   const response = data.status;
   switch (response) {
@@ -141,6 +143,10 @@ pages.handleResponse = (data, email = null) => {
       localStorage.setItem("user_id", data.user_id);
       window.location.href = "classroom.html"
       break;
+
+    case "class created successfully":
+        pages.hideBox()
+        pages.enterClass()
     default:
       console.log("handleResponse Error");
   }
@@ -227,7 +233,6 @@ pages.addSideBarItem = (class_name, class_section, class_link) => {
 };
 
 
-
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id')
   const show_classes_form_data = new FormData
@@ -252,5 +257,50 @@ pages.showClassesDashboard = () => {
         }
       });
     })
+}
+
+pages.showBox = () => {
+    document.getElementById("overlay").style.display = "block";
+};
+
+pages.hideBox = () => {
+    document.getElementById("overlay").style.display = "none";
+};
+
+pages.cancelBox = () => {
+    pages.hideBox();
+};
+
+pages.createClass = () => {
+    const classname = document.getElementById("inputClassname").value;
+    const section = document.getElementById("inputSection").value;
+    const subject = document.getElementById("inputSubject").value;
+    const room = document.getElementById("inputRoom").value;
+
+    // localStorage.setItem("user_id", data.user_id);
+
+    const pass_data = new FormData();
+    pass_data.append("user_id", localStorage.getItem("user_id"));
+    pass_data.append("class_name", classname);
+    pass_data.append("class_subject", section);
+    pass_data.append("class_section", subject);
+    pass_data.append("class_room", room);
+
+    fetch(pages.base_url + "create-class.php", {
+      method: "POST",
+      body: pass_data,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        pages.handleResponse(data);
+      })
+      .catch((error) => console.log("Error In  Create Class: ", error));
+  
+};
+
+pages.enterClass =(class_id) => {
+    document.getElementById("class-cards-container").style.display = "none";
+    document.getElementById("inside-class").style.display = "flex";
 
 }
+

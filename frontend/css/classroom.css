@@ -135,6 +135,7 @@ nav {
   flex-wrap: wrap;
   padding: 25px;
   gap: 3rem;
+  background-color: #1a73e8;
 }
 
 .class-card {
