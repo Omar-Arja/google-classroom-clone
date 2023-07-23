@@ -1,8 +1,7 @@
 
 const pages = {}
 
-//pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
-pages.base_url = 'http://localhost/SEF/google-classroom-clone/backend/api/';
+pages.base_url = 'http://localhost/google-classroom-clone/backend/api/'
 pages.myFetchSignup = () => {
         const signup_btn = document.getElementById('signup-btn')
         signup_btn.addEventListener('click', (e) =>{
