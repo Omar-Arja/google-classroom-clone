@@ -326,6 +326,7 @@ pages.enterClass =() => {
     document.getElementById("class-cards-container").style.display = "none";
     document.getElementById("middleSection").style.display = "block";
     document.getElementById("goole-nav-icon").remove();
+    document.getElementById("add-class-button").remove();
     pages.showStream();
 }
  
