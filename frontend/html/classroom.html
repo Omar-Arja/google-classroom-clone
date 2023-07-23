@@ -43,9 +43,15 @@
       <nav>
         <div class="left-section">
           <button class="sidebar-btn" id="sidebar-btn">☰</button>
-          <img src="../assets/Images/google.svg" alt="Google Logo" />
-          <span class="classroom-text">Classroom</span>
+          <img src="../assets/Images/google.svg" alt="Google Logo" id="goole-nav-icon" />
+          <span class="classroom-text" id="nav-title">Classroom</span>
         </div>
+
+        <div class="middle-section">
+            <button class="stream-nav-btn" onclick="pages.showStream()">Stream</button>
+            <button class="people-nav-btn" onclick="pages.showPeople()">People</button>
+        </div>
+
         <div class="right-section">
           <img
             class="icon"
@@ -164,10 +170,6 @@
     </main>
 
 
-
-
-
-
     <script src="../js/scripts.js"></script>
     <script>
       pages.openSidebar();
@@ -175,7 +177,7 @@
       pages.userInfo();
       pages.showClassesDashboard();
       pages.enterClass();
-      pages.addStudent('kahled')
+
     </script>
   </body>
 </html>

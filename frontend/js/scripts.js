@@ -298,14 +298,29 @@ pages.createClass = () => {
   
 };
 
-pages.enterClass =(class_id) => {
+pages.enterClass =(response='null') => {
     document.getElementById("class-cards-container").style.display = "none";
-    document.getElementById("inside-class-stream").style.display = "none";
-    document.getElementById("inside-class-people").style.display = "flex";
-
+    document.getElementById("goole-nav-icon").remove();
+    let title = document.getElementById("nav-title").value
+    title = response;
+    pages.showStream();
 }
  
-  pages.addStudent = (name,role) => {
+
+pages.showStream=()=>{
+    document.getElementById("inside-class-stream").style.display = "flex";
+    document.getElementById("inside-class-people").style.display = "none";
+}
+
+pages.showPeople=()=>{
+    document.getElementById("inside-class-stream").style.display = "none";
+    document.getElementById("inside-class-people").style.display = "flex";
+}
+
+
+// pages.addStudent('kahled','student')
+
+pages.addStudent = (name,role) => {
     const student_list = document.querySelector(".student-list");
     const teacher_list = document.querySelector(".teacher-list");
     const li = document.createElement("li");
@@ -332,11 +347,11 @@ pages.enterClass =(class_id) => {
     
   
     pages.updateStudentCount();
-  };
+};
 
-  pages.updateStudentCount = () => {
+pages.updateStudentCount = () => {
     const student_list = document.querySelector(".student-list");
     const student_count = document.getElementById("studentCount");
     const count = student_list.children.length;
     student_count.textContent = `${count} students`;
-  };
+};
