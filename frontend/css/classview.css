@@ -1,0 +1,71 @@
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    min-width: 560px;
+    min-height: 406px;
+    display: flex;
+    flex-direction: column;
+    grid-row-gap:20px;
+  }
+
+  .box input {
+    height: 56px;
+    width: 100%;
+    align-self: flex-start;
+    padding-left: 10px;
+  }
+
+.buttons-creat-class{
+    display: flex;
+    justify-content: flex-end;
+    grid-column-gap:20px;
+}
+
+.box button{
+    cursor: pointer;
+    font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(26, 115, 232);
+    background-color: transparent;
+    border: none;
+}
+
+
+.inside-class{
+    display: none;
+    flex-direction: column;
+    width: fill;
+    margin-left: 174.5px;
+    margin-right: 174.5px;
+    background-color: aqua;
+    height: 100%;
+}
+
+.inside-class .class-card-background-image{
+    width: 100%;
+    height: 240px;
+    flex: 1;
+}
+
+
+.class-section-stream{    
+    display: flex;
+}
