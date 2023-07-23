@@ -282,7 +282,7 @@ pages.resetPasswordEmail = () => {
 
   forgot_password_btn.addEventListener('click', e => {
     e.preventDefault()
-    document.getElementById('email-sent-text').style.display = 'block'
+    
     let email = localStorage.getItem('email');
 
     const data = new FormData();
@@ -301,7 +301,7 @@ pages.resetPasswordEmail = () => {
           fetch(pages.base_url + 'reset-password-email.php', {
             method: "POST",
             body: form_data,
-          })
+          }).then(document.getElementById('email-sent-text').style.display = 'block')
             .catch((error) => console.log("Error In Email API: ", error));
         }
       })
@@ -309,3 +309,28 @@ pages.resetPasswordEmail = () => {
       .catch((error) => console.log("Error In Email API: ", error));
   })
 }
+
+
+pages.resetPassword = () =>{
+  const reset_pass_btn = document.getElementById('reset-pass')
+  reset_pass_btn.addEventListener('click', e =>{
+    e.preventDefault()
+    const email = document.getElementById('email-to-reset-pass').value
+    const new_pass = document.getElementById('new-pass-try1').value
+    const new_pass_retry = document.getElementById('new-pass-try2').value
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('user_id');
+    if (new_pass === new_pass_retry){
+      const reset_pass_data = new FormData()
+      reset_pass_data.append('email', email)
+      reset_pass_data.append('new_password', new_pass)
+      reset_pass_data.append('token', token)
+      fetch(pages.base_url + 'reset-password.php', {
+        method: "POST",
+        body: reset_pass_data,
+      })
+        .catch((error) => console.log("Error In Email API: ", error));
+    }}
+  )
+}
+  

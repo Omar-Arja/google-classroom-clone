@@ -76,7 +76,7 @@ $query->store_result();
 $query->bind_result($user_id, $first_name, $last_name, $email);
 if($query->fetch()){
     $hashed_id = password_hash($user_id, PASSWORD_BCRYPT);
-    $reset_link = 'http://localhost/google-classroom-clone/html/passwordreset.htmlindex.html?user_id='. $hashed_id;
+    $reset_link = 'http://localhost/google-classroom-clone/frontend/html/passwordreset.html?user_id='. $hashed_id;
 
     $mail = new PHPMailer(true);
 
@@ -102,7 +102,7 @@ if($query->fetch()){
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Classroom password reset';
-    $mail->Body    = 'Dear' .$first_name .', <br>To reset your password please use the link below:<br>' .$reset_link .'<br>Group 7';
+    $mail->Body    = 'Dear ' .$first_name .', <br>To reset your password please use the link below:<br>' .$reset_link .'<br>Group 7';
 
 
     $mail->send();
