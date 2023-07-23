@@ -1,63 +1,62 @@
-*, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-form {
-    height: 100vh;
-    width: 100vw; 
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-  
+form {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login_email,
 .login_password,
 .signup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom :36px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top :48px;
-    grid-row-gap: 30px;
-    border: 2px solid #ccc;
-    height: auto;
-    min-height: 500px;
-    width: 470px;
-    border-radius: 15px;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 36px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 48px;
+  grid-row-gap: 30px;
+  border: 2px solid #ccc;
+  height: auto;
+  min-height: 500px;
+  width: 470px;
+  border-radius: 15px;
 }
 
-.signin-email{
-    display: flex;
-
+.signin-email {
+  display: flex;
 }
-.signin-password{
-    display: none;
-}
-
-.login_email h1{
-    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
-   font-size: 24px;
-   font-weight: 400;
+.signin-password {
+  display: none;
 }
 
-.login_email h2{
-    font-family: roboto,"Noto Sans Myanmar UI",arial,sans-serif;
-    font-size :16px;
-    font-weight: 400;
-    margin-bottom: 15px;
+.login_email h1 {
+  font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
 }
 
-.signinSection{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
+.login_email h2 {
+  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.signinSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .signinEmail,
@@ -67,109 +66,104 @@ form {
 .signup-email,
 .signup-password,
 .signup-password-ver {
-    padding: 13px 15px;
-    height: 28px+13px;
-    width: 100%;
-    align-self: flex-start;
+  padding: 13px 15px;
+  height: 28px+13px;
+  width: 100%;
+  align-self: flex-start;
 }
 
-.forgetEmail, .signup-button, .forgetPassword{
-    padding: 10px 20px 10px 0;
-    cursor: pointer; font-family: "Roboto", "Noto Sans Myanmar", sans-serif; 
-    font-weight: 500; 
-    font-size: 14px; 
-    color: rgb(26, 115, 232); 
-    background-color: transparent; 
-    border: none; 
-    
+.forgetEmail,
+.signup-button,
+.forgetPassword {
+  padding: 10px 20px 10px 0;
+  cursor: pointer;
+  font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(26, 115, 232);
+  background-color: transparent;
+  border: none;
 }
 
-
-.signinPrivately{ 
-    font-family: roboto,"Noto Sans Myanmar UI",arial,sans-serif;
-    align-self: self-start;
+.signinPrivately {
+  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+  align-self: self-start;
 }
 
 .signinPrivately p {
-    color: rgb(95, 99, 104);
-    font-size:  14px;
-    
+  color: rgb(95, 99, 104);
+  font-size: 14px;
 }
 
-.signinPrivately a{
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+.signinPrivately a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.buttons{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.next{
-    color: rgb(255, 255, 255);
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: .875rem;
-    background-color: #1a73e8;
-    border-radius: 5px;
-    width: 80px;
-    height: 36px;
-    border: none;
+.next {
+  color: rgb(255, 255, 255);
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  background-color: #1a73e8;
+  border-radius: 5px;
+  width: 80px;
+  height: 36px;
+  border: none;
 }
 
 /* //////////Login Password */
 
-.signinPassword h1{
-    font-size: 24px;
-    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
-    font-weight: 400;
+.signinPassword h1 {
+  font-size: 24px;
+  font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+  font-weight: 400;
 }
 
-
-.emailInfo{
-    display: flex;
-    border: 1px solid gray;
-    border-radius: 20px;
-    padding: 5px;
+.emailInfo {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 5px;
 }
 
-.userIcon{
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 10px;
+.userIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.showPassBox{
-    display: flex;
-    margin-top: 20px;
+.showPassBox {
+  display: flex;
+  margin-top: 20px;
 }
 
-.showPassBox input{
-    margin-right: 10px;
+.showPassBox input {
+  margin-right: 10px;
 }
-
 
 /* //////////Signup Password */
-.signup{
-    display: flex;
-    grid-row-gap: 20px;
+.signup {
+  display: flex;
+  grid-row-gap: 20px;
 }
 
-.signup h1{
-    font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
-    font-size: 24px;
-    font-weight: 400;
+.signup h1 {
+  font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
 }
 
-
-.role{
-    display: flex;
-    width: 75%;
-    justify-content: space-around;
+.role {
+  display: flex;
+  width: 75%;
+  justify-content: space-around;
 }
-
-

@@ -1,231 +1,237 @@
 /* Reset default styles for better consistency */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-body, h1, h2, p, ul, li, span{
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto Mono', monospace;
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+body,
+h1,
+h2,
+p,
+ul,
+li,
+span {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono", monospace;
 }
 
-
-.icon,.userIcon {
-    width: 32px;
-    height: 32px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
-    cursor: pointer; 
+.icon,
+.userIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
-nav { 
-    display: flex;
-    width: 98vw;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-
+nav {
+  display: flex;
+  width: 98vw;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.left-section{
-    display: flex;
-    align-items: center;
+.left-section {
+  display: flex;
+  align-items: center;
 }
 
-
-.sidebar-btn{
-    width: 3rem;
-    height: 3rem;
-    border: 0;
-    background-color: #FFFFFF;
-    font-size: 1.5em;
-    font-weight: 500;
-    border-radius: 100%;
-    margin-right: 5px;
+.sidebar-btn {
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background-color: #ffffff;
+  font-size: 1.5em;
+  font-weight: 500;
+  border-radius: 100%;
+  margin-right: 5px;
 }
 
-.sidebar-btn:hover{
-    background-color: rgba(0, 0, 0, 0.1);
+.sidebar-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.classroom-text{
-    font-size: 1.5rem;
-    padding-bottom: 0;
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
+.classroom-text {
+  font-size: 1.5rem;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
 
-.sidebar{
-    position: fixed; 
-    z-index: 1;
-    top: 0;
-    width: 100%; 
-    height: 100vh; 
-    overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0);
-    left: -100%;
-    opacity: 0;
-    transition: left 0.4s, opacity 0.4s;
+.sidebar {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  left: -100%;
+  opacity: 0;
+  transition: left 0.4s, opacity 0.4s;
 }
 .sidebar.show {
-    left: 0;
-    opacity: 1;
+  left: 0;
+  opacity: 1;
 }
-.sidebar-content{
-    width: 300px;
-    height: 100vh;
-    /* height: fit-content; */
-    background-color: #FFFFFF;
-    border-right: 1px solid rgba(0,0,0,0.2);
+.sidebar-content {
+  width: 300px;
+  height: 100vh;
+  /* height: fit-content; */
+  background-color: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .user-info-tab {
-    display: none;
-    position: fixed;
-    top: 69px; 
-    right: 50px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 9999; 
-    width: 335px;
-    height: 165px;
-    border-radius: 40px;
-    transition: left 0.4s, opacity 0.4s;
-  }
+  display: none;
+  position: fixed;
+  top: 69px;
+  right: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 9999;
+  width: 335px;
+  height: 165px;
+  border-radius: 40px;
+  transition: left 0.4s, opacity 0.4s;
+}
 
-.user-info{
-    padding-left: 20px;
-    padding-top: 20px;
-    display: flex;
-    grid-row-gap:10px ;
-    justify-content: space-around;
+.user-info {
+  padding-left: 20px;
+  padding-top: 20px;
+  display: flex;
+  grid-row-gap: 10px;
+  justify-content: space-around;
 }
 
 .user-info img {
-    width: 64px;
-    height: 64px;
-    align-self: center;
+  width: 64px;
+  height: 64px;
+  align-self: center;
 }
 
-.edit-information{
-    display: block;
-    position: relative;
-    top:20px;
-    left:20px;
-    color: rgb(255, 255, 255);
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: .875rem;
-    background-color: #1a73e8;
-    border-radius: 5px;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+.edit-information {
+  display: block;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  color: rgb(255, 255, 255);
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  background-color: #1a73e8;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
 }
 
-
-.class-cards-container{
-    display: flex;
-    width: 100vw;
-    flex-wrap: wrap;
-    padding: 25px;
-    gap: 3rem;
-
+.class-cards-container {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+  padding: 25px;
+  gap: 3rem;
 }
 
-.class-card{
-    width: 302px;
-    height: 296px;
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
+.class-card {
+  width: 302px;
+  height: 296px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.class-card-background-image{
-    height: 30%;
-    width: 302px;
-    height: 100px;
-    background-image: url("https://gstatic.com/classroom/themes/img_breakfast.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+.class-card-background-image {
+  height: 30%;
+  width: 302px;
+  height: 100px;
+  background-image: url("https://gstatic.com/classroom/themes/img_breakfast.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
-.class-title-section{
-    margin-top: 1rem;
-    margin-left: 1.5rem;
-    display: flex;
-    flex-direction: column ;
+.class-title-section {
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.class-title,.class-section{
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: 400;
+.class-title,
+.class-section {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 400;
 }
 
-.class-section{
-    font-size: 0.8rem;
-    font-weight: 500;
+.class-section {
+  font-size: 0.8rem;
+  font-weight: 500;
 }
-.class-title-section:hover{
-    text-decoration: underline;
-    color: #FFFFFF;
-}
-
-.sidebar-content, .sidebar-teaching, .sidebar-enrolled,.sidebar-class-details{
-    display: flex;
-    flex-flow: column nowrap;
+.class-title-section:hover {
+  text-decoration: underline;
+  color: #ffffff;
 }
 
-.role-in-class{
-    color: rgba(0,0,0,0.6);
-    font-weight: 700;
+.sidebar-content,
+.sidebar-teaching,
+.sidebar-enrolled,
+.sidebar-class-details {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.sidebar-title{
-    border-top: 1px solid rgba(158, 157, 157, 0.6);
-    padding: 20px;
-}
-.sidebar-class{
-    background-color: rgba(0, 0, 0, 0);
-    display: flex;
-    flex-wrap: wrap;
-    padding: 15px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    margin-bottom: 5px; 
-    cursor: pointer;
-    width: 255px;
+.role-in-class {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 700;
 }
 
-.sidebar-class:hover{
-    background-color: rgba(0, 0, 0, 0.05);
-    transition: 0.6s;
+.sidebar-title {
+  border-top: 1px solid rgba(158, 157, 157, 0.6);
+  padding: 20px;
+}
+.sidebar-class {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  width: 255px;
 }
 
-.class-icon{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
-    cursor: pointer; 
+.sidebar-class:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: 0.6s;
 }
 
-.sidebar-class-name{
-    font-size: 0.9rem;
+.class-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
-.sidebar-class-section{
-    font-size: 0.7rem;
+.sidebar-class-name {
+  font-size: 0.9rem;
 }
 
-.sidebar::-webkit-scrollbar{
-    display: none;
+.sidebar-class-section {
+  font-size: 0.7rem;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
