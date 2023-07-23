@@ -18,7 +18,7 @@ class Class {
       <div class="class class-card" data-class-id="${this.class_id}">
         <div class="class-card-background-image">
           <div class="class-title-section">
-            <a href="#" class="class-title">${this.class_name}</a>
+            <a href="#" class="class-title" onclick="pages.enterClass()">${this.class_name}</a>
             <a href="#" class="class-section">${this.class_section}</a>
           </div>
         </div>
@@ -28,7 +28,7 @@ class Class {
 
   addSideBarItem() {
     return `
-      <div class="class sidebar-class" data-class-id="${this.class_id}">
+      <div class="class sidebar-class" data-class-id="${this.class_id}" onclick="pages.enterClass()>
         <img
           class="class-icon"
           src="../assets/Images/default-profile-icon.jpg"
