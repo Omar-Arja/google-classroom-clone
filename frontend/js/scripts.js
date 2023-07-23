@@ -306,8 +306,8 @@ pages.createClass = () => {
     const pass_data = new FormData();
     pass_data.append("user_id", localStorage.getItem("user_id"));
     pass_data.append("class_name", classname);
-    pass_data.append("class_subject", section);
-    pass_data.append("class_section", subject);
+    pass_data.append("class_section", section);
+    pass_data.append("class_subject", subject);
     pass_data.append("class_room", room);
 
     fetch(pages.base_url + "create-class.php", {
