@@ -1,5 +1,51 @@
 const pages = {};
 
+
+class Class {
+  constructor(class_id, class_name, class_section, class_subject, class_room, total_students_number, class_code, role) {
+    this.class_id = class_id;
+    this.class_name = class_name;
+    this.class_section = class_section;
+    this.class_subject = class_subject;
+    this.class_room = class_room;
+    this.total_students_number = total_students_number;
+    this.class_code = class_code;
+    this.role = role;
+  }
+
+  displayClassCard() {
+    return `
+      <div class="class-card">
+        <div class="class-card-background-image">
+          <div class="class-title-section">
+            <a href="#" class="class-title">${this.class_name}</a>
+            <a href="#" class="class-section">${this.class_section}</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  addSideBarItem () {
+    return `
+    <div class="sidebar-class">
+    <img
+      class="class-icon"
+      src="../assets/Images/default-profile-icon.jpg"
+      alt="Default Icon"
+    />
+    <div class="sidebar-class-details">
+      <span class="sidebar-class-name">${this.class_name}</span>
+      <span class="sidebar-class-section">${this.class_section}</span>
+    </div>
+    </div>
+      `;
+  };
+
+}
+
+
+
 pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 
 pages.myFetchSignup = () => {
@@ -197,41 +243,11 @@ pages.displayUserInfo = () => {
   };
 
 
-pages.addClassCard = (class_name, class_section, class_link) => {
-  return `
-    <div class="class-card">
-        <div class="class-card-background-image">
-            <div class="class-title-section">
-                <a href="${class_link}" class="class-title">${class_name}</a>
-                <a href="${class_link}" class="class-section">${class_section}</a>
-            </div>
-        </div>
-    </div>
-    `;
-};
-
-pages.addSideBarItem = (class_name, class_section, class_link) => {
-  return `
-  <div class="sidebar-class">
-  <img
-    class="class-icon"
-    src="../assets/Images/default-profile-icon.jpg"
-    alt="Default Icon"
-  />
-  <div class="sidebar-class-details">
-    <span class="sidebar-class-name">${class_name}</span>
-    <span class="sidebar-class-section">${class_section}</span>
-  </div>
-  </div>
-    `;
-};
-
-
-
 pages.showClassesDashboard = () => {
-  const user_id = localStorage.getItem('user_id')
-  const show_classes_form_data = new FormData
-  show_classes_form_data.append('user_id', user_id)
+  const user_id = localStorage.getItem('user_id');
+  const show_classes_form_data = new FormData();
+  show_classes_form_data.append('user_id', user_id);
+
   fetch(pages.base_url + 'classes.php', {
     method: "POST",
     body: show_classes_form_data,
@@ -239,18 +255,24 @@ pages.showClassesDashboard = () => {
     .then((response) => response.json())
     .then((data) => {
       data.forEach(element => {
-        document.querySelector('.class-cards-container').innerHTML += pages.addClassCard(
-          element.class_name, element.class_section, '#'
-        )
-        if (element.role == 'teacher') {
-          document.querySelector('.sidebar-teaching').innerHTML += pages.addSideBarItem(
-            element.class_name, element.class_section, '#')
-        }
-        else if (element.role == 'student') {
-          document.querySelector('.sidebar-enrolled').innerHTML += pages.addSideBarItem(
-            element.class_name, element.class_section, '#')
+        const class_obj = new Class(
+          element.class_id,
+          element.class_name,
+          element.class_section,
+          element.class_subject,
+          element.class_room,
+          element.total_students_number,
+          element.class_code,
+          element.role
+        );
+
+        document.querySelector('.class-cards-container').innerHTML += class_obj.displayClassCard();
+
+        if (element.role === 'teacher') {
+          document.querySelector('.sidebar-teaching').innerHTML += class_obj.addSideBarItem(element.class_name, element.class_section, element.class_id);
+        } else if (element.role === 'student') {
+          document.querySelector('.sidebar-enrolled').innerHTML += class_obj.addSideBarItem(element.class_name, element.class_section, element.class_id);
         }
       });
-    })
-
+    });
 }
