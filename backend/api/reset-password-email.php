@@ -75,7 +75,8 @@ $query->execute();
 $query->store_result();
 $query->bind_result($user_id, $first_name, $last_name, $email);
 if($query->fetch()){
-    $reset_link = 'http://localhost/google-classroom-clone/html/passwordreset.htmlindex.html?user_id='. $user_id;
+    $hashed_id = password_hash($user_id, PASSWORD_BCRYPT);
+    $reset_link = 'http://localhost/google-classroom-clone/html/passwordreset.htmlindex.html?user_id='. $hashed_id;
 
     $mail = new PHPMailer(true);
 
