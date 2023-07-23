@@ -276,3 +276,29 @@ pages.showClassesDashboard = () => {
       });
     });
 }
+
+pages.resetPassword = () => {
+  const forgot_password_btn = document.getElementById('forgot-password-btn')
+
+  forgot_password_btn.addEventListener('click', e => {
+    e.preventDefault()
+    document.getElementById('email-sent-text').style.display = 'block'
+    let email = localStorage.getItem('email');
+
+    const data = new FormData();
+    data.append("email", email);
+
+    fetch(pages.base_url + "email.php", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status == "email found"){
+          
+        }
+      })
+
+      .catch((error) => console.log("Error In Email API: ", error));
+  })
+}
