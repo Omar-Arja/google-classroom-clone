@@ -183,7 +183,7 @@ pages.handleResponse = (data, email = null) => {
 
     case "class created successfully":
         pages.hideBox()
-        pages.enterClass()
+        window.location.href = "classroom.html"
     default:
       console.log("handleResponse Error");
   }
@@ -295,10 +295,11 @@ pages.cancelBox = () => {
 };
 
 pages.createClass = () => {
-    const classname = document.getElementById("inputClassname").value;
-    const section = document.getElementById("inputSection").value;
-    const subject = document.getElementById("inputSubject").value;
-    const room = document.getElementById("inputRoom").value;
+    const classname = document.getElementById("input-classname").value;
+    const section = document.getElementById("input-section").value;
+    const subject = document.getElementById("input-subject").value;
+    const room = document.getElementById("input-room").value;
+    console.log(classname, section, subject, room);
 
     // localStorage.setItem("user_id", data.user_id);
 

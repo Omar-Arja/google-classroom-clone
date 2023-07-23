@@ -1,13 +1,9 @@
 /* Reset default styles for better consistency */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
-body,
-h1,
-h2,
-p,
-ul,
-li,
-span {
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
@@ -153,11 +149,11 @@ nav {
 
 .class-cards-container {
   display: flex;
-  width: 100vw;
   flex-wrap: wrap;
-  padding: 25px;
+  padding: 25px 0;
   gap: 3rem;
-  background-color: #1a73e8;
+  overflow: hidden;
+  margin-left: 20px;
 }
 
 .class-card {
