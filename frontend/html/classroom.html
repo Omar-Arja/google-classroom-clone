@@ -98,7 +98,7 @@
             </div>
           </div>
         
-        <div class="inside-class-stream" id="inside-class">
+        <div class="inside-class-stream" id="inside-class-stream">
             <img class="class-card-background-image">
             <div class="class-stream-body">
                 <div class="functionality-dates">
@@ -132,6 +132,34 @@
             </div>
         </div>
 
+        <div class="inside-class-people" id="inside-class-people">
+            <h2>Teachers</h2>
+            <ul class="teacher-list">
+              <li>
+                <div class="person">
+                  <img src="../assets/Images/default-profile-icon.jpg" alt="Teacher Icon" class="userIcon">
+                  <span class="person-name">test</span>
+                </div>
+              </li>
+              <li>
+                <div class="person">
+                  <img src="../assets/Images/default-profile-icon.jpg" alt="Teacher Icon" class="userIcon">
+                  <span class="person-name">test</span>
+                </div>
+              </li>
+            </ul>
+          
+            <h2>Students <span id="studentCount">0</span></h2>
+            <ul class="student-list">
+              <li>
+                <div class="person">
+                  <img src="../assets/Images/default-profile-icon.jpg" alt="Student Icon" class="userIcon">
+                  <span class="person-name">test</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
 
     </main>
 
@@ -147,6 +175,7 @@
       pages.userInfo();
       pages.showClassesDashboard();
       pages.enterClass();
+      pages.addStudent('kahled')
     </script>
   </body>
 </html>
