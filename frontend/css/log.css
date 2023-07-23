@@ -52,14 +52,19 @@ form {
   margin-bottom: 15px;
 }
 
-.signinSection {
+.signinSection , .password-reset-section{
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
 }
 
+.password-reset-section{
+  gap: 2rem;
+}
+
 .signinEmail,
+.reset-pass-input,
 .signinPassword,
 .signup-first-name,
 .signup-last-name,
@@ -73,6 +78,7 @@ form {
 }
 
 .forgetEmail,
+.forget-password,
 .signup-button,
 .forgetPassword {
   padding: 10px 20px 10px 0;
@@ -118,6 +124,19 @@ form {
   border: none;
 }
 
+.reset-btns{
+  justify-content: center;
+}
+.reset-pass-btn{
+  color: rgb(255, 255, 255);
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  background-color: #1a73e8;
+  border-radius: 5px;
+  width: 160px;
+  height: 36px;
+  border: none;
+}
 /* //////////Login Password */
 
 .signinPassword h1 {
@@ -166,4 +185,9 @@ form {
   display: flex;
   width: 75%;
   justify-content: space-around;
+}
+
+#email-sent-text{
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }

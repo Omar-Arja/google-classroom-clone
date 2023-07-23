@@ -48,7 +48,7 @@
           />
           <p class="email" id="email"></p>
         </div>
-        <div class="signinSection">
+        <div class="signinSection" id="password-section">
           <input
             class="signinPassword"
             id="signin-password"
@@ -59,9 +59,11 @@
             <input type="checkbox" id="showPassword" />
             <label for="showPassword">Show password</label>
           </div>
+          
+          <span style="display: none;" id="email-sent-text">An email with instructions has been sent to your email.</span>
         </div>
         <div class="buttons">
-          <a href="signup.html" class="signup-button">Create account</a>
+          <button class="forget-password" id="forgot-password-btn">Forgot Password?</button>
           <button class="next" id="password-next">Next</button>
         </div>
       </div>
@@ -71,6 +73,7 @@
     <script>
       pages.myFetchSigninEmail();
       pages.myFetchSigninPassword();
+      pages.resetPasswordEmail()
     </script>
   </body>
 </html>

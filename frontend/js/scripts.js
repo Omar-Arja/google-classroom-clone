@@ -392,3 +392,61 @@ pages.updateStudentCount = () => {
   const count = student_list.children.length;
   student_count.textContent = `${count} students`;
 }
+
+pages.resetPasswordEmail = () => {
+  const forgot_password_btn = document.getElementById('forgot-password-btn')
+
+  forgot_password_btn.addEventListener('click', e => {
+    e.preventDefault()
+    
+    let email = localStorage.getItem('email');
+
+    const data = new FormData();
+    data.append("email", email);
+
+    fetch(pages.base_url + "email.php", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status == "email found"){
+          const email = localStorage.getItem('email')
+          const form_data = new FormData()
+          form_data.append('email', email)
+          fetch(pages.base_url + 'reset-password-email.php', {
+            method: "POST",
+            body: form_data,
+          }).then(document.getElementById('email-sent-text').style.display = 'block')
+            .catch((error) => console.log("Error In Email API: ", error));
+        }
+      })
+
+      .catch((error) => console.log("Error In Email API: ", error));
+  })
+}
+
+
+pages.resetPassword = () =>{
+  const reset_pass_btn = document.getElementById('reset-pass')
+  reset_pass_btn.addEventListener('click', e =>{
+    e.preventDefault()
+    const email = document.getElementById('email-to-reset-pass').value
+    const new_pass = document.getElementById('new-pass-try1').value
+    const new_pass_retry = document.getElementById('new-pass-try2').value
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('user_id');
+    if (new_pass === new_pass_retry){
+      const reset_pass_data = new FormData()
+      reset_pass_data.append('email', email)
+      reset_pass_data.append('new_password', new_pass)
+      reset_pass_data.append('token', token)
+      fetch(pages.base_url + 'reset-password.php', {
+        method: "POST",
+        body: reset_pass_data,
+      })
+        .catch((error) => console.log("Error In Email API: ", error));
+    }}
+  )
+}
+  
