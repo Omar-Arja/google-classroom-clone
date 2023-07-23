@@ -300,7 +300,8 @@ pages.createClass = () => {
 
 pages.enterClass =(class_id) => {
     document.getElementById("class-cards-container").style.display = "none";
-    document.getElementById("inside-class").style.display = "flex";
+    document.getElementById("inside-class-stream").style.display = "none";
+    document.getElementById("inside-class-people").style.display = "flex";
 
 }
 

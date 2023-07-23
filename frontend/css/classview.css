@@ -49,23 +49,109 @@
 }
 
 
-.inside-class{
+.inside-class-stream{
     display: none;
     flex-direction: column;
     width: fill;
-    margin-left: 174.5px;
-    margin-right: 174.5px;
-    background-color: aqua;
-    height: 100%;
+    margin-top: 15px;
+    margin-left: 13%;
+    margin-right: 13%;
+    display: none;
 }
 
-.inside-class .class-card-background-image{
+.inside-class-stream .class-card-background-image{
     width: 100%;
     height: 240px;
-    flex: 1;
+    align-items: stretch;
 }
 
-
-.class-section-stream{    
+.class-stream-body{
     display: flex;
+    flex-wrap: reverse;
 }
+
+.class-stream-body .functionality-dates{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    grid-column-gap: 20px;
+    color: gray;
+    flex: 0.2;
+}
+
+.stream-updates{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex:1;
+}
+
+.test-card{
+    height: 100px;
+    width: fill;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    min-width: 162px;
+}
+
+.notifactions{
+    display: flex;
+    align-items: stretch;
+    height: 100px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    margin: 10px;
+    align-items: stretch;
+}
+
+.notifactions .userIcon{
+    align-self: center;
+    margin-left: 20px;
+}
+
+.inside-class-people {
+    display: flex;
+    flex-direction: column;
+    width: fill;
+    margin-top: 15px;
+    margin-left: 13%;
+    margin-right: 13%;
+  }
+  
+  .inside-class-people h2 {
+    margin-bottom: 10px;
+    border-bottom: 4px solid #000; /* Add a thick black bottom border */
+    padding-bottom: 5px; /* Add some padding to create space between h2 and ul */
+  }
+  
+  .teacher-list,
+  .student-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .person {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+  }
+  
+  .person-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .person-name {
+    flex: 1;
+  }
+  
+  .teacher-list .person-icon {
+    /* Add specific styling for teacher icons if needed */
+  }
+  
+  .student-list .person-icon {
+    /* Add specific styling for student icons if needed */
+  }
