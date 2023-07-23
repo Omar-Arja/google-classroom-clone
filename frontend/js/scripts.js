@@ -260,9 +260,9 @@ pages.showClassesDashboard = () => {
         document.querySelector('.class-cards-container').innerHTML += class_obj.displayClassCard();
 
         if (element.role === 'teacher') {
-          document.querySelector('.sidebar-teaching').innerHTML += class_obj.addSideBarItem(element.class_name, element.class_section, element.class_id);
+          document.querySelector('.sidebar-teaching').innerHTML += class_obj.addSideBarItem();
         } else if (element.role === 'student') {
-          document.querySelector('.sidebar-enrolled').innerHTML += class_obj.addSideBarItem(element.class_name, element.class_section, element.class_id);
+          document.querySelector('.sidebar-enrolled').innerHTML += class_obj.addSideBarItem();
         }
 
         // Add event listener to the classes
