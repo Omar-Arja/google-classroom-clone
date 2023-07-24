@@ -333,6 +333,8 @@ pages.enterClassTeacher =() => {
     document.getElementById("class-cards-container").style.display = "none";
     document.getElementById("middleSection").style.display = "block";
     document.getElementById("goole-nav-icon").remove();
+    document.getElementById("add-class-button").remove();
+    document.getElementById("studentCount").remove();
     pages.showStream();
 }
 
@@ -340,6 +342,7 @@ pages.enterClassStudent =() => {
     document.getElementById("class-cards-container").style.display = "none";
     document.getElementById("middleSection").style.display = "block";
     document.getElementById("goole-nav-icon").remove();
+    document.getElementById("add-class-button").remove();
     document.getElementById("create-assignment").remove();
     document.getElementById("add-students-icon").remove();
     
