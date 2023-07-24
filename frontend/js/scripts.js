@@ -290,7 +290,10 @@ pages.editUserInfo = () => {
     }
   })
 }
+
 const classes_objects = [];
+let clicked_class = null;
+
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
@@ -298,8 +301,8 @@ pages.showClassesDashboard = () => {
   show_classes_form_data.append('user_id', user_id);
 
   const classes_objects = [];
-  let clicked_class = null;
-  localStorage.setItem('clicked_class', clicked_class);
+  clicked_class = null;
+  localStorage.setItem('clicked_class_id', null);
 
   fetch(pages.base_url + 'classes.php', {
     method: "POST",
@@ -335,7 +338,6 @@ pages.showClassesDashboard = () => {
             const classId = event.currentTarget.dataset.classId;
             clicked_class = classes_objects.find(item => item.class_id == classId);
             localStorage.setItem('clicked_class_id', clicked_class.class_id);
-            console.log(localStorage.getItem('clicked_class_id'))
 
             if (clicked_class.role === 'teacher') {
               pages.enterClassTeacher();
@@ -435,7 +437,8 @@ pages.enterClassTeacher = () => {
   document.getElementById("add-students-icon").style.display = "block";
   document.getElementById("create-assignment").style.display = "flex";
   const title = document.getElementById("nav-title")
-  title.innerText = "Teacher View"
+  title.innerText = clicked_class.class_name
+
   pages.showStream();
 }
 
@@ -447,8 +450,8 @@ pages.enterClassStudent = () => {
   document.getElementById("create-assignment").style.display = "none";
   document.getElementById("add-students-icon").style.display = "none";
   document.getElementById("class-meeting-code-box").style.display = "none";
-  let title = document.getElementById("nav-title")
-  title.innerText = "Student View"
+  const title = document.getElementById("nav-title")
+  title.innerText = clicked_class.class_name
 
   pages.showStream();
 }
@@ -581,9 +584,9 @@ pages.sendInviteEmail = () => {
   const send_invite_to_input = document.getElementById('email-to-invite-input')
   const send_invite_btn = document.getElementById('invite-class-with-email-btn')
   const send_invite_email_error_msg = document.getElementById('send-invite-email-error')
-  send_invite_btn.addEventListener('click' , () => {
+  send_invite_btn.addEventListener('click', () => {
     const send_invite_to_email = send_invite_to_input.value
-    if (!send_invite_to_email){
+    if (!send_invite_to_email) {
       send_invite_email_error_msg.innerText = 'Please enter an email'
       send_invite_email_error_msg.style.display = 'block'
     } else {
@@ -598,21 +601,21 @@ pages.sendInviteEmail = () => {
       fetch(pages.base_url + 'send-invite-email.php', {
         method: "POST",
         body: send_invite_data
-      }).then(response =>  response.json())
-      .then(data => {
-        if(data.status == 'Message has been sent'){
-          send_invite_email_error_msg.style.display = 'none'
-          send_invite_email_error_msg.innerText = 'Invite sent successfully'
-          send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
-          send_invite_email_error_msg.style.display = 'block'
-        } else {
-          send_invite_email_error_msg.style.display = 'none'
-          send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
-          send_invite_email_error_msg.style.display = 'block'
-        }
-      }).catch((error) => error);
+      }).then(response => response.json())
+        .then(data => {
+          if (data.status == 'Message has been sent') {
+            send_invite_email_error_msg.style.display = 'none'
+            send_invite_email_error_msg.innerText = 'Invite sent successfully'
+            send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
+            send_invite_email_error_msg.style.display = 'block'
+          } else {
+            send_invite_email_error_msg.style.display = 'none'
+            send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
+            send_invite_email_error_msg.style.display = 'block'
+          }
+        }).catch((error) => error);
     }
-  }) 
+  })
 
 }
 
