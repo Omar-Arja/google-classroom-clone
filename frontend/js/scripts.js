@@ -57,24 +57,19 @@ class Class {
 }
 
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-// pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/GoogleClassroom/";
 
 pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
   signup_btn.addEventListener("click", (e) => {
     e.preventDefault();
-    const first_name = document.getElementById("first-name-input");
-    const last_name = document.getElementById("last-name-input");
-    const email = document.getElementById("email-input");
-    const password = document.getElementById("password-input");
-    const ver_password = document.getElementById("ver-pass-input");
-
-    const first_name_val = first_name.value;
-    const last_name_val = last_name.value;
-    const email_val = email.value;
-    const password_val = password.value;
-    const ver_password_val = ver_password.value;
+   
+    const first_name_val = document.getElementById("first-name-input").value;
+    const last_name_val = document.getElementById("last-name-input").value;
+    const email_val = document.getElementById("email-input").value;
+    const password_val = document.getElementById("password-input").value;
+    const ver_password_val = document.getElementById("ver-pass-input").value;
 
     if (
       password_val == ver_password_val &&
@@ -195,19 +190,17 @@ pages.handleResponse = (data, email = null) => {
       break;
 
     case "class created successfully":
-      pages.hideBox()
-      window.location.href = "classroom.html"
+      pages.cancelBox();
+      pages.enterClassTeacher();
     default:
       console.log("handleResponse Error");
   }
 };
 
 pages.openSidebar = () => {
-  const open_sidebar = document.getElementById("sidebar-btn");
   const sidebar = document.getElementById("mySidebar");
-  open_sidebar.onclick = () => {
-    sidebar.classList.add("show");
-  };
+  sidebar.classList.add("show");
+ 
 };
 
 pages.closeSidebar = () => {
@@ -221,17 +214,14 @@ pages.closeSidebar = () => {
 };
 
 pages.userInfo = () => {
-  const userIcon = document.querySelector('.userIcon');
   const userInfoTab = document.querySelector('.user-info-tab');
-
-  userIcon.addEventListener('click', function () {
     if (userInfoTab.style.display === 'none') {
       userInfoTab.style.display = 'block';
       pages.displayUserInfo();
     } else {
       userInfoTab.style.display = 'none';
     }
-  });
+
 }
 
 pages.displayUserInfo = () => {
@@ -375,13 +365,8 @@ pages.showOverlay3 = () => {
 }
 
 pages.showBox = () => {
-  const add_class_button = document.getElementById('add-class-button')
-  const class_options = document.getElementById("class-options")
-  add_class_button.addEventListener('click', () => {
-    class_options.style.display = 'flex';
-  })
-}
-  ;
+  document.getElementById("class-options").style.display = 'flex';
+};
 
 
 pages.cancelBox = () => {
@@ -540,9 +525,28 @@ pages.showAssignmentInfo = () => {
 
 
 pages.createAssignment = () => {
+  const title = document.getElementById("input-assignment-title").value
+  const instruction = document.getElementById("input-assignment-instruction").value
+  const due = document.getElementById("input-assignment-due-date").value
 
-  console.log('yes')
-  pages.cancelBox()
+  const assignment_info = new FormData()
+  assignment_info.append("class_id",localStorage.getItem("class_id"))
+  assignment_info.append("title", title)
+  assignment_info.append("description",instruction)
+  assignment_info.append("due_date",due)
+  console.log(due)
+  
+  fetch(pages.base_url + "assignment-info.php",{
+    method:"POST",
+    body:assignment_info,
+  }).then(response => response.json)
+  .then(data =>{
+    if (data.status === "assignment posted successfully"){
+      console.log(data)
+    }else{
+      console.log("assignment was not sent:: " + data.status)
+    }
+  }).catch(error => console.log("ERror in assignment-info API: " + error))
 
 }
 
@@ -624,8 +628,9 @@ pages.goHome = () => {
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "none";
   document.getElementById("class-cards-container").style.display = "flex";
+  document.getElementById("middleSection").style.display = "none";
   const title = document.getElementById("nav-title")
   title.innerText = "ClassRoom"
   document.getElementById("goole-nav-icon").style.display = "flex";
-  document.getElementById("add-class-button").style.display = "flex";
+  document.getElementById("add-class-button").style.display = "inline";
 }

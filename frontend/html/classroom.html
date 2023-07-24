@@ -68,7 +68,7 @@
     <header>
       <nav>
         <div class="left-section">
-          <button class="sidebar-btn" id="sidebar-btn">☰</button>
+          <button class="sidebar-btn" id="sidebar-btn" onclick="pages.openSidebar()">☰</button>
           <img
             src="../assets/Images/google.svg"
             alt="Google Logo"
@@ -95,6 +95,7 @@
             id="add-class-button"
             src="../assets/Images/plus-icon.jpg"
             alt="Plus icon"
+            onclick="pages.showBox()"
           />
           <img
             class="icon"
@@ -105,6 +106,7 @@
             class="userIcon"
             src="../assets/Images/default-profile-icon.jpg"
             alt="Default icon"
+            onclick = "pages.userInfo()" 
           />
         </div>
         <div class="user-info-tab" id="user-info-tab">
@@ -218,18 +220,20 @@
       <div class="inside-class-classwork" id="inside-class-classwork">
         <div class="create-assignment" id="create-assignment">
           <button class="create-assignment" id="create-assignment" onclick="pages.showAssignmentInfo()">+ Create</button>
+          
           <div class="assignment-info-tab" id="assignment-info-tab">
             <div class="box">
               <h2>Assignment</h2>
               <input type="text" placeholder="Title" id="input-assignment-title">
               <input type="text" placeholder="Instructions" id="input-assignment-instruction">
               <div class="buttons-creat-class">
-                <input type="date" placeholder="Subject" id="input-assignment-due-date">
+                <input type="datetime-local" placeholder="Subject" id="input-assignment-due-date">
                 <button onclick="pages.cancelBox()">Cancel</button>
                 <button onclick="pages.createAssignment()">Create</button>
               </div>
             </div>
           </div>
+          
         </div>
         <ul class="assignment-list">
           <li>
@@ -293,14 +297,14 @@
 
     <script src="../js/scripts.js"></script>
     <script>
-      pages.openSidebar();
+      
       pages.closeSidebar();
-      pages.userInfo();
+      
       pages.showClassesDashboard();
-      pages.showBox()
+      
       pages.joinClassViaCode()
       pages.editUserInfo()
-      // pages.enterClassTeacher();
+      pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>
   </body>
