@@ -483,10 +483,17 @@ pages.joinClassViaCode = () => {
       body: join_class_data,
     }).then(response => response.json())
     .then(data => {
-      if(data.status == 'joined successfully'){
+      if(data.status == 'class joined successfully'){
         location.reload()
-      } else {
-        document.getElementById('invalid-join-code').style.display = 'block'
+      } else if (data.status == 'class code does not exist') {
+        const invalid_join_code = document.getElementById('invalid-join-code')
+        invalid_join_code.textContent = 'Invalid class code'
+        invalid_join_code.style.display = 'block'
+      }
+      else if (data.status == 'user already enrolled in this class'){
+        const invalid_join_code = document.getElementById('invalid-join-code')
+        invalid_join_code.textContent = 'You already joined this class'
+        invalid_join_code.style.display = 'block'
       }
     }).catch((error) => console.log("Error In join-class Api: ", error));
   })
