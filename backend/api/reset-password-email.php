@@ -102,7 +102,7 @@ if($query->fetch()){
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Classroom password reset';
-    $mail->Body    = 'Dear ' .$first_name .', <br>To reset your password please use the link below:<br>' .$reset_link .'<br>Group 7';
+    $mail->Body    = 'Dear ' .$first_name .', <br>To reset your password please use the link below:<br>' .$reset_link .'<br>Classroom clone Group 9';
 
 
     $mail->send();
