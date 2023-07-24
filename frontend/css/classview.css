@@ -1,4 +1,4 @@
-.overlay {
+.overlay, .overlay-join {
     display: none;
     position: fixed;
     top: 0;
@@ -9,7 +9,7 @@
     z-index: 9999;
   }
   
-  .box {
+  .box, .box-join {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -23,22 +23,23 @@
     display: flex;
     flex-direction: column;
     grid-row-gap:20px;
+    justify-content: space-evenly
   }
 
-  .box input {
+  .box input, .box-join input {
     height: 56px;
     width: 100%;
     align-self: flex-start;
     padding-left: 10px;
   }
 
-.buttons-creat-class{
+.buttons-creat-class, .buttons-join-class{
     display: flex;
     justify-content: flex-end;
     grid-column-gap:20px;
 }
 
-.box button{
+.box button, .box-join button{
     cursor: pointer;
     font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
     font-weight: 500;
@@ -164,4 +165,37 @@
     line-height: 1.25rem;
   }
 
+.plus-btn-options{
+  position: absolute;
+  top: 7vh;
+  background-color: #FFFFFF;
+  left: 75vw;
+  display: none;
   
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.plus-btn-options-shown{
+  display: flex;
+}
+.class-options-btn{
+  border: 0;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  height: 3rem;
+  width: 8rem;
+
+}
+
+.class-options-btn:hover{
+  background-color: rgba(0, 0, 0,0.1);
+}
+
+.invalid-join-code{
+  color: rgba(255, 0, 0, 0.7);
+  display: none;
+}

@@ -295,12 +295,29 @@ pages.showClassesDashboard = () => {
     })
 }
 
+pages.showOverlay = () => {
+  document.getElementById('overlay').style.display = 'block'
+  document.getElementById('class-options').style.display = 'none'
+  
+}
+pages.showOverlay2 = () => {
+  document.getElementById('overlay2').style.display = 'block'
+  document.getElementById('class-options').style.display = 'none'
+}
+
 pages.showBox = () => {
-  document.getElementById("overlay").style.display = "block";
-};
+  const add_class_button = document.getElementById('add-class-button')
+  const class_options = document.getElementById("class-options")
+  add_class_button.addEventListener('click', () => {
+    class_options.style.display = 'flex';
+  })  }
+;
+
 
 pages.hideBox = () => {
   document.getElementById("overlay").style.display = "none";
+  document.getElementById("overlay2").style.display = "none";
+  document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
 };
 
 pages.cancelBox = () => {
@@ -450,3 +467,28 @@ pages.resetPassword = () =>{
   )
 }
   
+
+pages.joinClassViaCode = () => {
+  const entered_class_code = document.getElementById('class-code-input')
+  const join_class_with_code_btn = document.getElementById('join-class-with-code-btn')
+  join_class_with_code_btn.addEventListener('click', () => {
+    
+    join_class_data = new FormData()
+
+    join_class_data.append('user_id', localStorage.getItem('user_id'))
+    join_class_data.append('class_code', entered_class_code.value)
+
+    fetch(pages.base_url +'join-class.php', {
+      method: "POST",
+      body: join_class_data,
+    }).then(response => response.json())
+    .then(data => {
+      if(data.status == 'joined successfully'){
+        location.reload()
+      } else {
+        document.getElementById('invalid-join-code').style.display = 'block'
+      }
+    }).catch((error) => console.log("Error In join-class Api: ", error));
+  })
+
+}
