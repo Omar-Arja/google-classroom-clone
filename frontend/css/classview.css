@@ -156,8 +156,7 @@
 
 .inside-class-people h2 {
   margin-bottom: 10px;
-  border-bottom: 2px solid #000; /* Add a thick black bottom border */
-  padding-bottom: 5px; /* Add some padding to create space between h2 and ul */
+  padding-bottom: 5px; 
   margin-top: 20px;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 2rem;
