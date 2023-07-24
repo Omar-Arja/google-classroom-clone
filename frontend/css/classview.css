@@ -221,3 +221,7 @@ button {
   font-size: 0.75rem;
   margin-bottom: -1.5rem;
 }
+
+.update-info-msg{
+  display: none;
+}

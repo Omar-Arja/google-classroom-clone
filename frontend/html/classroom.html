@@ -128,6 +128,8 @@
               <input type="text" placeholder="Your first name" id="edit-first-name-input">
               <label class="edit-info-label">Last name:</label>
               <input type="text" placeholder="Your last name" id="edit-last-name-input">
+
+              <span class="update-info-msg" id='update-info-msg'></span>
               <div class="buttons-edit-info">
                 
                 <button onclick="pages.cancelBox()">Cancel</button>
@@ -210,6 +212,7 @@
       pages.showClassesDashboard();
       pages.showBox()
       pages.joinClassViaCode()
+      pages.editUserInfo()
     </script>
   </body>
 </html>
