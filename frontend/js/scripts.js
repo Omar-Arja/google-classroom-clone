@@ -262,34 +262,35 @@ pages.editUserInfo = () => {
     const old_first_name = localStorage.getItem('first_name')
     const old_last_name = localStorage.getItem('last_name')
 
-    if ((old_first_name != new_first_name) || 
-              (old_last_name != new_last_name)){
-                const update_info_data = new FormData()
-                update_info_data.append('new_first_name', new_first_name)
-                update_info_data.append('new_last_name', new_last_name)
-                update_info_data.append('user_id', localStorage.getItem('user_id'))
-                const result_msg = document.getElementById('update-info-msg')
-                fetch(pages.base_url + 'edit-user-information.php', {
-                  method: "POST", 
-                  body: update_info_data
-                }).then(response => response.json())
-                .then(data => {
-                  if(data.status == 'info updated successfully'){
-                    result_msg.innerText = 'Info updated successfully'
-                    result_msg.style.display = 'block'
-                    localStorage.setItem('first_name', new_first_name)
-                    localStorage.setItem('last_name', new_last_name)
-                    pages.displayUserInfo()
-                  } else {
-                    result_msg.innerText = 'An error occurred, try again'
-                    result_msg.style.color = 'red'
-                    result_msg.style.display = 'block'
-                  }
-                }).catch((error) => console.log("Error In edit-user-information Api: ", error))
-                
+    if ((old_first_name != new_first_name) ||
+      (old_last_name != new_last_name)) {
+      const update_info_data = new FormData()
+      update_info_data.append('new_first_name', new_first_name)
+      update_info_data.append('new_last_name', new_last_name)
+      update_info_data.append('user_id', localStorage.getItem('user_id'))
+      const result_msg = document.getElementById('update-info-msg')
+      fetch(pages.base_url + 'edit-user-information.php', {
+        method: "POST",
+        body: update_info_data
+      }).then(response => response.json())
+        .then(data => {
+          if (data.status == 'info updated successfully') {
+            result_msg.innerText = 'Info updated successfully'
+            result_msg.style.display = 'block'
+            localStorage.setItem('first_name', new_first_name)
+            localStorage.setItem('last_name', new_last_name)
+            pages.displayUserInfo()
+          } else {
+            result_msg.innerText = 'An error occurred, try again'
+            result_msg.style.color = 'red'
+            result_msg.style.display = 'block'
+          }
+        }).catch((error) => console.log("Error In edit-user-information Api: ", error))
+
     }
   })
 }
+const classes_objects = [];
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
@@ -297,6 +298,9 @@ pages.showClassesDashboard = () => {
   show_classes_form_data.append('user_id', user_id);
 
   const classes_objects = [];
+  const clicked_class = null;
+  localStorage.setItem('clicked_class', clicked_class);
+
   fetch(pages.base_url + 'classes.php', {
     method: "POST",
     body: show_classes_form_data,
@@ -329,9 +333,9 @@ pages.showClassesDashboard = () => {
         classes.forEach(item => {
           item.addEventListener('click', (event) => {
             const classId = event.currentTarget.dataset.classId;
-            const clicked_class = classes_objects.find(item => item.class_id == classId);
+            clicked_class = classes_objects.find(item => item.class_id == classId);
             console.log(clicked_class);
-          
+
             if (clicked_class.role === 'teacher') {
               pages.enterClassTeacher();
             }
