@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../css/classview.css" />
   </head>
   <body>
+    <div class="plus-btn-options" id="class-options">
+      <button class="class-options-btn" id="create-option" onclick="pages.showOverlay()">create class</button>
+      <button class="class-options-btn" id="join-option" onclick="pages.showOverlay2()">join class</button>
+    </div>
     <div class="sidebar" id="mySidebar">
       <div class="sidebar-content">
         <div class="sidebar-teaching">
@@ -59,7 +63,7 @@
             id="add-class-button"
             src="../assets/Images/plus-icon.jpg"
             alt="Plus icon"
-            onclick="pages.showBox()"
+            
           />
           <img
             class="icon"
@@ -101,6 +105,19 @@
               <div class="buttons-creat-class">
                 <button onclick="pages.cancelBox()">Cancel</button>
                 <button onclick="pages.createClass()">Create</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="overlay-join" id="overlay2">
+            <div class="box-join">
+              <h2>Join Class</h2>
+              <input type="text" placeholder="Enter class code" id="class-code-input">
+              <span class="invalid-join-code" id='invalid-join-code'>Invalid code!!</span>
+              <div class="buttons-join-class">
+                
+                <button onclick="pages.cancelBox()">Cancel</button>
+                <button id="join-class-with-code-btn">Join</button>
               </div>
             </div>
           </div>
@@ -177,7 +194,8 @@
       pages.closeSidebar();
       pages.userInfo();
       pages.showClassesDashboard();
-
+      pages.showBox()
+      pages.joinClassViaCode()
     </script>
   </body>
 </html>
