@@ -239,18 +239,26 @@ pages.displayUserInfo = () => {
 
   const firstName = localStorage.getItem("first_name");
   const lastName = localStorage.getItem("last_name");
-  const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
 
 
   const fullNameElement = document.getElementById("full-name-disp");
   const emailElement = document.getElementById("email-disp");
-  const roleElement = document.getElementById("role-disp");
 
   fullNameElement.textContent = `${firstName} ${lastName}`;
   emailElement.textContent = `Email: ${email}`;
   roleElement.textContent = `Role: ${role}`;
 };
+
+pages.editUserInfo = () => {
+  const edit_info_btn = document.getElementById('edit-information')
+
+  // edit_info_btn.addEventListener('click', () => {
+  //   if (userInfoTab.style.display === 'none') {
+  //     userInfoTab.style.display = 'block';
+  //   }
+  // })
+}
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
@@ -309,6 +317,13 @@ pages.showOverlay2 = () => {
   document.getElementById('class-options').style.display = 'none'
 }
 
+pages.showOverlay3 = () => {
+  document.getElementById('overlay3').style.display = 'block'
+  document.getElementById('user-info-tab').style.display = 'none'
+  document.getElementById('edit-first-name-input').value = localStorage.getItem('first_name')
+  document.getElementById('edit-last-name-input').value = localStorage.getItem('last_name')
+}
+
 pages.showBox = () => {
   const add_class_button = document.getElementById('add-class-button')
   const class_options = document.getElementById("class-options")
@@ -322,6 +337,7 @@ pages.showBox = () => {
 pages.hideBox = () => {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
+  document.getElementById("overlay3").style.display = "none";
   document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
 };
 
