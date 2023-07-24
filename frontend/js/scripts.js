@@ -360,6 +360,9 @@ pages.showOverlay2 = () => {
   document.getElementById('overlay2').style.display = 'block'
   document.getElementById('class-options').style.display = 'none'
 }
+pages.showOverlaySendEmailInvite = () => {
+  document.getElementById('overlay-send-invite-via-email').style.display = 'block'
+}
 
 pages.showOverlay3 = () => {
   document.getElementById('overlay3').style.display = 'block'
@@ -378,16 +381,12 @@ pages.showBox = () => {
   ;
 
 
-pages.hideBox = () => {
+pages.cancelBox = () => {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("assignment-info-tab").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
   document.getElementById("overlay3").style.display = "none";
-  document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
-};
-
-pages.cancelBox = () => {
-  pages.hideBox();
+  document.getElementById("overlay-send-invite-via-email").style.display = "none";
 };
 
 pages.createClass = () => {
@@ -428,11 +427,13 @@ pages.createClass = () => {
 pages.enterClassTeacher = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
-  document.getElementById("goole-nav-icon").remove();
-  document.getElementById("add-class-button").remove();
-  document.getElementById("studentCount").remove();
-  document.getElementById("class-meeting-link-box").remove();
-  let title = document.getElementById("nav-title")
+  document.getElementById("goole-nav-icon").style.display = "none";
+  document.getElementById("add-class-button").style.display = "none";
+  document.getElementById("studentCount").style.display = "none";
+  document.getElementById("class-meeting-link-box").style.display = "none";
+  document.getElementById("add-students-icon").style.display = "block";
+  document.getElementById("create-assignment").style.display = "flex";
+  const title = document.getElementById("nav-title")
   title.innerText = "Teacher View"
   pages.showStream();
 }
@@ -440,11 +441,11 @@ pages.enterClassTeacher = () => {
 pages.enterClassStudent = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
-  document.getElementById("goole-nav-icon").remove();
-  document.getElementById("add-class-button").remove();
-  document.getElementById("create-assignment").remove();
-  document.getElementById("add-students-icon").remove();
-  document.getElementById("class-meeting-code-box").remove()
+  document.getElementById("goole-nav-icon").style.display = "none";
+  document.getElementById("add-class-button").style.display = "none";
+  document.getElementById("create-assignment").style.display = "none";
+  document.getElementById("add-students-icon").style.display = "none";
+  document.getElementById("class-meeting-code-box").style.display = "none";
   let title = document.getElementById("nav-title")
   title.innerText = "Student View"
 
@@ -469,33 +470,6 @@ pages.showClasswork = () => {
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
 }
-
-
-pages.addStudent = (name, role) => {
-  const student_list = document.querySelector(".student-list");
-  const teacher_list = document.querySelector(".teacher-list");
-  const li = document.createElement("li");
-  const div = document.createElement("div");
-  div.classList.add("person");
-
-  const img = document.createElement("img");
-  img.src = "../assets/Images/default-profile-icon.jpg";
-  img.classList.add("userIcon");
-
-  const span = document.createElement("span");
-  span.classList.add("person-name");
-  span.textContent = name;
-
-  div.appendChild(img);
-  div.appendChild(span);
-  li.appendChild(div);
-  if (role == 'teacher') {
-    teacher_list.appendChild(li);
-  }
-  else {
-    student_list.appendChild(li);
-  }
-};
 
 pages.resetPasswordEmail = () => {
   const forgot_password_btn = document.getElementById('forgot-password-btn')
@@ -598,4 +572,56 @@ pages.joinClassViaCode = () => {
       }).catch((error) => console.log("Error In join-class Api: ", error));
   })
 
+}
+
+pages.sendInviteEmail = () => {
+  const invite_sender_first_name = localStorage.getItem('first_name')
+  const invite_sender_last_name = localStorage.getItem('last_name')
+  const send_invite_to_input = document.getElementById('email-to-invite-input')
+  const send_invite_btn = document.getElementById('invite-class-with-email-btn')
+  const send_invite_email_error_msg = document.getElementById('send-invite-email-error')
+  send_invite_btn.addEventListener('click' , () => {
+    const send_invite_to_email = send_invite_to_input.value
+    if (!send_invite_to_email){
+      send_invite_email_error_msg.innerText = 'Please enter an email'
+      send_invite_email_error_msg.style.display = 'block'
+    } else {
+      const send_invite_data = new FormData()
+      send_invite_data.append('email', send_invite_to_email)
+      // send_invite_data.append('class_id', Class.class_id)
+      send_invite_data.append('class_id', 9)
+
+      send_invite_data.append('sender_first_name', invite_sender_first_name)
+      send_invite_data.append('sender_last_name', invite_sender_last_name)
+
+      fetch(pages.base_url + 'send-invite-email.php', {
+        method: "POST",
+        body: send_invite_data
+      }).then(response =>  response.json())
+      .then(data => {
+        if(data.status == 'Message has been sent'){
+          send_invite_email_error_msg.style.display = 'none'
+          send_invite_email_error_msg.innerText = 'Invite sent successfully'
+          send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
+          send_invite_email_error_msg.style.display = 'block'
+        } else {
+          send_invite_email_error_msg.style.display = 'none'
+          send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
+          send_invite_email_error_msg.style.display = 'block'
+        }
+      }).catch((error) => error);
+    }
+  }) 
+
+}
+
+pages.goHome = () => {
+  document.getElementById("inside-class-stream").style.display = "none";
+  document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-classwork").style.display = "none";
+  document.getElementById("class-cards-container").style.display = "flex";
+  const title = document.getElementById("nav-title")
+  title.innerText = "ClassRoom"
+  document.getElementById("goole-nav-icon").style.display = "flex";
+  document.getElementById("add-class-button").style.display = "flex";
 }
