@@ -24,13 +24,32 @@
     display: flex;
     flex-direction: column;
     grid-row-gap:20px;
+    padding-left: 30px;
+  }
+
+  .assignment-info-tab h2{
+    color: #000;
   }
 
   .box input {
     height: 56px;
     width: 100%;
     align-self: flex-start;
-    padding-left: 10px;
+  }
+
+  #input-assignment-instruction{
+    flex: 1;
+  }
+
+  #input-assignment-instruction::placeholder {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #999;
+  }
+
+  .input-assignment-due-date{
+    padding: 5px 20px;
   }
 
 .buttons-creat-class{
@@ -187,10 +206,10 @@
   .inside-class-classwork{
     display: none;
     flex-direction: column;
-    width: fill;
-    margin-top: 15px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-top: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    grid-row-gap:20px;
   }
   
   .create-assignment{

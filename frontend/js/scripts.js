@@ -418,7 +418,7 @@ pages.showAssignmentInfo = () => {
 
 
 pages.createAssignment = () => {
-  
+
   console.log('yes')
   pages.cancelBox()
 
