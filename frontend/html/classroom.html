@@ -110,6 +110,23 @@
       </nav>
     </header>
 
+    <div class="overlay-edit" id="overlay3">
+      <div class="box-edit">
+        <h2>Edit Profile Information</h2>
+        <label class="edit-info-label">First name:</label>
+        <input type="text" placeholder="Your first name" id="edit-first-name-input">
+        <label class="edit-info-label">Last name:</label>
+        <input type="text" placeholder="Your last name" id="edit-last-name-input">
+
+        <span class="update-info-msg" id='update-info-msg'></span>
+        <div class="buttons-edit-info">
+          
+          <button onclick="pages.cancelBox()">Cancel</button>
+          <button id="info-edit-done-btn">update</button>
+        </div>
+      </div>
+    </div>
+    
     <div class="class-cards-container" id="class-cards-container">
       <!-- Add class cards here -->
     </div>
@@ -221,7 +238,7 @@
               </div>
             </div>
           </div>
-          <div class="overlay-join" id="overlay2">
+          <!-- <div class="overlay-join" id="overlay2">
             <div class="box-join">
               <h2>Join Class</h2>
               <input type="text" placeholder="Enter class code" id="class-code-input">
@@ -232,24 +249,9 @@
                 <button id="join-class-with-code-btn">Join</button>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="overlay-edit" id="overlay3">
-            <div class="box-edit">
-              <h2>Edit Profile Information</h2>
-              <label class="edit-info-label">First name:</label>
-              <input type="text" placeholder="Your first name" id="edit-first-name-input">
-              <label class="edit-info-label">Last name:</label>
-              <input type="text" placeholder="Your last name" id="edit-last-name-input">
-
-              <span class="update-info-msg" id='update-info-msg'></span>
-              <div class="buttons-edit-info">
-                
-                <button onclick="pages.cancelBox()">Cancel</button>
-                <button id="info-edit-done-btn">update</button>
-              </div>
-            </div>
-          </div>
+          
         
         <div class="inside-class-stream" id="inside-class-stream">
             <img class="class-card-background-image">
