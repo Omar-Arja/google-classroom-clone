@@ -423,11 +423,13 @@ pages.createClass = () => {
 pages.enterClassTeacher = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
-  document.getElementById("goole-nav-icon").remove();
-  document.getElementById("add-class-button").remove();
-  document.getElementById("studentCount").remove();
-  document.getElementById("class-meeting-link-box").remove();
-  let title = document.getElementById("nav-title")
+  document.getElementById("goole-nav-icon").style.display = "none";
+  document.getElementById("add-class-button").style.display = "none";
+  document.getElementById("studentCount").style.display = "none";
+  document.getElementById("class-meeting-link-box").style.display = "none";
+  document.getElementById("add-students-icon").style.display = "block";
+  document.getElementById("create-assignment").style.display = "flex";
+  const title = document.getElementById("nav-title")
   title.innerText = "Teacher View"
   pages.showStream();
 }
@@ -435,11 +437,11 @@ pages.enterClassTeacher = () => {
 pages.enterClassStudent = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
-  document.getElementById("goole-nav-icon").remove();
-  document.getElementById("add-class-button").remove();
-  document.getElementById("create-assignment").remove();
-  document.getElementById("add-students-icon").remove();
-  document.getElementById("class-meeting-code-box").remove()
+  document.getElementById("goole-nav-icon").style.display = "none";
+  document.getElementById("add-class-button").style.display = "none";
+  document.getElementById("create-assignment").style.display = "none";
+  document.getElementById("add-students-icon").style.display = "none";
+  document.getElementById("class-meeting-code-box").style.display = "none";
   let title = document.getElementById("nav-title")
   title.innerText = "Student View"
 
@@ -610,9 +612,12 @@ pages.sendInviteEmail = () => {
 }
 
 pages.goHome = () => {
-  document.getElementById("middleSection").style.display = "none";
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "none";
   document.getElementById("class-cards-container").style.display = "flex";
+  const title = document.getElementById("nav-title")
+  title.innerText = "ClassRoom"
+  document.getElementById("goole-nav-icon").style.display = "flex";
+  document.getElementById("add-class-button").style.display = "flex";
 }
