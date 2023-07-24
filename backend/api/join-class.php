@@ -20,8 +20,8 @@ if ($num_rows == 0) {
     $response['status'] = 'class code does not exist';
 }
 else {
-    $query = $mysqli->prepare('select * from enrollements where user_id = ? and class_id = ?');
-    $query->bind_param('ii', $user_id, $class_id);
+    $query = $mysqli->prepare('select user_id, class_id from enrollements where user_id = ? and class_id = ? union select user_id, class_id from classes where user_id = ? and class_id = ?');
+    $query->bind_param('iiii', $user_id, $class_id, $user_id, $class_id);
     $query->execute();
     $query->store_result();
     $query->fetch();
