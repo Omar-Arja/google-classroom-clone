@@ -164,11 +164,46 @@ pages.myFetchSigninPassword = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        pages.handleResponse(data);
-      })
-      .catch((error) => console.log("Error In Email API: ", error));
-  });
-};
+        if(data.status == "logged in"){
+          const signed_in_id = data.user_id
+
+          localStorage.setItem("first_name", data.first_name);
+          localStorage.setItem("last_name", data.last_name);
+          localStorage.setItem("user_id", signed_in_id);
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const class_code = urlParams.get('c_code');
+          const invited_student_id = urlParams.get('user_id')
+          if(class_code && invited_student_id){
+            const id_data = new FormData()
+            id_data.append('invited_student_id', invited_student_id)
+            id_data.append('signed_in_id', signed_in_id)
+            fetch(pages.base_url + 'verify-enrollment-using-email.php', {
+            method: "POST",
+            body: id_data
+              }).then(response => response.json())
+          .then(data2 => {
+            if (data2.status === 'id verified'){
+              join_class_data = new FormData()
+
+              join_class_data.append('user_id', signed_in_id)
+              join_class_data.append('class_code', class_code)
+
+              fetch(pages.base_url + 'join-class.php', {
+                  method: "POST",
+                  body: join_class_data,
+                }).then(response => response.json())
+                .then(data3 => {
+                  if (data3.status == 'class joined successfully') {
+                    window.location.href = "classroom.html"
+                  }}).catch((error) => console.log("Error In Email API: ", error));
+                }})} else {
+                  window.location.href = "classroom.html"
+                }
+                
+            }})})}
+      
+
 
 pages.handleResponse = (data, email = null) => {
   const response = data.status;
@@ -187,12 +222,12 @@ pages.handleResponse = (data, email = null) => {
       email_text.innerText = email;
       break;
 
-    case "logged in":
-      localStorage.setItem("first_name", data.first_name);
-      localStorage.setItem("last_name", data.last_name);
-      localStorage.setItem("user_id", data.user_id);
-      window.location.href = "classroom.html"
-      break;
+    // case "logged in":
+    //   localStorage.setItem("first_name", data.first_name);
+    //   localStorage.setItem("last_name", data.last_name);
+    //   localStorage.setItem("user_id", data.user_id);
+    //   window.location.href = "classroom.html"
+    //   break;
 
     case "class created successfully":
       pages.hideBox()
@@ -589,8 +624,7 @@ pages.sendInviteEmail = () => {
     } else {
       const send_invite_data = new FormData()
       send_invite_data.append('email', send_invite_to_email)
-      // send_invite_data.append('class_id', Class.class_id)
-      send_invite_data.append('class_id', 9)
+      send_invite_data.append('class_id', localStorage.getItem('clicked_class_id'))
 
       send_invite_data.append('sender_first_name', invite_sender_first_name)
       send_invite_data.append('sender_last_name', invite_sender_last_name)
@@ -626,3 +660,12 @@ pages.goHome = () => {
   document.getElementById("goole-nav-icon").style.display = "flex";
   document.getElementById("add-class-button").style.display = "flex";
 }
+
+// pages.checkEnrollmentEmail = () => {
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const class_code = urlParams.get('c_code');
+  // const invited_student_id = urlParams.get('user_id')
+  // if(class_code && invited_student_id){
+    
+  // }
+// }
