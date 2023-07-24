@@ -24,7 +24,6 @@ else {
     $query->bind_param('ii', $user_id, $class_id);
     $query->execute();
     $query->store_result();
-    $query->bind_result($enrollement_id, $user_id, $class_id, $usertype_id);
     $query->fetch();
     $num_rows = $query->num_rows();
     if ($num_rows == 0) {
