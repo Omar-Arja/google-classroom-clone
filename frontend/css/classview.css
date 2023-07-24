@@ -1,5 +1,6 @@
 .overlay,
-.overlay-join {
+.overlay-join,
+.overlay-invite {
   display: none;
   position: fixed;
   top: 0;
@@ -11,7 +12,8 @@
 }
 
 .box,
-.box-join {
+.box-join,
+.box-invite {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,7 +31,8 @@
 }
 
 .box input,
-.box-join input {
+.box-join input,
+.box-invite input {
   height: 56px;
   width: 100%;
   align-self: flex-start;
@@ -37,14 +40,16 @@
 }
 
 .buttons-creat-class,
-.buttons-join-class {
+.buttons-join-class,
+.buttons-invite-class  {
   display: flex;
   justify-content: flex-end;
   grid-column-gap: 20px;
 }
 
 .box button,
-.box-join button {
+.box-join button,
+.box-invite button {
   cursor: pointer;
   font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
   font-weight: 500;
