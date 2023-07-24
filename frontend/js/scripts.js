@@ -57,8 +57,8 @@ class Class {
 }
 
 
-
 pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+// pages.base_url = "http://localhost/GoogleClassroom/";
 
 pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
@@ -277,7 +277,7 @@ pages.showClassesDashboard = () => {
         );
 
         classes_objects.push(class_obj);
-        
+
         document.querySelector('.class-cards-container').innerHTML += class_obj.displayClassCard();
 
         if (element.role === 'teacher') {
@@ -321,6 +321,8 @@ pages.showBox = () => {
 
 pages.hideBox = () => {
   document.getElementById("overlay").style.display = "none";
+  document.getElementById("assignment-info-tab").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
   document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
 };
@@ -357,11 +359,36 @@ pages.createClass = () => {
 
 };
 
-pages.enterClass = () => {
+// pages.enterClass =() => {
+//     document.getElementById("class-cards-container").style.display = "none";
+//     document.getElementById("middleSection").style.display = "block";
+//     document.getElementById("goole-nav-icon").remove();
+//     pages.showStream();
+// }
+
+pages.enterClassTeacher = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
   document.getElementById("goole-nav-icon").remove();
   document.getElementById("add-class-button").remove();
+  document.getElementById("studentCount").remove();
+  document.getElementById("class-meeting-link-box").remove();
+  let title = document.getElementById("nav-title")
+  title.innerText = "Teacher View"
+  pages.showStream();
+}
+
+pages.enterClassStudent = () => {
+  document.getElementById("class-cards-container").style.display = "none";
+  document.getElementById("middleSection").style.display = "block";
+  document.getElementById("goole-nav-icon").remove();
+  document.getElementById("add-class-button").remove();
+  document.getElementById("create-assignment").remove();
+  document.getElementById("add-students-icon").remove();
+  document.getElementById("class-meeting-code-box").remove()
+  let title = document.getElementById("nav-title")
+  title.innerText = "Student View"
+
   pages.showStream();
 }
 
@@ -369,15 +396,21 @@ pages.enterClass = () => {
 pages.showStream = () => {
   document.getElementById("inside-class-stream").style.display = "flex";
   document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-classwork").style.display = "none";
 }
 
 pages.showPeople = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "flex";
+  document.getElementById("inside-class-classwork").style.display = "none";
 }
 
+pages.showClasswork = () => {
+  document.getElementById("inside-class-stream").style.display = "none";
+  document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-classwork").style.display = "flex";
+}
 
-// pages.addStudent('kahled','student')
 
 pages.addStudent = (name, role) => {
   const student_list = document.querySelector(".student-list");
@@ -463,6 +496,18 @@ pages.resetPassword = () => {
   )
 }
 
+
+pages.showAssignmentInfo = () => {
+  document.getElementById("assignment-info-tab").style.display = "flex";
+}
+
+
+pages.createAssignment = () => {
+
+  console.log('yes')
+  pages.cancelBox()
+
+}
 
 pages.joinClassViaCode = () => {
   const entered_class_code = document.getElementById('class-code-input')

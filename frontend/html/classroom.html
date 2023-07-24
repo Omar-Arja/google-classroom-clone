@@ -54,6 +54,7 @@
 
         <div class="middle-section" id="middleSection">
             <button class="stream-nav-btn" onclick="pages.showStream()">Stream</button>
+            <button class="stream-nav-btn" onclick="pages.showClasswork()">Classwork</button>
             <button class="people-nav-btn" onclick="pages.showPeople()">People</button>
         </div>
 
@@ -126,9 +127,15 @@
             <img class="class-card-background-image">
             <div class="class-stream-body">
                 <div class="functionality-dates">
-                    <div class="class-meeting-link-box">
-                        <div class="test-card"></div>
+                    <div class="class-meeting-code-box" id="class-meeting-code-box">
+                        <div class="test-card">HERE GOES THE CLASS CODE</div>
                    </div>
+                   <div class="class-meeting-link-box" id="class-meeting-link-box">
+                    <div class="test-card">JOIN THE MEETING</div>
+                  </div>
+                  <div class="class-meeting-link-box">
+                    <div class="test-card">Upcoming<br>Due tomorrow<br>sdsd</div>
+                  </div>
                 </div>
                 <div class="stream-updates">
                     <div class="notifactions">
@@ -156,8 +163,37 @@
             </div>
         </div>
 
+        <div class="inside-class-classwork" id="inside-class-classwork">
+          <div class="create-assignment" id="create-assignment">
+            <button class="create-assignment" id="create-assignment" onclick="pages.showAssignmentInfo()">+ Create</button>
+            <div class="assignment-info-tab" id="assignment-info-tab">
+              <div class="box">
+                <h2>Assignment</h2>
+                <input type="text" placeholder="Title" id="input-assignment-title">
+                <input type="text" placeholder="Instructions" id="input-assignment-instruction">
+                <div class="buttons-creat-class">
+                  <input type="date" placeholder="Subject" id="input-assignment-due-date">
+                  <button onclick="pages.cancelBox()">Cancel</button>
+                  <button onclick="pages.createAssignment()">Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="assignment-list">
+            <li>
+              <div class="assignment">
+                <div class="info-about-asg">
+                  <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+                  <span class="assignment-name">test</span>
+                </div>
+                <h6 class="assignment-due-date">Due date</h6>              
+              </div>
+            </li>
+          </ul>
+      </div>
+
         <div class="inside-class-people" id="inside-class-people">
-            <h2>Teachers</h2>
+            <h2 class="teach-title">Teachers</h2>
             <ul class="teacher-list">
               <li>
                 <div class="person">
@@ -172,8 +208,11 @@
                 </div>
               </li>
             </ul>
-          
-            <h2>Students <span id="studentCount">0</span></h2>
+            <div class="student-tab-people">
+              <h2>Students </h2>
+              <span id="studentCount">0</span>
+              <img src="../assets/Images/add-user-icon.png" alt="Add User Icon" class="userIcon" id="add-students-icon">
+            </div>
             <ul class="student-list">
               <li>
                 <div class="person">
@@ -194,8 +233,9 @@
       pages.closeSidebar();
       pages.userInfo();
       pages.showClassesDashboard();
-      pages.showBox()
-      pages.joinClassViaCode()
+      pages.enterClassTeacher();
+      // pages.enterClassStudent();
+
     </script>
   </body>
 </html>
