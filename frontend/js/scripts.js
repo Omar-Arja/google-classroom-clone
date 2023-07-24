@@ -335,6 +335,7 @@ pages.enterClassTeacher =() => {
     document.getElementById("goole-nav-icon").remove();
     document.getElementById("add-class-button").remove();
     document.getElementById("studentCount").remove();
+    document.getElementById("class-meeting-link-box").remove();
     pages.showStream();
 }
 
@@ -345,10 +346,10 @@ pages.enterClassStudent =() => {
     document.getElementById("add-class-button").remove();
     document.getElementById("create-assignment").remove();
     document.getElementById("add-students-icon").remove();
+    document.getElementById("class-meeting-code-box").remove()
     
     pages.showStream();
 }
-
 
 
 pages.showStream=()=>{
