@@ -334,7 +334,8 @@ pages.showClassesDashboard = () => {
           item.addEventListener('click', (event) => {
             const classId = event.currentTarget.dataset.classId;
             clicked_class = classes_objects.find(item => item.class_id == classId);
-            console.log(clicked_class);
+            localStorage.setItem('clicked_class_id', clicked_class.class_id);
+            console.log(localStorage.getItem('clicked_class_id'))
 
             if (clicked_class.role === 'teacher') {
               pages.enterClassTeacher();
