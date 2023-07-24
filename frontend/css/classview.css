@@ -341,3 +341,13 @@ button {
 .update-info-msg{
   display: none;
 }
+
+.sidebar-go-home-text{
+  display: flex;
+  justify-content: space-around;
+}
+
+.sidebar-go-home-text > span{
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.7);
+}

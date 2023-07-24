@@ -608,3 +608,11 @@ pages.sendInviteEmail = () => {
   }) 
 
 }
+
+pages.goHome = () => {
+  document.getElementById("middleSection").style.display = "none";
+  document.getElementById("inside-class-stream").style.display = "none";
+  document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-classwork").style.display = "none";
+  document.getElementById("class-cards-container").style.display = "flex";
+}
