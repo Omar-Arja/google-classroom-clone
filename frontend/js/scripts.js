@@ -336,6 +336,8 @@ pages.enterClassTeacher =() => {
     document.getElementById("add-class-button").remove();
     document.getElementById("studentCount").remove();
     document.getElementById("class-meeting-link-box").remove();
+    let title = document.getElementById("nav-title")
+    title.innerText="Teacher View"
     pages.showStream();
 }
 
@@ -347,6 +349,8 @@ pages.enterClassStudent =() => {
     document.getElementById("create-assignment").remove();
     document.getElementById("add-students-icon").remove();
     document.getElementById("class-meeting-code-box").remove()
+    let title = document.getElementById("nav-title")
+    title.innerText="Student View"
     
     pages.showStream();
 }
