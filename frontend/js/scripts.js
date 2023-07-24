@@ -257,6 +257,7 @@ pages.showClassesDashboard = () => {
   const show_classes_form_data = new FormData();
   show_classes_form_data.append('user_id', user_id);
 
+  const classes_objects = [];
   fetch(pages.base_url + 'classes.php', {
     method: "POST",
     body: show_classes_form_data,
@@ -275,6 +276,8 @@ pages.showClassesDashboard = () => {
           element.role
         );
 
+        classes_objects.push(class_obj);
+        
         document.querySelector('.class-cards-container').innerHTML += class_obj.displayClassCard();
 
         if (element.role === 'teacher') {
@@ -287,7 +290,8 @@ pages.showClassesDashboard = () => {
         classes.forEach(item => {
           item.addEventListener('click', (event) => {
             const classId = event.currentTarget.dataset.classId;
-            console.log('Class ID clicked:', classId);
+            const clicked_class = classes_objects.find(item => item.class_id == classId);
+            console.log(clicked_class);
           });
         });
 
