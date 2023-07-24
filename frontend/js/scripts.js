@@ -331,6 +331,15 @@ pages.showClassesDashboard = () => {
             const classId = event.currentTarget.dataset.classId;
             const clicked_class = classes_objects.find(item => item.class_id == classId);
             console.log(clicked_class);
+          
+            if (clicked_class.role === 'teacher') {
+              pages.enterClassTeacher();
+            }
+            else if (clicked_class.role === 'student') {
+              pages.enterClassStudent();
+            }
+
+
           });
         });
 
@@ -579,7 +588,7 @@ pages.joinClassViaCode = () => {
         }
         else if (data.status == 'user already enrolled in this class') {
           const invalid_join_code = document.getElementById('invalid-join-code')
-          invalid_join_code.textContent = 'You already joined this class'
+          invalid_join_code.textContent = "You're already a member of this class"
           invalid_join_code.style.display = 'block'
         }
       }).catch((error) => console.log("Error In join-class Api: ", error));
