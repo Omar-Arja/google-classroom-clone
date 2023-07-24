@@ -322,7 +322,6 @@ pages.showBox = () => {
 pages.hideBox = () => {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("assignment-info-tab").style.display = "none";
-  document.getElementById("overlay").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
   document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
 };
