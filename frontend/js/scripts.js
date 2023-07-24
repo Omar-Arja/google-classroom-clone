@@ -57,8 +57,8 @@ class Class {
 }
 
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-// pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/GoogleClassroom/";
 
 pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
@@ -195,7 +195,7 @@ pages.handleResponse = (data, email = null) => {
       break;
 
     case "class created successfully":
-      pages.hideBox()
+      pages.cancelBox();
       window.location.href = "classroom.html"
     default:
       console.log("handleResponse Error");
