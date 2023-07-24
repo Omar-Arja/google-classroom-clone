@@ -298,7 +298,7 @@ pages.showClassesDashboard = () => {
   show_classes_form_data.append('user_id', user_id);
 
   const classes_objects = [];
-  const clicked_class = null;
+  let clicked_class = null;
   localStorage.setItem('clicked_class', clicked_class);
 
   fetch(pages.base_url + 'classes.php', {
