@@ -235,6 +235,20 @@
     </div>
 
       <div class="inside-class-people" id="inside-class-people">
+
+        <div class="overlay-invite" id="overlay-send-invite-via-email">
+          <div class="box-invite">
+            <h2>Invite Students</h2>
+            <input type="text" placeholder="Type a name or email" id="email-to-invite-input">
+            <span class="invalid-join-code" id='send-invite-email-error'>error!!</span>
+            <div class="buttons-invite-class">
+              
+              <button onclick="pages.cancelBox()">Cancel</button>
+              <button id="invite-class-with-email-btn">Invite</button>
+            </div>
+          </div>
+        </div>
+
           <h2 class="teach-title">Teachers</h2>
           <ul class="teacher-list">
             <li>
@@ -253,7 +267,7 @@
           <div class="student-tab-people">
             <h2>Students </h2>
             <span id="studentCount">0</span>
-            <img src="../assets/Images/add-user-icon.png" alt="Add User Icon" class="userIcon" id="add-students-icon" onclick="pages.addStudents">
+            <img src="../assets/Images/add-user-icon.png" alt="Add User Icon" class="userIcon" id="add-students-icon" onclick='pages.showOverlaySendEmailInvite()'>
           </div>
           <ul class="student-list">
             <li>

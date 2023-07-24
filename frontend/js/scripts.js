@@ -356,6 +356,9 @@ pages.showOverlay2 = () => {
   document.getElementById('overlay2').style.display = 'block'
   document.getElementById('class-options').style.display = 'none'
 }
+pages.showOverlaySendEmailInvite = () => {
+  document.getElementById('overlay-send-invite-via-email').style.display = 'block'
+}
 
 pages.showOverlay3 = () => {
   document.getElementById('overlay3').style.display = 'block'
@@ -374,16 +377,12 @@ pages.showBox = () => {
   ;
 
 
-pages.hideBox = () => {
+pages.cancelBox = () => {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("assignment-info-tab").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
   document.getElementById("overlay3").style.display = "none";
-  document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
-};
-
-pages.cancelBox = () => {
-  pages.hideBox();
+  document.getElementById("overlay-send-invite-via-email").style.display = "none";
 };
 
 pages.createClass = () => {
@@ -465,33 +464,6 @@ pages.showClasswork = () => {
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
 }
-
-
-pages.addStudent = (name, role) => {
-  const student_list = document.querySelector(".student-list");
-  const teacher_list = document.querySelector(".teacher-list");
-  const li = document.createElement("li");
-  const div = document.createElement("div");
-  div.classList.add("person");
-
-  const img = document.createElement("img");
-  img.src = "../assets/Images/default-profile-icon.jpg";
-  img.classList.add("userIcon");
-
-  const span = document.createElement("span");
-  span.classList.add("person-name");
-  span.textContent = name;
-
-  div.appendChild(img);
-  div.appendChild(span);
-  li.appendChild(div);
-  if (role == 'teacher') {
-    teacher_list.appendChild(li);
-  }
-  else {
-    student_list.appendChild(li);
-  }
-};
 
 pages.resetPasswordEmail = () => {
   const forgot_password_btn = document.getElementById('forgot-password-btn')
