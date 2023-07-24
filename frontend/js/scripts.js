@@ -203,11 +203,9 @@ pages.handleResponse = (data, email = null) => {
 };
 
 pages.openSidebar = () => {
-  const open_sidebar = document.getElementById("sidebar-btn");
   const sidebar = document.getElementById("mySidebar");
-  open_sidebar.onclick = () => {
-    sidebar.classList.add("show");
-  };
+  sidebar.classList.add("show");
+ 
 };
 
 pages.closeSidebar = () => {
@@ -221,17 +219,14 @@ pages.closeSidebar = () => {
 };
 
 pages.userInfo = () => {
-  const userIcon = document.querySelector('.userIcon');
   const userInfoTab = document.querySelector('.user-info-tab');
-
-  userIcon.addEventListener('click', function () {
     if (userInfoTab.style.display === 'none') {
       userInfoTab.style.display = 'block';
       pages.displayUserInfo();
     } else {
       userInfoTab.style.display = 'none';
     }
-  });
+
 }
 
 pages.displayUserInfo = () => {
@@ -368,13 +363,8 @@ pages.showOverlay3 = () => {
 }
 
 pages.showBox = () => {
-  const add_class_button = document.getElementById('add-class-button')
-  const class_options = document.getElementById("class-options")
-  add_class_button.addEventListener('click', () => {
-    class_options.style.display = 'flex';
-  })
-}
-  ;
+  document.getElementById("class-options").style.display = 'flex';
+};
 
 
 pages.cancelBox = () => {
@@ -532,9 +522,12 @@ pages.showAssignmentInfo = () => {
 
 
 pages.createAssignment = () => {
-  
-  console.log('yes')
-  pages.cancelBox()
+  const title = document.getElementById("input-assignment-title").value
+  const instruction = document.getElementById("input-assignment-instruction").value
+  const due = document.getElementById("input-assignment-due-date").value
+
+  console.log(title, instruction,due)
+  // pages.cancelBox()
 
 }
 
@@ -616,9 +609,9 @@ pages.goHome = () => {
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "none";
   document.getElementById("class-cards-container").style.display = "flex";
-  document.getElementById("middlesection").style.display = "none";
+  document.getElementById("middleSection").style.display = "none";
   const title = document.getElementById("nav-title")
   title.innerText = "ClassRoom"
   document.getElementById("goole-nav-icon").style.display = "flex";
-  document.getElementById("add-class-button").style.display = "flex";
+  document.getElementById("add-class-button").style.display = "inline";
 }
