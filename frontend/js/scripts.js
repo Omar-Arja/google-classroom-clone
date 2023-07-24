@@ -565,7 +565,7 @@ pages.createAssignment = () => {
   const due = document.getElementById("input-assignment-due-date").value
 
   const assignment_info = new FormData()
-  assignment_info.append("class_id",localStorage.getItem("class_id"))
+  assignment_info.append("class_id",localStorage.getItem("clicked_class_id"))
   assignment_info.append("title", title)
   assignment_info.append("description",instruction)
   assignment_info.append("due_date",due)
