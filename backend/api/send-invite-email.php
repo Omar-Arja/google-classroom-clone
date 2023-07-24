@@ -66,14 +66,14 @@ if($query->fetch()){
 
 
         $mail->send();
-        echo 'Message has been sent';
+        $response['status'] = 'Message has been sent';
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                $response['status'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }       
             } else {
-                echo "No user found with the provided email.";
+                $response['status'] = "No user found with the provided email.";
             };
 
         };
 
-    
+        echo json_encode($response);
