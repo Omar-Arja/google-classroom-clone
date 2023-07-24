@@ -595,3 +595,44 @@ pages.joinClassViaCode = () => {
   })
 
 }
+
+pages.sendInviteEmail = () => {
+  const invite_sender_first_name = localStorage.getItem('first_name')
+  const invite_sender_last_name = localStorage.getItem('last_name')
+  const send_invite_to_input = document.getElementById('email-to-invite-input')
+  const send_invite_btn = document.getElementById('invite-class-with-email-btn')
+  const send_invite_email_error_msg = document.getElementById('send-invite-email-error')
+  send_invite_btn.addEventListener('click' , () => {
+    const send_invite_to_email = send_invite_to_input.value
+    if (!send_invite_to_email){
+      send_invite_email_error_msg.innerText = 'Please enter an email'
+      send_invite_email_error_msg.style.display = 'block'
+    } else {
+      const send_invite_data = new FormData()
+      send_invite_data.append('email', send_invite_to_email)
+      // send_invite_data.append('class_id', Class.class_id)
+      send_invite_data.append('class_id', 9)
+
+      send_invite_data.append('sender_first_name', invite_sender_first_name)
+      send_invite_data.append('sender_last_name', invite_sender_last_name)
+
+      fetch(pages.base_url + 'send-invite-email.php', {
+        method: "POST",
+        body: send_invite_data
+      }).then(response =>  response.json())
+      .then(data => {
+        if(data.status == 'Message has been sent'){
+          send_invite_email_error_msg.style.display = 'none'
+          send_invite_email_error_msg.innerText = 'Invite sent successfully'
+          send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
+          send_invite_email_error_msg.style.display = 'block'
+        } else {
+          send_invite_email_error_msg.style.display = 'none'
+          send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
+          send_invite_email_error_msg.style.display = 'block'
+        }
+      }).catch((error) => error);
+    }
+  }) 
+
+}
