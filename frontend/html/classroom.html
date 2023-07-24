@@ -126,7 +126,7 @@
             <div class="box-invite">
               <h2>Invite Students</h2>
               <input type="text" placeholder="Type a name or email" id="email-to-invite-input">
-              <!-- <span class="invalid-join-code" id='invalid-join-code'>Invalid code!!</span> -->
+              <span class="invalid-join-code" id='send-invite-email-error'>error!!</span>
               <div class="buttons-invite-class">
                 
                 <button onclick="pages.cancelBox()">Cancel</button>
@@ -209,6 +209,7 @@
       pages.showClassesDashboard();
       pages.showBox()
       pages.joinClassViaCode()
+      pages.sendInviteEmail()
     </script>
   </body>
 </html>
