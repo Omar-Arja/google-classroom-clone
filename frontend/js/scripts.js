@@ -520,14 +520,15 @@ pages.createAssignment = () => {
   const title = document.getElementById("input-assignment-title").value
   const instruction = document.getElementById("input-assignment-instruction").value
   const due = document.getElementById("input-assignment-due-date").value
-  
+
   const assignment_info = new FormData()
+  assignment_info.append("class_id",localStorage.getItem("class_id"))
   assignment_info.append("title", title)
   assignment_info.append("description",instruction)
   assignment_info.append("due_date",due)
-  console.log(assignment_info)
+  console.log(due)
   
-  fetch(base_url + "assignment-info.php",{
+  fetch(pages.base_url + "assignment-info.php",{
     method:"POST",
     body:assignment_info,
   }).then(response => response.json)
@@ -535,7 +536,7 @@ pages.createAssignment = () => {
     if (data.status === "assignment posted successfully"){
       console.log(data)
     }else{
-      console.log("assignment was not sent")
+      console.log("assignment was not sent:: " + data.status)
     }
   }).catch(error => console.log("ERror in assignment-info API: " + error))
 
