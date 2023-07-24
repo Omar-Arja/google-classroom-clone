@@ -298,7 +298,7 @@ pages.showClassesDashboard = () => {
 pages.showOverlay = () => {
   document.getElementById('overlay').style.display = 'block'
   document.getElementById('class-options').style.display = 'none'
-  
+
 }
 pages.showOverlay2 = () => {
   document.getElementById('overlay2').style.display = 'block'
@@ -310,8 +310,9 @@ pages.showBox = () => {
   const class_options = document.getElementById("class-options")
   add_class_button.addEventListener('click', () => {
     class_options.style.display = 'flex';
-  })  }
-;
+  })
+}
+  ;
 
 
 pages.hideBox = () => {
@@ -398,24 +399,14 @@ pages.addStudent = (name, role) => {
   else {
     student_list.appendChild(li);
   }
-
-
-  pages.updateStudentCount();
 };
-
-pages.updateStudentCount = () => {
-  const student_list = document.querySelector(".student-list");
-  const student_count = document.getElementById("studentCount");
-  const count = student_list.children.length;
-  student_count.textContent = `${count} students`;
-}
 
 pages.resetPasswordEmail = () => {
   const forgot_password_btn = document.getElementById('forgot-password-btn')
 
   forgot_password_btn.addEventListener('click', e => {
     e.preventDefault()
-    
+
     let email = localStorage.getItem('email');
 
     const data = new FormData();
@@ -427,7 +418,7 @@ pages.resetPasswordEmail = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.status == "email found"){
+        if (data.status == "email found") {
           const email = localStorage.getItem('email')
           const form_data = new FormData()
           form_data.append('email', email)
@@ -444,16 +435,16 @@ pages.resetPasswordEmail = () => {
 }
 
 
-pages.resetPassword = () =>{
+pages.resetPassword = () => {
   const reset_pass_btn = document.getElementById('reset-pass')
-  reset_pass_btn.addEventListener('click', e =>{
+  reset_pass_btn.addEventListener('click', e => {
     e.preventDefault()
     const email = document.getElementById('email-to-reset-pass').value
     const new_pass = document.getElementById('new-pass-try1').value
     const new_pass_retry = document.getElementById('new-pass-try2').value
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('user_id');
-    if (new_pass === new_pass_retry){
+    if (new_pass === new_pass_retry) {
       const reset_pass_data = new FormData()
       reset_pass_data.append('email', email)
       reset_pass_data.append('new_password', new_pass)
@@ -463,39 +454,40 @@ pages.resetPassword = () =>{
         body: reset_pass_data,
       })
         .catch((error) => console.log("Error In Email API: ", error));
-    }}
+    }
+  }
   )
 }
-  
+
 
 pages.joinClassViaCode = () => {
   const entered_class_code = document.getElementById('class-code-input')
   const join_class_with_code_btn = document.getElementById('join-class-with-code-btn')
   join_class_with_code_btn.addEventListener('click', () => {
-    
+
     join_class_data = new FormData()
 
     join_class_data.append('user_id', localStorage.getItem('user_id'))
     join_class_data.append('class_code', entered_class_code.value)
 
-    fetch(pages.base_url +'join-class.php', {
+    fetch(pages.base_url + 'join-class.php', {
       method: "POST",
       body: join_class_data,
     }).then(response => response.json())
-    .then(data => {
-      if(data.status == 'class joined successfully'){
-        location.reload()
-      } else if (data.status == 'class code does not exist') {
-        const invalid_join_code = document.getElementById('invalid-join-code')
-        invalid_join_code.textContent = 'Invalid class code'
-        invalid_join_code.style.display = 'block'
-      }
-      else if (data.status == 'user already enrolled in this class'){
-        const invalid_join_code = document.getElementById('invalid-join-code')
-        invalid_join_code.textContent = 'You already joined this class'
-        invalid_join_code.style.display = 'block'
-      }
-    }).catch((error) => console.log("Error In join-class Api: ", error));
+      .then(data => {
+        if (data.status == 'class joined successfully') {
+          location.reload()
+        } else if (data.status == 'class code does not exist') {
+          const invalid_join_code = document.getElementById('invalid-join-code')
+          invalid_join_code.textContent = 'Invalid class code'
+          invalid_join_code.style.display = 'block'
+        }
+        else if (data.status == 'user already enrolled in this class') {
+          const invalid_join_code = document.getElementById('invalid-join-code')
+          invalid_join_code.textContent = 'You already joined this class'
+          invalid_join_code.style.display = 'block'
+        }
+      }).catch((error) => console.log("Error In join-class Api: ", error));
   })
 
 }

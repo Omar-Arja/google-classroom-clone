@@ -52,14 +52,15 @@ form {
   margin-bottom: 15px;
 }
 
-.signinSection , .password-reset-section{
+.signinSection,
+.password-reset-section {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
 }
 
-.password-reset-section{
+.password-reset-section {
   gap: 2rem;
 }
 
@@ -89,6 +90,10 @@ form {
   color: rgb(26, 115, 232);
   background-color: transparent;
   border: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 .signinPrivately {
@@ -124,10 +129,10 @@ form {
   border: none;
 }
 
-.reset-btns{
+.reset-btns {
   justify-content: center;
 }
-.reset-pass-btn{
+.reset-pass-btn {
   color: rgb(255, 255, 255);
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 0.875rem;
@@ -187,7 +192,7 @@ form {
   justify-content: space-around;
 }
 
-#email-sent-text{
+#email-sent-text {
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }

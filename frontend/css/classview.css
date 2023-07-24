@@ -1,201 +1,208 @@
-.overlay, .overlay-join {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-  }
-  
-  .box, .box-join {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    min-width: 560px;
-    min-height: 406px;
-    display: flex;
-    flex-direction: column;
-    grid-row-gap:20px;
-    justify-content: space-evenly
-  }
-
-  .box input, .box-join input {
-    height: 56px;
-    width: 100%;
-    align-self: flex-start;
-    padding-left: 10px;
-  }
-
-.buttons-creat-class, .buttons-join-class{
-    display: flex;
-    justify-content: flex-end;
-    grid-column-gap:20px;
+.overlay,
+.overlay-join {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
 }
 
-.box button, .box-join button{
-    cursor: pointer;
-    font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: rgb(26, 115, 232);
-    background-color: transparent;
-    border: none;
+.box,
+.box-join {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  min-width: 560px;
+  min-height: 406px;
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 20px;
+  justify-content: space-evenly;
 }
 
-
-.inside-class-stream{
-    display: none;
-    flex-direction: column;
-    width: fill;
-    margin-top: 15px;
-    margin-left: 13%;
-    margin-right: 13%;
-    display: none;
+.box input,
+.box-join input {
+  height: 56px;
+  width: 100%;
+  align-self: flex-start;
+  padding-left: 10px;
 }
 
-.inside-class-stream .class-card-background-image{
-    width: 100%;
-    height: 240px;
-    align-items: stretch;
+.buttons-creat-class,
+.buttons-join-class {
+  display: flex;
+  justify-content: flex-end;
+  grid-column-gap: 20px;
 }
 
-.class-stream-body{
-    display: flex;
-    flex-wrap: reverse;
+.box button,
+.box-join button {
+  cursor: pointer;
+  font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(26, 115, 232);
+  background-color: transparent;
+  border: none;
 }
 
-.class-stream-body .functionality-dates{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    grid-column-gap: 20px;
-    color: gray;
-    flex: 0.2;
+.inside-class-stream {
+  display: none;
+  flex-direction: column;
+  width: fill;
+  margin-top: 15px;
+  margin-left: 13%;
+  margin-right: 13%;
+  display: none;
 }
 
-.stream-updates{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex:1;
+.inside-class-stream .class-card-background-image {
+  width: 100%;
+  height: 240px;
+  align-items: stretch;
 }
 
-.test-card{
-    height: 100px;
-    width: fill;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin: 10px;
-    min-width: 162px;
+.class-stream-body {
+  display: flex;
+  flex-wrap: reverse;
 }
 
-.notifactions{
-    display: flex;
-    align-items: stretch;
-    height: 100px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    margin: 10px;
-    align-items: stretch;
+.class-stream-body .functionality-dates {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  grid-column-gap: 20px;
+  color: gray;
+  flex: 0.2;
 }
 
-.notifactions .userIcon{
-    align-self: center;
-    margin-left: 20px;
+.stream-updates {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
 }
 
-.inside-class-people{
-    display: none;
-    flex-direction: column;
-    width: fill;
-    margin-top: 15px;
-    margin-left: 20%;
-    margin-right: 20%;
-  }
-  
-  .inside-class-people h2 {
-    margin-bottom: 10px;
-    border-bottom: 2px solid #000; /* Add a thick black bottom border */
-    padding-bottom: 5px; /* Add some padding to create space between h2 and ul */
-    margin-top: 20px;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 2.5rem;
-    color: rgb(32,33,36);    
+.test-card {
+  height: 100px;
+  width: fill;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  min-width: 162px;
 }
-  
-  .teacher-list,
-  .student-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .person {
-    display: flex;
-    align-items: center;
-    border-bottom: 0.5px solid #ccc;
-    padding: 5px 0;
-  }
-  
-  .userIcon {
-    width: 32px;
-    height: 32px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .person-name {
-    flex: 1;
-  }
-  
-  #studentCount{
-    letter-spacing: .01785714em;
-    font-family: "Google Sans",Roboto,Arial,sans-serif;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-  }
 
-.plus-btn-options{
+.notifactions {
+  display: flex;
+  align-items: stretch;
+  height: 100px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin: 10px;
+  align-items: stretch;
+}
+
+.notifactions .userIcon {
+  align-self: center;
+  margin-left: 20px;
+}
+
+.inside-class-people {
+  display: none;
+  flex-direction: column;
+  width: fill;
+  margin-top: 15px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.inside-class-people h2 {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #000; /* Add a thick black bottom border */
+  padding-bottom: 5px; /* Add some padding to create space between h2 and ul */
+  margin-top: 20px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  color: rgb(32, 33, 36);
+}
+
+.teacher-list,
+.student-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid #ccc;
+  padding: 5px 0;
+}
+
+.userIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.person-name {
+  flex: 1;
+}
+
+#studentCount {
+  letter-spacing: 0.01785714em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.plus-btn-options {
   position: absolute;
   top: 7vh;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   left: 75vw;
   display: none;
-  
+
   flex-direction: column;
   border: 1px solid black;
   padding: 10px 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.plus-btn-options-shown{
+.plus-btn-options-shown {
   display: flex;
 }
-.class-options-btn{
+.class-options-btn {
   border: 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   height: 3rem;
   width: 8rem;
-
 }
 
-.class-options-btn:hover{
-  background-color: rgba(0, 0, 0,0.1);
+button {
+  cursor: pointer;
 }
 
-.invalid-join-code{
+.class-options-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.invalid-join-code {
   color: rgba(255, 0, 0, 0.7);
   display: none;
 }
