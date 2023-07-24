@@ -239,18 +239,57 @@ pages.displayUserInfo = () => {
 
   const firstName = localStorage.getItem("first_name");
   const lastName = localStorage.getItem("last_name");
-  const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
 
 
   const fullNameElement = document.getElementById("full-name-disp");
   const emailElement = document.getElementById("email-disp");
-  const roleElement = document.getElementById("role-disp");
 
   fullNameElement.textContent = `${firstName} ${lastName}`;
   emailElement.textContent = `Email: ${email}`;
-  roleElement.textContent = `Role: ${role}`;
 };
+
+pages.editUserInfo = () => {
+  const update_info_btn = document.getElementById('info-edit-done-btn')
+
+  const new_first_name_input = document.getElementById('edit-first-name-input')
+  const new_last_name_input = document.getElementById('edit-last-name-input')
+
+  update_info_btn.addEventListener('click', () => {
+    const new_first_name = new_first_name_input.value
+    const new_last_name = new_last_name_input.value
+
+    const old_first_name = localStorage.getItem('first_name')
+    const old_last_name = localStorage.getItem('last_name')
+
+    if ((old_first_name != new_first_name) || 
+              (old_last_name != new_last_name)){
+                const update_info_data = new FormData()
+                update_info_data.append('new_first_name', new_first_name)
+                update_info_data.append('new_last_name', new_last_name)
+                update_info_data.append('user_id', localStorage.getItem('user_id'))
+                const result_msg = document.getElementById('update-info-msg')
+                fetch(pages.base_url + 'edit-user-information.php', {
+                  method: "POST", 
+                  body: update_info_data
+                }).then(response => response.json())
+                .then(data => {
+                  if(data.status == 'info updated successfully'){
+                    result_msg.innerText = 'Info updated successfully'
+                    result_msg.style.display = 'block'
+                    localStorage.setItem('first_name', new_first_name)
+                    localStorage.setItem('last_name', new_last_name)
+                    pages.displayUserInfo()
+                  } else {
+                    result_msg.innerText = 'An error occurred, try again'
+                    result_msg.style.color = 'red'
+                    result_msg.style.display = 'block'
+                  }
+                }).catch((error) => console.log("Error In edit-user-information Api: ", error))
+                
+    }
+  })
+}
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
@@ -309,6 +348,13 @@ pages.showOverlay2 = () => {
   document.getElementById('class-options').style.display = 'none'
 }
 
+pages.showOverlay3 = () => {
+  document.getElementById('overlay3').style.display = 'block'
+  document.getElementById('user-info-tab').style.display = 'none'
+  document.getElementById('edit-first-name-input').value = localStorage.getItem('first_name')
+  document.getElementById('edit-last-name-input').value = localStorage.getItem('last_name')
+}
+
 pages.showBox = () => {
   const add_class_button = document.getElementById('add-class-button')
   const class_options = document.getElementById("class-options")
@@ -323,6 +369,7 @@ pages.hideBox = () => {
   document.getElementById("overlay").style.display = "none";
   document.getElementById("assignment-info-tab").style.display = "none";
   document.getElementById("overlay2").style.display = "none";
+  document.getElementById("overlay3").style.display = "none";
   document.getElementById('add-class-button').classList.remove('plus-btn-options-shown');
 };
 

@@ -1,5 +1,8 @@
 .overlay,
-.assignment-info-tab {
+.assignment-info-tab,
+.overlay-join,
+.overlay-invite,
+.overlay-edit {
     display: none;
     position: fixed;
     top: 0;
@@ -10,7 +13,10 @@
     z-index: 9999;
   }
   
-  .box {
+  .box,
+.box-invite,
+.box-join,
+.box-edit {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,36 +37,44 @@
     color: #000;
   }
 
-  .box input {
-    height: 56px;
-    width: 100%;
-    align-self: flex-start;
-  }
+.box input,
+.box-join input,
+.box-invite input,
+.box-edit input {
+  height: 56px;
+  width: 100%;
+  align-self: flex-start;
+  padding-left: 10px;
+}
 
-  #input-assignment-instruction{
-    flex: 1;
-  }
+#input-assignment-instruction{
+  flex: 1;
+}
 
-  #input-assignment-instruction::placeholder {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #999;
-  }
+#input-assignment-instruction::placeholder {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #999;
+}
 
-  .input-assignment-due-date{
-    padding: 5px 20px;
-  }
+.input-assignment-due-date{
+  padding: 5px 20px;
+}
 
 .buttons-creat-class,
-.buttons-join-class {
+.buttons-join-class,
+.buttons-invite-class,
+.buttons-edit-info  {
   display: flex;
   justify-content: flex-end;
   grid-column-gap: 20px;
 }
 
 .box button,
-.box-join button {
+.box-join button,
+.box-invite button,
+.box-edit button {
   cursor: pointer;
   font-family: "Roboto", "Noto Sans Myanmar", sans-serif;
   font-weight: 500;
@@ -316,5 +330,14 @@ button {
 
 .invalid-join-code {
   color: rgba(255, 0, 0, 0.7);
+  display: none;
+}
+
+.edit-info-label{
+  font-size: 0.75rem;
+  margin-bottom: -1.5rem;
+}
+
+.update-info-msg{
   display: none;
 }

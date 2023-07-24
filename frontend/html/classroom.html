@@ -97,23 +97,15 @@
             alt="Default icon"
           />
         </div>
-        <div class="user-info-tab">
-          <div class="user-info">
-            <img
-              class="userIcon"
-              id="icon-disp"
-              src="../assets/Images/default-profile-icon.jpg"
-              alt="Default Icon"
-            />
-            <div>
-              <h1 id="full-name-disp"></h1>
-              <div id="email-disp"></div>
-              <div id="role-disp"></div>
+        <div class="user-info-tab" id="user-info-tab">
+            <div class="user-info">
+                <img class="userIcon" id="icon-disp" src="../assets/Images/default-profile-icon.jpg" alt="Default Icon">
+                <div>
+                    <h1 id="full-name-disp"></h1>          
+                    <div id="email-disp"></div>
+                </div>
             </div>
-          </div>
-          <button class="edit-information" id="edit-information">
-            Edit information
-          </button>
+            <button class="edit-information" id="edit-information" onclick="pages.showOverlay3()">Edit information</button>
         </div>
       </nav>
     </header>
@@ -229,6 +221,68 @@
               </div>
             </div>
           </div>
+          <div class="overlay-join" id="overlay2">
+            <div class="box-join">
+              <h2>Join Class</h2>
+              <input type="text" placeholder="Enter class code" id="class-code-input">
+              <span class="invalid-join-code" id='invalid-join-code'>Invalid code!!</span>
+              <div class="buttons-join-class">
+                
+                <button onclick="pages.cancelBox()">Cancel</button>
+                <button id="join-class-with-code-btn">Join</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="overlay-edit" id="overlay3">
+            <div class="box-edit">
+              <h2>Edit Profile Information</h2>
+              <label class="edit-info-label">First name:</label>
+              <input type="text" placeholder="Your first name" id="edit-first-name-input">
+              <label class="edit-info-label">Last name:</label>
+              <input type="text" placeholder="Your last name" id="edit-last-name-input">
+
+              <span class="update-info-msg" id='update-info-msg'></span>
+              <div class="buttons-edit-info">
+                
+                <button onclick="pages.cancelBox()">Cancel</button>
+                <button id="info-edit-done-btn">update</button>
+              </div>
+            </div>
+          </div>
+        
+        <div class="inside-class-stream" id="inside-class-stream">
+            <img class="class-card-background-image">
+            <div class="class-stream-body">
+                <div class="functionality-dates">
+                    <div class="class-meeting-link-box">
+                        <div class="test-card"></div>
+                   </div>
+                </div>
+                <div class="stream-updates">
+                    <div class="notifactions">
+                        <img
+                        class="userIcon"
+                        src="../assets/Images/default-profile-icon.jpg"
+                        alt="Default icon"/>
+                        <div>
+                            <h5>Sender Name</h5>
+                            <p>title of assignment: details</p>
+                        </div>
+                    </div>
+                    <div class="notifactions">
+                        <img
+                        class="userIcon"
+                        src="../assets/Images/default-profile-icon.jpg"
+                        alt="Default icon"/>
+                        <div>
+                            <h5>Sender Name</h5>
+                            <p>title of assignment: details</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         <ul class="assignment-list">
           <li>
@@ -304,6 +358,7 @@
       pages.showClassesDashboard();
       pages.showBox()
       pages.joinClassViaCode()
+      pages.editUserInfo()
       // pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>
