@@ -12,13 +12,16 @@ $query->execute();
 
 $query->store_result();
 $query->bind_result($stream_id, $class_id, $user_id,$content,$post_date,$number_of_likes);
-$i = 0;
+
 while($query->fetch()){
-    $response[$i]['stream_id'] = $stream_id;
-    $response[$i]['content'] = $content;
-    $response[$i]['post_date'] = $post_date;
-    $i++;
+    $stream1 = array(
+        'stream_id' => $stream_id,
+        'content' => $content,
+        'post_date' => $post_date
+         );
+    $streams[] = $stream1;
+       
  }
- echo json_encode($response);
+ echo json_encode($streams);
 
 ?>
