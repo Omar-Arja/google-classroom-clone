@@ -196,7 +196,7 @@ pages.handleResponse = (data, email = null) => {
 
     case "class created successfully":
       pages.cancelBox();
-      window.location.href = "classroom.html"
+      pages.enterClassTeacher();
     default:
       console.log("handleResponse Error");
   }
@@ -532,7 +532,7 @@ pages.showAssignmentInfo = () => {
 
 
 pages.createAssignment = () => {
-
+  
   console.log('yes')
   pages.cancelBox()
 
@@ -616,6 +616,7 @@ pages.goHome = () => {
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "none";
   document.getElementById("class-cards-container").style.display = "flex";
+  document.getElementById("middlesection").style.display = "none";
   const title = document.getElementById("nav-title")
   title.innerText = "ClassRoom"
   document.getElementById("goole-nav-icon").style.display = "flex";
