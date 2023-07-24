@@ -658,15 +658,16 @@ pages.sendInviteEmail = () => {
 }
 
 pages.goHome = () => {
-  document.getElementById("inside-class-stream").style.display = "none";
-  document.getElementById("inside-class-people").style.display = "none";
-  document.getElementById("inside-class-classwork").style.display = "none";
-  document.getElementById("class-cards-container").style.display = "flex";
-  document.getElementById("middleSection").style.display = "none";
-  const title = document.getElementById("nav-title")
-  title.innerText = "ClassRoom"
-  document.getElementById("goole-nav-icon").style.display = "flex";
-  document.getElementById("add-class-button").style.display = "inline";
+  location.reload()
+  // document.getElementById("inside-class-stream").style.display = "none";
+  // document.getElementById("inside-class-people").style.display = "none";
+  // document.getElementById("inside-class-classwork").style.display = "none";
+  // document.getElementById("class-cards-container").style.display = "flex";
+  // document.getElementById("middleSection").style.display = "none";
+  // const title = document.getElementById("nav-title")
+  // title.innerText = "ClassRoom"
+  // document.getElementById("goole-nav-icon").style.display = "flex";
+  // document.getElementById("add-class-button").style.display = "inline";
 }
 
 // pages.checkEnrollmentEmail = () => {
