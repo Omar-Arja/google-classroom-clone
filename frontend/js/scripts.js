@@ -64,17 +64,12 @@ pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
   signup_btn.addEventListener("click", (e) => {
     e.preventDefault();
-    const first_name = document.getElementById("first-name-input");
-    const last_name = document.getElementById("last-name-input");
-    const email = document.getElementById("email-input");
-    const password = document.getElementById("password-input");
-    const ver_password = document.getElementById("ver-pass-input");
-
-    const first_name_val = first_name.value;
-    const last_name_val = last_name.value;
-    const email_val = email.value;
-    const password_val = password.value;
-    const ver_password_val = ver_password.value;
+   
+    const first_name_val = document.getElementById("first-name-input").value;
+    const last_name_val = document.getElementById("last-name-input").value;
+    const email_val = document.getElementById("email-input").value;
+    const password_val = document.getElementById("password-input").value;
+    const ver_password_val = document.getElementById("ver-pass-input").value;
 
     if (
       password_val == ver_password_val &&
@@ -525,9 +520,24 @@ pages.createAssignment = () => {
   const title = document.getElementById("input-assignment-title").value
   const instruction = document.getElementById("input-assignment-instruction").value
   const due = document.getElementById("input-assignment-due-date").value
-
-  console.log(title, instruction,due)
-  // pages.cancelBox()
+  
+  const assignment_info = new FormData()
+  assignment_info.append("title", title)
+  assignment_info.append("description",instruction)
+  assignment_info.append("due_date",due)
+  console.log(assignment_info)
+  
+  fetch(base_url + "assignment-info.php",{
+    method:"POST",
+    body:assignment_info,
+  }).then(response => response.json)
+  .then(data =>{
+    if (data.status === "assignment posted successfully"){
+      console.log(data)
+    }else{
+      console.log("assignment was not sent")
+    }
+  }).catch(error => console.log("ERror in assignment-info API: " + error))
 
 }
 
