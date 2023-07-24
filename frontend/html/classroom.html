@@ -49,6 +49,7 @@
 
         <div class="middle-section" id="middleSection">
             <button class="stream-nav-btn" onclick="pages.showStream()">Stream</button>
+            <button class="stream-nav-btn" onclick="pages.showClasswork()">Classwork</button>
             <button class="people-nav-btn" onclick="pages.showPeople()">People</button>
         </div>
 
@@ -138,6 +139,36 @@
             </div>
         </div>
 
+        <div class="inside-class-classwork" id="inside-class-classwork">
+          <div class="create-assignment" id="create-assignment">
+            <button class="create-assignment" id="create-assignment" onclick="pages.showAssignmentInfo()">+ Create</button>
+            <div class="assignment-info-tab" id="assignment-info-tab">
+              <div class="box">
+                <h2>Create Class</h2>
+                <input type="text" placeholder="Classname" id="input-classname">
+                <input type="text" placeholder="Section" id="input-section">
+                <input type="text" placeholder="Subject" id="input-subject">
+                <input type="text" placeholder="Room" id="input-room">
+                <div class="buttons-creat-class">
+                  <button onclick="pages.cancelBox()">Cancel</button>
+                  <button onclick="pages.createClass()">Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="assignment-list">
+            <li>
+              <div class="assignment">
+                <div class="info-about-asg">
+                  <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+                  <span class="assignment-name">test</span>
+                </div>
+                <h6 class="assignment-due-date">Due date</h6>              
+              </div>
+            </li>
+          </ul>
+      </div>
+
         <div class="inside-class-people" id="inside-class-people">
             <h2 class="teach-title">Teachers</h2>
             <ul class="teacher-list">
@@ -156,6 +187,7 @@
             </ul>
             <div class="student-tab-people">
               <h2>Students </h2>
+              <span><span>
               <img src="../assets/Images/add-user-icon.png" alt="Add User Icon" class="userIcon" id="add-students-icon">
             </div>
             <ul class="student-list">
