@@ -150,14 +150,13 @@
             <button class="create-assignment" id="create-assignment" onclick="pages.showAssignmentInfo()">+ Create</button>
             <div class="assignment-info-tab" id="assignment-info-tab">
               <div class="box">
-                <h2>Create Class</h2>
-                <input type="text" placeholder="Classname" id="input-classname">
-                <input type="text" placeholder="Section" id="input-section">
-                <input type="text" placeholder="Subject" id="input-subject">
-                <input type="text" placeholder="Room" id="input-room">
+                <h2>Assignment</h2>
+                <input type="text" placeholder="Title" id="input-assignment-title">
+                <input type="text" placeholder="Instructions" id="input-assignment-instruction">
+                <input type="date" placeholder="Subject" id="input-assignment-due-date">
                 <div class="buttons-creat-class">
                   <button onclick="pages.cancelBox()">Cancel</button>
-                  <button onclick="pages.createClass()">Create</button>
+                  <button onclick="pages.createAssignment()">Create</button>
                 </div>
               </div>
             </div>
@@ -216,8 +215,8 @@
       pages.closeSidebar();
       pages.userInfo();
       pages.showClassesDashboard();
-      // pages.enterClassTeacher();
-      pages.enterClassStudent();
+      pages.enterClassTeacher();
+      // pages.enterClassStudent();
 
     </script>
   </body>

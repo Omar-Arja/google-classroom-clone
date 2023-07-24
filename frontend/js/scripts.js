@@ -415,3 +415,11 @@ pages.updateStudentCount = () => {
 pages.showAssignmentInfo = () => {
   document.getElementById("assignment-info-tab").style.display = "flex";
 }
+
+
+pages.createAssignment = () => {
+  
+  console.log('yes')
+  pages.cancelBox()
+
+}
