@@ -73,7 +73,7 @@ if($query->fetch()){
             } else {
                 $response['status'] = "No user found with the provided email.";
             };
-
+            echo json_encode($response);
         };
 
-        echo json_encode($response);
+        
