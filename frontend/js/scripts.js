@@ -467,9 +467,16 @@ pages.showOverlay3 = () => {
   document.getElementById('edit-last-name-input').value = localStorage.getItem('last_name')
 }
 
+
 pages.showBox = () => {
-  document.getElementById("class-options").style.display = 'flex';
-};
+  const options = document.getElementById('class-options');
+  if (options.style.display === 'none') {
+    options.style.display = 'flex';
+  } else {
+    options.style.display = 'none';
+  }
+
+}
 
 
 pages.cancelBox = () => {
@@ -894,3 +901,4 @@ upload_btn.addEventListener('click', (e) => {
   }
 })
 }
+
