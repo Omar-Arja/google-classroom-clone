@@ -568,3 +568,15 @@ input::file-selector-button{
     padding: 5px 5px;
     font-weight: 300;
 }
+
+.stream-assignment, .stream-assignment>div{
+  flex-direction: row;
+  min-height: 80px;
+  align-items: center;
+}
+
+.stream-assignment>div>.stream-date{
+  min-width: 50px;
+  font-weight: 600;
+}
+

@@ -288,3 +288,8 @@ button {
   text-decoration: underline;
   font-size: 1.5rem;
 }
+
+.stream-assignment-img{
+  display: flex;
+  flex-direction: column;
+}
