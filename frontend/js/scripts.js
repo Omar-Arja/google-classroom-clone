@@ -557,6 +557,9 @@ pages.resetPassword = () => {
 pages.showAssignmentInfo = () => {
   document.getElementById("assignment-info-tab").style.display = "flex";
 }
+pages.hideAssignmentInfo = () => {
+  document.getElementById("assignment-info-tab").style.display = "none";
+}
 
 
 pages.createAssignment = () => {
@@ -569,15 +572,15 @@ pages.createAssignment = () => {
   assignment_info.append("title", title)
   assignment_info.append("description",instruction)
   assignment_info.append("due_date",due)
-  console.log(due)
   
   fetch(pages.base_url + "assignment-info.php",{
     method:"POST",
     body:assignment_info,
-  }).then(response => response.json)
+  }).then(response => response.json())
   .then(data =>{
-    if (data.status === "assignment posted successfully"){
-      console.log(data)
+    if (data.status == "assignment posted successfully"){
+      pages.hideAssignmentInfo()
+      pages.showClasswork()
     }else{
       console.log("assignment was not sent:: " + data.status)
     }
