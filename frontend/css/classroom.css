@@ -275,3 +275,16 @@ button {
   grid-row-gap: 20px;
   justify-content: space-evenly;
 }
+
+.test-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;  
+}
+
+#class-code {
+  text-decoration: underline;
+  font-size: 1.5rem;
+}
