@@ -117,8 +117,8 @@ class Assignment {
 
 
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-// pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/GoogleClassroom/";
 // pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 
@@ -852,11 +852,11 @@ pages.peopleCard = (first_name, last_name) => {
 }
 
 pages.openAnnounce = () => {
-  document.getElementById("notification-form").style.display = "block";
+  document.getElementById("notification-form").style.display = "flex";
   document.getElementById("open-announce").style.display = "none";
 }
 
 pages.sendAnnounce = () => {
   document.getElementById("notification-form").style.display = "none";
-  document.getElementById("open-announce").style.display = "block";
+  document.getElementById("open-announce").style.display = "flex";
 }
