@@ -959,7 +959,7 @@ pages.uploadSubmission = () => {
 
 pages.setMeetlink = ()=>{
 
-  let link = document.getElementById("set_link").value;
+  const link = document.getElementById("set_link").value;
   
   const meet_link = new FormData()
   meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
@@ -969,7 +969,8 @@ pages.setMeetlink = ()=>{
     method: "POST",
     body: meet_link,
   }).then(data => {
-        document.querySelector('#join_link').innerHTML += '<button  class="set_link_button">JOIN THE MEETING</button>';
+        const join = document.getElementById("join-buttom");
+        join.href = "link"
         pages.cancelBox()})
         .catch(error => (error => console.log(error)))
   }
@@ -980,5 +981,6 @@ pages.setLinkyab = () => {
 
 
 pages.logOut = () => {
+  localStorage.clear();
   window.location.href = "index.html";
 }
