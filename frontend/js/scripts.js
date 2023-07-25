@@ -634,6 +634,7 @@ pages.showPeople = () => {
 
 }
 const assignments_objects = [];
+let clicked_assignment = null;
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
@@ -666,7 +667,7 @@ pages.showClasswork = () => {
         assignment_items.forEach(item => {
           item.addEventListener('click', (event) => {
             const assignmentId = event.currentTarget.dataset.classId;
-            const clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
+            clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
             pages.showAssignmentDetails(clicked_assignment);
           });
         }
@@ -900,11 +901,11 @@ pages.openAnnounce = () => {
 pages.sendAnnounce = () => {
   const announcement_text_input = document.getElementById('announcementText')
   const announcement_text_value = announcement_text_input.value
-  if (announcement_text_value){
+  if (announcement_text_value) {
     const class_id = localStorage.getItem('clicked_class_id')
     const user_id = localStorage.getItem('user_id')
 
-    const announcement_form_data = new FormData
+    const announcement_form_data = new FormData()
     announcement_form_data.append('class_id', class_id)
     announcement_form_data.append('id_user', user_id)
     announcement_form_data.append('content', announcement_text_value)
@@ -919,13 +920,13 @@ pages.sendAnnounce = () => {
         pages.showStream()
       }
     }))
-    
+  
 
   }
   document.getElementById("notification-form").style.display = "none";
   document.getElementById("open-announce").style.display = "flex";
 
-  
+
 }
 
 
@@ -938,8 +939,10 @@ pages.uploadSubmission = () => {
 
     if (file_to_submit) {
       const user_id = localStorage.getItem('user_id')
-      const file_form_data = new FormData
-      //send assignment id
+      clicked_assignment_id = clicked_assignment.assignment_id
+      const file_form_data = new FormData();
+      console.log(clicked_assignment_id)
+      file_form_data.append('assignment_id', clicked_assignment_id)
       file_form_data.append('submission', file_to_submit)
       file_form_data.append('user_id', user_id)
       fetch(pages.base_url + 'upload-submissions.php', {
@@ -957,14 +960,14 @@ pages.uploadSubmission = () => {
   })
 }
 
-pages.setMeetlink = ()=>{
+pages.setMeetlink = () => {
 
   const link = document.getElementById("set_link").value;
   
   const meet_link = new FormData()
   meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
   meet_link.append("meet_link", link)
-  
+
   fetch(pages.base_url + "set-meet-link.php", {
     method: "POST",
     body: meet_link,
