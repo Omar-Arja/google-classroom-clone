@@ -94,7 +94,7 @@ class Assignment {
 
   displayAssignmentCard() {
     return `
-    <li class="classwork-list" onclick="pages.showDetails">
+    <li class="classwork-list" onclick="document.getElementById('assignment-details-modal').style.display = 'block'">
       <div class="assignment">
         <div class="info-about-asg">
           <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
@@ -473,6 +473,7 @@ pages.cancelBox = () => {
   document.getElementById("overlay2").style.display = "none";
   document.getElementById("overlay3").style.display = "none";
   document.getElementById("overlay-send-invite-via-email").style.display = "none";
+  document.getElementById("assignment-details-modal").style.display = "none";
 };
 
 pages.createClass = () => {
