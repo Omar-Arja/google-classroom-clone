@@ -282,7 +282,8 @@
     flex: 1;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #000; 
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5); 
+    padding: 15px;
   }
 
   .info-about-asg{
@@ -292,8 +293,29 @@
 
   .assignment img{
     align-self: center;
-    
+    opacity: 0.5;
   }
+
+.assignment-name{
+  opacity: 0.8;
+  font-size: 1.2rem;
+}
+
+.assignment-due-date{
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+.classwork-list{
+  cursor: pointer;
+}
+.classwork-list:hover{
+  background-color: rgba(0, 0, 0,0.03);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  transition: 0.5s;
+}
+
 .plus-btn-options {
   position: absolute;
   top: 7vh;

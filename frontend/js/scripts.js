@@ -56,6 +56,29 @@ class Class {
   }
 }
 
+class Assignment {
+  constructor(assignment_id, title, description, due_date) {
+    this.assignment_id = assignment_id;
+    this.title = title;
+    this.description = description;
+    this.due_date = due_date;
+  }
+
+  displayAssignmentCard() {
+    return `
+    <li class="classwork-list" onclick="pages.showDetails">
+      <div class="assignment">
+        <div class="info-about-asg">
+          <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+          <span class="assignment-name">${this.title}</span>
+        </div>
+        <span class="assignment-due-date">${this.due_date}</span>         
+      </div>
+    </li>
+`
+  }
+}
+
 
 pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 // pages.base_url = "http://localhost/GoogleClassroom/";
@@ -525,6 +548,31 @@ pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
+
+  document.querySelector('.assignment-list').innerHTML = ''
+  const class_id = localStorage.getItem('clicked_class_id');
+  const show_assignments_form_data = new FormData();
+  show_assignments_form_data.append('class_id', class_id);
+  const assignments_objects = [];
+  
+  fetch(pages.base_url + 'get-assignments.php', {
+    method: "POST",
+    body: show_assignments_form_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(element => {
+        const assignment_obj = new Assignment(
+          element.assignment_id,
+          element.title,
+          element.description,
+          element.due_date,
+        );
+        assignments_objects.push(assignment_obj);
+        
+        document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
+      });
+    })
 }
 
 pages.resetPasswordEmail = () => {
