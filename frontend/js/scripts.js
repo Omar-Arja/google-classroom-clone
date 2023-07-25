@@ -396,7 +396,6 @@ pages.showClassesDashboard = () => {
   const show_classes_form_data = new FormData();
   show_classes_form_data.append('user_id', user_id);
 
-  const classes_objects = [];
   clicked_class = null;
   localStorage.setItem('clicked_class_id', null);
 
@@ -622,6 +621,7 @@ pages.showPeople = () => {
 
 
 }
+const assignments_objects = [];
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
@@ -632,7 +632,6 @@ pages.showClasswork = () => {
   const class_id = localStorage.getItem('clicked_class_id');
   const show_assignments_form_data = new FormData();
   show_assignments_form_data.append('class_id', class_id);
-  const assignments_objects = [];
   
   fetch(pages.base_url + 'get-assignments.php', {
     method: "POST",
