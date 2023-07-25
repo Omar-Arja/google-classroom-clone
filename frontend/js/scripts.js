@@ -112,8 +112,8 @@ class Assignment {
 
 
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-// pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/GoogleClassroom/";
 // pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 
@@ -517,7 +517,7 @@ pages.enterClassTeacher = () => {
   document.getElementById("add-students-icon").style.display = "block";
   document.getElementById("create-assignment").style.display = "flex";
   const title = document.getElementById("nav-title")
-  title.innerText = clicked_class.class_name
+  // title.innerText = clicked_class.class_name
 
   pages.showStream();
 }
@@ -531,7 +531,7 @@ pages.enterClassStudent = () => {
   document.getElementById("add-students-icon").style.display = "none";
   document.getElementById("class-meeting-code-box").style.display = "none";
   const title = document.getElementById("nav-title")
-  title.innerText = clicked_class.class_name
+  // title.innerText = clicked_class.class_name
 
   pages.showStream();
 }
@@ -543,36 +543,36 @@ pages.showStream = () => {
     document.getElementById("inside-class-stream").style.display = "flex";
     document.getElementById("inside-class-people").style.display = "none";
     document.getElementById("inside-class-classwork").style.display = "none";
-    // const class_id = localStorage.getItem('class_id');
-    const class_id = localStorage.getItem('clicked_class_id')
+  //   // const class_id = localStorage.getItem('class_id');
+  //   const class_id = localStorage.getItem('clicked_class_id')
     
-    const show_streams_form_data = new FormData();
-    show_streams_form_data.append('class_id', class_id);
+  //   const show_streams_form_data = new FormData();
+  //   show_streams_form_data.append('class_id', class_id);
     
-    //const streams_objects = [];
-    fetch(pages.base_url + 'get-streams.php',{
-      method:"POST",
-      body:show_streams_form_data,
-    })
-    .then((response)=>response.json())
-    .then((data)=>{
-      data.forEach(element => {
-        const stream_obj = new Stream(
-          element.stream_id,
-          element.class_id,
-          element.user_id,
-          element.content,
-          element.post_date,
-          element.number_of_likes,
+  //   //const streams_objects = [];
+  //   fetch(pages.base_url + 'get-streams.php',{
+  //     method:"POST",
+  //     body:show_streams_form_data,
+  //   })
+  //   .then((response)=>response.json())
+  //   .then((data)=>{
+  //     data.forEach(element => {
+  //       const stream_obj = new Stream(
+  //         element.stream_id,
+  //         element.class_id,
+  //         element.user_id,
+  //         element.content,
+  //         element.post_date,
+  //         element.number_of_likes,
           
-        );
+  //       );
   
-        //streams_objects.push(stream_obj);
-        document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name);
+  //       //streams_objects.push(stream_obj);
+  //       document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name);
   
-    })
-  //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
-    })
+  //   })
+  // //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
+  //   })
   }
   
 pages.showPeople = () => {
@@ -838,4 +838,14 @@ pages.peopleCard = (first_name, last_name) => {
   </div>
 </li>
   `;
+}
+
+pages.openAnnounce = () => {
+  document.getElementById("notification-form").style.display = "block";
+  document.getElementById("open-announce").style.display = "none";
+}
+
+pages.sendAnnounce = () => {
+  document.getElementById("notification-form").style.display = "none";
+  document.getElementById("open-announce").style.display = "block";
 }
