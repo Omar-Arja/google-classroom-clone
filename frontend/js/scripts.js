@@ -485,6 +485,11 @@ pages.cancelBox = () => {
   document.getElementById("modal_set_link").style.display = "none";
 };
 
+pages.cancelBoxAnnouncement = () => {
+  document.getElementById("notification-form").style.display = "none";
+  document.getElementById("open-announce").style.display = "flex";
+}
+
 pages.createClass = () => {
   const classname = document.getElementById("input-classname").value;
   const section = document.getElementById("input-section").value;
@@ -908,8 +913,7 @@ pages.sendAnnounce = () => {
     }).then(response => response.json()
     .then(data => {
       if (data.status == 'Success'){
-        document.getElementById("notification-form").style.display = "none";
-        document.getElementById("open-announce").style.display = "flex";
+        pages.cancelBoxAnnouncement()
         pages.showStream()
       }
     }))
