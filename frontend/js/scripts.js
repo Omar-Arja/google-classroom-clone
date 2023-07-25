@@ -968,16 +968,17 @@ pages.setMeetlink = ()=>{
   fetch(pages.base_url + "set-meet-link.php", {
     method: "POST",
     body: meet_link,
-  }).then(response => response.json())
-    .then(data => {
-      if (data.status == "meet link updated successfully") {
-        document.querySelector('#join_link').innerHTML += '<a href="">Join Link</a>';
-      } else {
-        console.log("meet link was not set:: " + data.status)
-      }
-    })
+  }).then(data => {
+        document.querySelector('#join_link').innerHTML += '<button  class="set_link_button">JOIN THE MEETING</button>';
+        pages.cancelBox()})
+        .catch(error => (error => console.log(error)))
   }
 
 pages.setLinkyab = () => {
   document.getElementById("modal_set_link").style.display = "block";
+}
+
+
+pages.logOut = () => {
+  window.location.href = "index.html";
 }
