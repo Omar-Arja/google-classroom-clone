@@ -120,7 +120,7 @@ nav {
   padding: 10px;
   z-index: 9999;
   width: 335px;
-  height: 200px;
+  height: 220px;
   border-radius: 40px;
   transition: left 0.4s, opacity 0.4s;
 }
@@ -152,6 +152,7 @@ nav {
   padding: 10px;
   border: none;
   cursor: pointer;
+  margin-top: 7px;
 }
 
 .class-cards-container {
