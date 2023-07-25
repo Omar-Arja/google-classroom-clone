@@ -242,11 +242,11 @@
             </div>
               <span class="assignment-details">assignment details ssssss sssss sssss </span>
             <div class="assignment-btns">
-              <input type="file" id="file_input" name="filename" placeholder="Link.." multiple>
+              <input type="file" id="file-input" name="filename" placeholder="Link..">
               
               <div class="assignment-close-div">
-                <button class="assignment-modal-btn" id="submit-file">submit</button>
                 <button class="assignment-modal-btn" onclick="pages.cancelBox()">Close</button>
+                <button type="button" class="assignment-modal-btn" id="submit-file">submit</button>
               </div>
             </div>
           </div>
@@ -311,7 +311,7 @@
       pages.joinClassViaCode()
       pages.editUserInfo()
       pages.sendInviteEmail()
-      
+      pages.uploadSubmission()
       // pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>

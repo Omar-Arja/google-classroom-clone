@@ -853,3 +853,31 @@ pages.peopleCard = (first_name, last_name) => {
 </li>
   `;
 }
+
+pages.uploadSubmission = () => {
+const upload_btn = document.getElementById('submit-file')
+const file_input = document.getElementById('file-input')
+upload_btn.addEventListener('click', (e) => {
+  e.preventDefault()
+  const file_to_submit = file_input.files[0]
+  
+  if (file_to_submit){
+    const user_id = localStorage.getItem('user_id')
+    const file_form_data = new FormData
+    //send assignment id
+    file_form_data.append('submission',file_to_submit)
+    file_form_data.append('user_id', user_id)
+    fetch(pages.base_url + 'upload-submissions.php', {
+      method: "POST",
+      body: file_form_data
+    }).then(response => response.json())
+    .then(data => {
+      if (data.status == 'File uploaded successfully.'){
+        document.getElementById("assignment-details-modal").style.display = "none";
+      }
+    })
+    .catch(error => console.log(error))
+
+  }
+})
+}
