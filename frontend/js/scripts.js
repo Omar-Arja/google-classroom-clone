@@ -860,3 +860,26 @@ pages.sendAnnounce = () => {
   document.getElementById("notification-form").style.display = "none";
   document.getElementById("open-announce").style.display = "block";
 }
+
+pages.setMeetlink = ()=>{
+
+  let link = document.getElementById("set_link").value;
+  
+  const meet_link = new FormData()
+  meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
+  meet_link.append("meet_link", link)
+  
+  fetch(pages.base_url + "set-meet-link.php", {
+    method: "POST",
+    body: meet_link,
+  }).then(response => response.json())
+    .then(data => {
+      if (data.status == "meet link updated successfully") {
+        document.querySelector('#join_link').innerHTML += '<a href="">Join Link</a>';
+      } else {
+        console.log("meet link was not set:: " + data.status)
+      }
+    })
+  
+  
+  }
