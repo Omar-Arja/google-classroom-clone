@@ -36,20 +36,7 @@ class Class {
       </div>
     `;
   }
-
-  displayStreamCard(senderName, assignmentTitle, assignmentDetails) {
-    return `
-      <div class="notifications">
-        <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
-        <div>
-          <h5>${senderName}</h5>
-          <p>${assignmentTitle}: ${assignmentDetails}</p>
-        </div>
-      </div>
-    `;
-  }
-
-
+  
   addSideBarItem() {
     return `
       <div class="class sidebar-class" data-class-id="${this.class_id}">
