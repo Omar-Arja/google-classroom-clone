@@ -493,6 +493,9 @@ pages.showPeople = () => {
 
   const teacher_list = document.querySelector('.teacher-list')
   const student_list = document.querySelector('.student-list')
+  
+  teacher_list.innerHTML = '';
+  student_list.innerHTML = '';
 
   const class_id = localStorage.getItem('clicked_class_id')
   const show_people_data = new FormData()
@@ -505,15 +508,15 @@ pages.showPeople = () => {
     .then((response) => response.json())
     .then((data) => {
       data.forEach(element => {
-        if (data.role == teacher) {
+        if (element.role == "teacher") {
           teacher_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
         }
-        else if (data.role == student) {
+        else if (element.role == "student") {
           student_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
         }
       })
     })
-    .catch((error) => console.log("Error In  Create Class: ", error));
+    .catch((error) => console.log("Error: ", error));
 
 
 }
