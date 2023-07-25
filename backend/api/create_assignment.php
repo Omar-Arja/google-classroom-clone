@@ -32,7 +32,7 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['title'
         $response['message'] = "Error adding assignments: " . $query01->error;
     }
     else{
-        $stream_content .= ' posted a new assignment: '.$title.': '.$title;
+        $stream_content .= ' posted a new assignment: '.': '.$title;
 
         // 3- add stream
         $query02 = $mysqli->prepare('insert into streams(class_id, user_id, content, post_date,number_of_likes, assignment_id) values(?,?,?,now(),0,?)');

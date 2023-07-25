@@ -1,5 +1,8 @@
 const pages = {};
 
+pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+//pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 class Class {
   constructor(class_id, class_name, class_section, class_subject, class_room, total_number_students, class_code, meet_link, role) {
@@ -65,17 +68,17 @@ class Class {
 }
 
 class Stream {
-    constructor(stream_id, class_id, user_id,content,post_date,number_of_likes) {
+  constructor(stream_id, class_id, user_id, content, post_date, number_of_likes) {
     this.stream_id = stream_id;
     this.class_id = class_id;
     this.user_id = user_id;
     this.content = content;
     this.post_date = post_date;
     this.number_of_likes = number_of_likes;
-     
-    }
-    displayStream(teacher_name) {
-        return `
+
+  }
+  displayStream(teacher_name) {
+    return `
             <div class="notifactions">
             <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
             <div class="stream-text">
@@ -88,7 +91,7 @@ class Stream {
             </div>
             </div>
         `;
-        }
+  }
 }
 
 class Assignment {
@@ -113,13 +116,6 @@ class Assignment {
 `
   }
 }
-
-
-
-
-// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-pages.base_url = "http://localhost/GoogleClassroom/";
-// pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 
 pages.myFetchSignup = () => {
@@ -530,9 +526,9 @@ pages.enterClassTeacher = () => {
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("student-count").style.display = "none";
   document.getElementById("class-meeting-link-box").style.display = "none";
-  document.getElementById("class-code").innerText = clicked_class.class_code;
   document.getElementById("open-announce").style.display = "flex";
   const title = document.getElementById("nav-title")
+  document.getElementById("class-code").innerHTML = `Class Code:<br> <span> ${clicked_class.class_code} </span>`
   title.innerText = clicked_class.class_name
 
   pages.showStream();
@@ -556,24 +552,24 @@ pages.enterClassStudent = () => {
 
 
 pages.showStream = () => {
-    
-    document.querySelector('.stream-updates').innerHTML = ''
-    document.getElementById("inside-class-stream").style.display = "flex";
-    document.getElementById("inside-class-people").style.display = "none";
-    document.getElementById("inside-class-classwork").style.display = "none";
-    // const class_id = localStorage.getItem('class_id');
-    const class_id = localStorage.getItem('clicked_class_id')
-    
-    const show_streams_form_data = new FormData();
-    show_streams_form_data.append('class_id', class_id);
-    
-    //const streams_objects = [];
-    fetch(pages.base_url + 'get-streams.php',{
-      method:"POST",
-      body:show_streams_form_data,
-    })
-    .then((response)=>response.json())
-    .then((data)=>{
+
+  document.querySelector('.stream-updates').innerHTML = ''
+  document.getElementById("inside-class-stream").style.display = "flex";
+  document.getElementById("inside-class-people").style.display = "none";
+  document.getElementById("inside-class-classwork").style.display = "none";
+  // const class_id = localStorage.getItem('class_id');
+  const class_id = localStorage.getItem('clicked_class_id')
+
+  const show_streams_form_data = new FormData();
+  show_streams_form_data.append('class_id', class_id);
+
+  //const streams_objects = [];
+  fetch(pages.base_url + 'get-streams.php', {
+    method: "POST",
+    body: show_streams_form_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
       data.forEach(element => {
         const stream_obj = new Stream(
           element.stream_id,
@@ -582,17 +578,17 @@ pages.showStream = () => {
           element.content,
           element.post_date,
           element.number_of_likes,
-          
+
         );
-  
+
         //streams_objects.push(stream_obj);
         document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name);
-  
+
+      })
+      //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
     })
-  //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
-    })
-  }
-  
+}
+
 pages.showPeople = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "flex";
@@ -603,7 +599,7 @@ pages.showPeople = () => {
 
   const teacher_list = document.querySelector('.teacher-list')
   const student_list = document.querySelector('.student-list')
-  
+
   teacher_list.innerHTML = '';
   student_list.innerHTML = '';
 
@@ -641,7 +637,7 @@ pages.showClasswork = () => {
   const class_id = localStorage.getItem('clicked_class_id');
   const show_assignments_form_data = new FormData();
   show_assignments_form_data.append('class_id', class_id);
-  
+
   fetch(pages.base_url + 'get-assignments.php', {
     method: "POST",
     body: show_assignments_form_data,
@@ -656,7 +652,7 @@ pages.showClasswork = () => {
           element.due_date,
         );
         assignments_objects.push(assignment_obj);
-        
+
         document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
       });
     })
@@ -875,30 +871,30 @@ pages.sendAnnounce = () => {
 
 
 pages.uploadSubmission = () => {
-const upload_btn = document.getElementById('submit-file')
-const file_input = document.getElementById('file-input')
-upload_btn.addEventListener('click', (e) => {
-  e.preventDefault()
-  const file_to_submit = file_input.files[0]
-  
-  if (file_to_submit){
-    const user_id = localStorage.getItem('user_id')
-    const file_form_data = new FormData
-    //send assignment id
-    file_form_data.append('submission',file_to_submit)
-    file_form_data.append('user_id', user_id)
-    fetch(pages.base_url + 'upload-submissions.php', {
-      method: "POST",
-      body: file_form_data
-    }).then(response => response.json())
-    .then(data => {
-      if (data.status == 'File uploaded successfully.'){
-        document.getElementById("assignment-details-modal").style.display = "none";
-      }
-    })
-    .catch(error => console.log(error))
+  const upload_btn = document.getElementById('submit-file')
+  const file_input = document.getElementById('file-input')
+  upload_btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    const file_to_submit = file_input.files[0]
 
-  }
-})
+    if (file_to_submit) {
+      const user_id = localStorage.getItem('user_id')
+      const file_form_data = new FormData
+      //send assignment id
+      file_form_data.append('submission', file_to_submit)
+      file_form_data.append('user_id', user_id)
+      fetch(pages.base_url + 'upload-submissions.php', {
+        method: "POST",
+        body: file_form_data
+      }).then(response => response.json())
+        .then(data => {
+          if (data.status == 'File uploaded successfully.') {
+            document.getElementById("assignment-details-modal").style.display = "none";
+          }
+        })
+        .catch(error => console.log(error))
+
+    }
+  })
 }
 

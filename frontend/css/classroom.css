@@ -284,7 +284,7 @@ button {
   color: black;  
 }
 
-#class-code {
+#class-code span{
   text-decoration: underline;
   font-size: 1.5rem;
 }
