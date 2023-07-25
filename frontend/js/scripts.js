@@ -1009,12 +1009,11 @@ pages.setMeetlink = () => {
     method: "POST",
     body: meet_link,
   }).then(data => {
-    const join = document.getElementById("join-buttom");
-    join.href = "link"
-    pages.cancelBox()
-  })
-    .catch(error => (error => console.log(error)))
-}
+        const join = document.getElementById("join-button");
+        join.href = "link"
+        pages.cancelBox()})
+        .catch(error => (error => console.log(error)))
+  }
 
 pages.setLinkyab = () => {
   document.getElementById("modal_set_link").style.display = "block";
