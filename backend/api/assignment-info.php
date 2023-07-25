@@ -12,6 +12,7 @@ if (
     $title = $_POST['title'];
     $description = $_POST['description'];
     $due_date = $_POST['due_date'];
+    $formatted_due_date = date('Y-m-d H:i:s', strtotime($due_date));
 
     // Check if the class_id exists in the classes table
     $check_query = $mysqli->prepare('SELECT class_id FROM classes WHERE class_id = ?');
@@ -23,7 +24,7 @@ if (
         $response["status"] = "class_id does not exist in the classes table";
     } else {
         $insert_query = $mysqli->prepare('INSERT INTO assignments (class_id, title, description, due_date) VALUES (?, ?, ?, ?)');
-        $insert_query->bind_param('issi', $class_id, $title, $description, $due_date);
+        $insert_query->bind_param('isss', $class_id, $title, $description, $formatted_due_date);
         if ($insert_query->execute()) {
             $response["status"] = "assignment posted successfully";
         } else {
