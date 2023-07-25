@@ -104,7 +104,7 @@ class Assignment {
 
   displayAssignmentCard() {
     return `
-    <li class="classwork-list" onclick="document.getElementById('assignment-details-modal').style.display = 'block'">
+    <li class="classwork-list assignment-item" data-class-id="${this.assignment_id}">
       <div class="assignment">
         <div class="info-about-asg">
           <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
@@ -654,8 +654,34 @@ pages.showClasswork = () => {
         assignments_objects.push(assignment_obj);
 
         document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
+
+        const assignment_items = document.querySelectorAll('.assignment-item');
+        assignment_items.forEach(item => {
+          item.addEventListener('click', (event) => {
+            const assignmentId = event.currentTarget.dataset.classId;
+            const clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
+            pages.showAssignmentDetails(clicked_assignment);
+          });
+        }
+        );
+
+
       });
-    })
+    }).catch((error) => console.log("Error: ", error));
+}
+
+pages.showAssignmentDetails = (assignment) => {
+  const title = document.getElementById('title-assignment');
+  const description = document.getElementById('details-assignment');
+  const due_date = document.getElementById('due-date-assignment');
+  const modal = document.getElementById('assignment-details-modal')
+
+  title.innerText = assignment.title;
+  description.innerText = assignment.description;
+  due_date.innerText = assignment.due_date;
+
+  modal.style.display = 'block'
+
 }
 
 pages.resetPasswordEmail = () => {
@@ -925,3 +951,25 @@ pages.uploadSubmission = () => {
   })
 }
 
+pages.setMeetlink = ()=>{
+
+  let link = document.getElementById("set_link").value;
+  
+  const meet_link = new FormData()
+  meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
+  meet_link.append("meet_link", link)
+  
+  fetch(pages.base_url + "set-meet-link.php", {
+    method: "POST",
+    body: meet_link,
+  }).then(response => response.json())
+    .then(data => {
+      if (data.status == "meet link updated successfully") {
+        document.querySelector('#join_link').innerHTML += '<a href="">Join Link</a>';
+      } else {
+        console.log("meet link was not set:: " + data.status)
+      }
+    })
+  
+  
+  }
