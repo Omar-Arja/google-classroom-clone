@@ -851,3 +851,13 @@ pages.peopleCard = (first_name, last_name) => {
 </li>
   `;
 }
+
+pages.openAnnounce = () => {
+  document.getElementById("notification-form").style.display = "block";
+  document.getElementById("open-announce").style.display = "none";
+}
+
+pages.sendAnnounce = () => {
+  document.getElementById("notification-form").style.display = "none";
+  document.getElementById("open-announce").style.display = "block";
+}
