@@ -4,7 +4,7 @@ include('connection.php');
 
 if(isset($_POST['class_id'])){
     $class_id = $_POST['class_id'];
-    $query = $mysqli->prepare('select assignment_id, title, description, due_date from assignments where class_id=?');
+    $query = $mysqli->prepare('select assignment_id, title, description, due_date from assignments where class_id=? order BY assignment_id DESC');
     $query->bind_param('i', $class_id);
     $query->execute();
     $query->store_result();

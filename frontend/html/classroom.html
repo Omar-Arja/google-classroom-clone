@@ -249,9 +249,31 @@
           
         </div>
         <ul class="assignment-list">
-
+<!-- /////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////// -->
           </li>
         </ul>
+
+        <div class="assignment-details-modal" id="assignment-details-modal">
+          <div class="assignment-container">
+            <div class="assignment-header">
+              <span class="assignment-title">assignment title</span>
+              <span class="assignment-due-date">due: 2222-22-22 22:22</span>
+            </div>
+              <span class="assignment-details">assignment details ssssss sssss sssss </span>
+            <div class="assignment-btns">
+              <input type="file" id="file-input" name="filename" placeholder="Link..">
+              
+              <div class="assignment-close-div">
+                <button class="assignment-modal-btn" onclick="pages.cancelBox()">Close</button>
+                <button type="button" class="assignment-modal-btn" id="submit-file">submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
 
       <div class="inside-class-people" id="inside-class-people">
@@ -311,6 +333,7 @@
       pages.joinClassViaCode()
       pages.editUserInfo()
       pages.sendInviteEmail()
+      pages.uploadSubmission()
       // pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>
