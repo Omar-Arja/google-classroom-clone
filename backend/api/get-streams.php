@@ -13,7 +13,7 @@ $query->bind_param('s', $class_id);
 $query->execute();
 
 $query->store_result();
-$query->bind_result($stream_id, $class_id, $user_id,$content,$assignment_id,$post_date,$number_of_likes,$first_name,$last_name);
+$query->bind_result($stream_id, $class_id, $user_id,$content,$post_date,$number_of_likes,$assignment_id,$first_name,$last_name);
 $streams = array();
 while($query->fetch()){
     $stream = array(

@@ -36,20 +36,7 @@ class Class {
       </div>
     `;
   }
-
-  displayStreamCard(senderName, assignmentTitle, assignmentDetails) {
-    return `
-      <div class="notifications">
-        <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
-        <div>
-          <h5>${senderName}</h5>
-          <p>${assignmentTitle}: ${assignmentDetails}</p>
-        </div>
-      </div>
-    `;
-  }
-
-
+  
   addSideBarItem() {
     return `
       <div class="class sidebar-class" data-class-id="${this.class_id}">
@@ -68,16 +55,31 @@ class Class {
 }
 
 class Stream {
-  constructor(stream_id, class_id, user_id, content, post_date, number_of_likes) {
+  constructor(stream_id, class_id, user_id, content, post_date, number_of_likes, assignment_id) {
     this.stream_id = stream_id;
     this.class_id = class_id;
     this.user_id = user_id;
     this.content = content;
     this.post_date = post_date;
     this.number_of_likes = number_of_likes;
+    this.assignment_id = assignment_id;
 
   }
-  displayStream(teacher_name) {
+  displayStream(teacher_name, assignment_id) {
+    if (assignment_id) {
+      return `
+            <div class="notifactions stream-assignment">
+            <div class="stream-assignment-img">
+              <img class="userIcon" src="../assets/Images/assignment-icon.png" alt="Default icon" />
+            </div>
+
+            <div class="stream-text">
+                <span class="stream-content">${this.content}</span>
+                <span class="stream-date">${this.post_date.substring(5, 10)}</span>
+            </div>
+            </div>
+        `
+    } else
     return `
             <div class="notifactions">
             <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
@@ -585,11 +587,11 @@ pages.showStream = () => {
           element.content,
           element.post_date,
           element.number_of_likes,
-
+          element.assignment_id
         );
 
         //streams_objects.push(stream_obj);
-        document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name);
+        document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name, element.assignment_id);
 
       })
       //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
