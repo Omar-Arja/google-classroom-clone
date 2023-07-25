@@ -532,6 +532,7 @@ pages.enterClassTeacher = () => {
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("student-count").style.display = "none";
   document.getElementById("open-announce").style.display = "flex";
+  document.getElementById("btn_set_link").style.display = "block"
   document.getElementById("class-code").innerHTML = `Class Code:<br> <span> ${clicked_class.class_code} </span>`
   const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
@@ -548,6 +549,7 @@ pages.enterClassStudent = () => {
   document.getElementById("create-assignment").style.display = "none";
   document.getElementById("add-students-icon").style.display = "none";
   document.getElementById("class-meeting-code-box").style.display = "none";
+  document.getElementById("btn_set_link").style.display = "none"
   document.getElementById("open-announce").style.display = "none";
   const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
@@ -976,12 +978,6 @@ pages.setMeetlink = ()=>{
     })
   }
 
-  pages.setLinkyab = () => {
+pages.setLinkyab = () => {
   document.getElementById("modal_set_link").style.display = "block";
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
 }
-  }
