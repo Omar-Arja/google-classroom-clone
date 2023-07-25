@@ -627,6 +627,7 @@ pages.showPeople = () => {
 
 }
 const assignments_objects = [];
+const clicked_assignment = null;
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
@@ -659,7 +660,7 @@ pages.showClasswork = () => {
         assignment_items.forEach(item => {
           item.addEventListener('click', (event) => {
             const assignmentId = event.currentTarget.dataset.classId;
-            const clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
+            clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
             pages.showAssignmentDetails(clicked_assignment);
           });
         }
@@ -933,7 +934,8 @@ pages.uploadSubmission = () => {
     if (file_to_submit) {
       const user_id = localStorage.getItem('user_id')
       const file_form_data = new FormData
-      //send assignment id
+      clicked_assignment_id = clicked_assignment.assignment_id
+      console.log(clicked_assignment_id)
       file_form_data.append('submission', file_to_submit)
       file_form_data.append('user_id', user_id)
       fetch(pages.base_url + 'upload-submissions.php', {
