@@ -58,7 +58,7 @@
 
 #input-assignment-instruction{
   flex: 1;
-  padding: 20px 11px 0 24px;
+  padding: 20px 11px 0 24px; 
 }
 
 #input-assignment-instruction::placeholder {
