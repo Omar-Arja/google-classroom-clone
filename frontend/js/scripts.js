@@ -482,6 +482,7 @@ pages.cancelBox = () => {
   document.getElementById("overlay3").style.display = "none";
   document.getElementById("overlay-send-invite-via-email").style.display = "none";
   document.getElementById("assignment-details-modal").style.display = "none";
+  document.getElementById("modal_set_link").style.display = "none";
 };
 
 pages.createClass = () => {
@@ -525,10 +526,9 @@ pages.enterClassTeacher = () => {
   document.getElementById("goole-nav-icon").style.display = "none";
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("student-count").style.display = "none";
-  document.getElementById("class-meeting-link-box").style.display = "none";
   document.getElementById("open-announce").style.display = "flex";
-  const title = document.getElementById("nav-title")
   document.getElementById("class-code").innerHTML = `Class Code:<br> <span> ${clicked_class.class_code} </span>`
+  const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
 
   pages.showStream();
@@ -970,6 +970,14 @@ pages.setMeetlink = ()=>{
         console.log("meet link was not set:: " + data.status)
       }
     })
-  
-  
+  }
+
+  pages.setLinkyab = () => {
+  document.getElementById("modal_set_link").style.display = "block";
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
   }
