@@ -133,12 +133,11 @@
 }
 
 .test-card {
-  height: 100px;
-  width: fill;
   border: 2px solid #ccc;
   border-radius: 10px;
   margin: 10px;
   min-width: 162px;
+  padding: 10px 0px;
 }
 
 .notifactions {

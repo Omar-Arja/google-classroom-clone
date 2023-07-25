@@ -16,3 +16,6 @@ if ($query->affected_rows > 0) {
 else {
     $response['status'] = 'failed to update meet link';
 }
+
+echo json_encode($response);
+

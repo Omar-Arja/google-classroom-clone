@@ -484,7 +484,13 @@ pages.cancelBox = () => {
   document.getElementById("overlay3").style.display = "none";
   document.getElementById("overlay-send-invite-via-email").style.display = "none";
   document.getElementById("assignment-details-modal").style.display = "none";
+  document.getElementById("modal_set_link").style.display = "none";
 };
+
+pages.cancelBoxAnnouncement = () => {
+  document.getElementById("notification-form").style.display = "none";
+  document.getElementById("open-announce").style.display = "flex";
+}
 
 pages.createClass = () => {
   const classname = document.getElementById("input-classname").value;
@@ -527,10 +533,10 @@ pages.enterClassTeacher = () => {
   document.getElementById("goole-nav-icon").style.display = "none";
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("student-count").style.display = "none";
-  document.getElementById("class-meeting-link-box").style.display = "none";
   document.getElementById("open-announce").style.display = "flex";
-  const title = document.getElementById("nav-title")
+  document.getElementById("btn_set_link").style.display = "block"
   document.getElementById("class-code").innerHTML = `Class Code:<br> <span> ${clicked_class.class_code} </span>`
+  const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
 
   pages.showStream();
@@ -545,6 +551,7 @@ pages.enterClassStudent = () => {
   document.getElementById("create-assignment").style.display = "none";
   document.getElementById("add-students-icon").style.display = "none";
   document.getElementById("class-meeting-code-box").style.display = "none";
+  document.getElementById("btn_set_link").style.display = "none"
   document.getElementById("open-announce").style.display = "none";
   const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
@@ -909,14 +916,13 @@ pages.sendAnnounce = () => {
       method: "POST",
       body: announcement_form_data
     }).then(response => response.json()
-      .then(data => {
-        if (data.status == 'Success') {
-          document.getElementById("notification-form").style.display = "none";
-          document.getElementById("open-announce").style.display = "flex";
-          pages.showStream()
-        }
-      }))
-
+    .then(data => {
+      if (data.status == 'Success'){
+        pages.cancelBoxAnnouncement()
+        pages.showStream()
+      }
+    }))
+  
 
   }
   document.getElementById("notification-form").style.display = "none";
@@ -958,8 +964,8 @@ pages.uploadSubmission = () => {
 
 pages.setMeetlink = () => {
 
-  let link = document.getElementById("set_link").value;
-
+  const link = document.getElementById("set_link").value;
+  
   const meet_link = new FormData()
   meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
   meet_link.append("meet_link", link)
@@ -967,14 +973,19 @@ pages.setMeetlink = () => {
   fetch(pages.base_url + "set-meet-link.php", {
     method: "POST",
     body: meet_link,
-  }).then(response => response.json())
-    .then(data => {
-      if (data.status == "meet link updated successfully") {
-        document.querySelector('#join_link').innerHTML += '<a href="">Join Link</a>';
-      } else {
-        console.log("meet link was not set:: " + data.status)
-      }
-    })
+  }).then(data => {
+        const join = document.getElementById("join-buttom");
+        join.href = "link"
+        pages.cancelBox()})
+        .catch(error => (error => console.log(error)))
+  }
+
+pages.setLinkyab = () => {
+  document.getElementById("modal_set_link").style.display = "block";
+}
 
 
+pages.logOut = () => {
+  localStorage.clear();
+  window.location.href = "index.html";
 }
