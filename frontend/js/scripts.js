@@ -972,7 +972,7 @@ pages.setMeetlink = () => {
     method: "POST",
     body: meet_link,
   }).then(data => {
-        const join = document.getElementById("join-buttom");
+        const join = document.getElementById("join-button");
         join.href = "link"
         pages.cancelBox()})
         .catch(error => (error => console.log(error)))
