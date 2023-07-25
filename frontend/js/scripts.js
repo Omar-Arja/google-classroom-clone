@@ -64,7 +64,6 @@ class Class {
   }
 }
 
-// <<<<<<< HEAD
 class Stream {
     constructor(stream_id, class_id, user_id,content,post_date,number_of_likes) {
     this.stream_id = stream_id;
@@ -91,7 +90,7 @@ class Stream {
         `;
         }
 }
-// =======
+
 class Assignment {
   constructor(assignment_id, title, description, due_date) {
     this.assignment_id = assignment_id;
@@ -114,8 +113,6 @@ class Assignment {
 `
   }
 }
-
-// >>>>>>> 1551707ad5cc33bf15af9c6854bb003ef6678085
 
 
 
