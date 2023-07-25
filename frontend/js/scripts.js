@@ -56,7 +56,7 @@ class Class {
   }
 }
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 class Stream {
     constructor(stream_id, class_id, user_id,content,post_date,number_of_likes) {
     this.stream_id = stream_id;
@@ -69,18 +69,21 @@ class Stream {
     }
     displayStream(teacher_name) {
         return `
-            <div class="notifications">
+            <div class="notifactions">
             <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
-            <div>
-                <h5>${teacher_name}</h5>
-                <p>${this.content}</p>
-                <p>${this.post_date}</p>
+            <div class="stream-text">
+                <div class="stream-title">
+                  <span class="stream-teacher-name">${teacher_name}</span>
+                  <span class="stream-date">${this.post_date}</span>
+                </div>
+                
+                <span class="stream-content">${this.content}</span>
             </div>
             </div>
         `;
         }
 }
-=======
+// =======
 class Assignment {
   constructor(assignment_id, title, description, due_date) {
     this.assignment_id = assignment_id;
@@ -104,14 +107,14 @@ class Assignment {
   }
 }
 
->>>>>>> 1551707ad5cc33bf15af9c6854bb003ef6678085
+// >>>>>>> 1551707ad5cc33bf15af9c6854bb003ef6678085
 
 
 
 
-// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 // pages.base_url = "http://localhost/GoogleClassroom/";
-pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
+// pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 
 pages.myFetchSignup = () => {
@@ -536,19 +539,19 @@ pages.enterClassStudent = () => {
 
 pages.showStream = () => {
     
-
+    document.querySelector('.stream-updates').innerHTML = ''
     document.getElementById("inside-class-stream").style.display = "flex";
     document.getElementById("inside-class-people").style.display = "none";
     document.getElementById("inside-class-classwork").style.display = "none";
     // const class_id = localStorage.getItem('class_id');
-    const class_id = 1
+    const class_id = localStorage.getItem('clicked_class_id')
     
     const show_streams_form_data = new FormData();
-    show_streams_form_data.append('class_id', 1);
+    show_streams_form_data.append('class_id', class_id);
     
     //const streams_objects = [];
     fetch(pages.base_url + 'get-streams.php',{
-      method:"GET",
+      method:"POST",
       body:show_streams_form_data,
     })
     .then((response)=>response.json())

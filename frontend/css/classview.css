@@ -138,11 +138,13 @@
   border-radius: 20px;
   margin: 10px;
   align-items: stretch;
+  height: fit-content;
 }
 
 .notifactions .userIcon {
-  align-self: center;
+  align-self: flex-start;
   margin-left: 20px;
+  margin-top: 1rem;
 }
 
 .inside-class-people {
@@ -371,4 +373,32 @@ button {
 .sidebar-go-home-text > span{
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.7);
+}
+
+.stream-text, .stream-title{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.9);
+  
+}
+
+.stream-text{
+  padding: 10px;
+  gap: 1.5rem
+}
+.stream-teacher-name{
+  font-size: 1rem;
+  font-weight: 600;
+  
+}
+
+.stream-date{
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.stream-content{
+  font-size: 0.95rem;
+  font-weight: 400;
 }
