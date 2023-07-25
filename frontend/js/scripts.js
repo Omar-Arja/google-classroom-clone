@@ -524,6 +524,7 @@ pages.enterClassTeacher = () => {
   document.getElementById("student-count").style.display = "none";
   document.getElementById("class-meeting-link-box").style.display = "none";
   document.getElementById("class-code").innerText = clicked_class.class_code;
+  document.getElementById("open-announce").style.display = "flex";
   const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
 
