@@ -56,6 +56,29 @@ class Class {
   }
 }
 
+class Assignment {
+  constructor(assignment_id, title, description, due_date) {
+    this.assignment_id = assignment_id;
+    this.title = title;
+    this.description = description;
+    this.due_date = due_date;
+  }
+
+  displayAssignmentCard() {
+    return `
+    <li class="classwork-list" onclick="pages.showDetails">
+      <div class="assignment">
+        <div class="info-about-asg">
+          <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+          <span class="assignment-name">${this.title}</span>
+        </div>
+        <span class="assignment-due-date">${this.due_date}</span>         
+      </div>
+    </li>
+`
+  }
+}
+
 
 pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 // pages.base_url = "http://localhost/GoogleClassroom/";
@@ -493,6 +516,31 @@ pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
+
+  document.querySelector('.assignment-list').innerHTML = ''
+  const class_id = localStorage.getItem('clicked_class_id');
+  const show_assignments_form_data = new FormData();
+  show_assignments_form_data.append('class_id', class_id);
+  const assignments_objects = [];
+  
+  fetch(pages.base_url + 'get-assignments.php', {
+    method: "POST",
+    body: show_assignments_form_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(element => {
+        const assignment_obj = new Assignment(
+          element.assignment_id,
+          element.title,
+          element.description,
+          element.due_date,
+        );
+        assignments_objects.push(assignment_obj);
+        
+        document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
+      });
+    })
 }
 
 pages.resetPasswordEmail = () => {
@@ -668,31 +716,4 @@ pages.goHome = () => {
   // title.innerText = "ClassRoom"
   // document.getElementById("goole-nav-icon").style.display = "flex";
   // document.getElementById("add-class-button").style.display = "inline";
-}
-
-// pages.checkEnrollmentEmail = () => {
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const class_code = urlParams.get('c_code');
-  // const invited_student_id = urlParams.get('user_id')
-  // if(class_code && invited_student_id){
-    
-  // }
-// }
-
-pages.showDetails = () => { // show classwork list details
-  return
-}
-
-pages.classworkListItem = (assignment_title, due_date) => {
-  return `
-          <li class="classwork-list" onclick="pages.showDetails">
-            <div class="assignment">
-              <div class="info-about-asg">
-                <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
-                <span class="assignment-name">${assignment_title}</span>
-              </div>
-              <span class="assignment-due-date">${due_date}</span>         
-            </div>
-          </li>
-  `
 }
