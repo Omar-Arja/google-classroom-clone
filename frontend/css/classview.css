@@ -413,6 +413,7 @@ button {
 
 .notification-form {
   display: none;
+  flex-direction: column;
   margin-top: 10px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -420,6 +421,22 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   font-family: Arial, sans-serif;
+}
+
+.open-announce {
+  display: flex;
+  height: 75px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin: 10px;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #d3d3d329;
+}
+
+.open-announce img{
+  margin: 0;
+  margin-right: 20px;
 }
 
 .notification-form h2 {
@@ -434,6 +451,14 @@ button {
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 14px;
+  height: 200px;
+}
+
+#announcementText::placeholder {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #999;
 }
 
 .notification-form button {
@@ -450,3 +475,4 @@ button {
 .notification-form button:hover {
   background-color: #0056b3;
 }
+
