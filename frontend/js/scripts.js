@@ -678,3 +678,21 @@ pages.goHome = () => {
     
   // }
 // }
+
+pages.showDetails = () => { // show classwork list details
+  return
+}
+
+pages.classworkListItem = (assignment_title, due_date) => {
+  return `
+          <li class="classwork-list" onclick="pages.showDetails">
+            <div class="assignment">
+              <div class="info-about-asg">
+                <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+                <span class="assignment-name">${assignment_title}</span>
+              </div>
+              <span class="assignment-due-date">${due_date}</span>         
+            </div>
+          </li>
+  `
+}
