@@ -56,9 +56,37 @@ class Class {
   }
 }
 
+class Stream {
+    constructor(stream_id, class_id, user_id,content,post_date,number_of_likes) {
+    this.stream_id = stream_id;
+    this.class_id = class_id;
+    this.user_id = user_id;
+    this.content = content;
+    this.post_date = post_date;
+    this.number_of_likes = number_of_likes;
+     
+    }
+    displayStream(teacher_name) {
+        return `
+            <div class="notifications">
+            <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
+            <div>
+                <h5>${teacher_name}</h5>
+                <p>${this.content}</p>
+                <p>${this.post_date}</p>
+            </div>
+            </div>
+        `;
+        }
+}
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+
+
+
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
 // pages.base_url = "http://localhost/GoogleClassroom/";
+pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
+
 
 pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
@@ -455,11 +483,43 @@ pages.enterClassStudent = () => {
 
 
 pages.showStream = () => {
-  document.getElementById("inside-class-stream").style.display = "flex";
-  document.getElementById("inside-class-people").style.display = "none";
-  document.getElementById("inside-class-classwork").style.display = "none";
-}
+    
 
+    document.getElementById("inside-class-stream").style.display = "flex";
+    document.getElementById("inside-class-people").style.display = "none";
+    document.getElementById("inside-class-classwork").style.display = "none";
+    // const class_id = localStorage.getItem('class_id');
+    const class_id = 1
+    
+    const show_streams_form_data = new FormData();
+    show_streams_form_data.append('class_id', 1);
+    
+    //const streams_objects = [];
+    fetch(pages.base_url + 'get-streams.php',{
+      method:"GET",
+      body:show_streams_form_data,
+    })
+    .then((response)=>response.json())
+    .then((data)=>{
+      data.forEach(element => {
+        const stream_obj = new Stream(
+          element.stream_id,
+          element.class_id,
+          element.user_id,
+          element.content,
+          element.post_date,
+          element.number_of_likes,
+          
+        );
+  
+        //streams_objects.push(stream_obj);
+        document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name);
+  
+    })
+  //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
+    })
+  }
+  
 pages.showPeople = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "flex";
