@@ -739,9 +739,10 @@ pages.createAssignment = () => {
     body: assignment_info,
   }).then(response => response.json())
     .then(data => {
-      if (data.status == "assignment posted successfully") {
+      if (data.status == "Success") {
         pages.hideAssignmentInfo()
         pages.showClasswork()
+        pages.cancelBox()
       } else {
         console.log("assignment was not sent:: " + data.status)
       }
