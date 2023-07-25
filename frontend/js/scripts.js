@@ -64,7 +64,7 @@ pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
   signup_btn.addEventListener("click", (e) => {
     e.preventDefault();
-   
+
     const first_name_val = document.getElementById("first-name-input").value;
     const last_name_val = document.getElementById("last-name-input").value;
     const email_val = document.getElementById("email-input").value;
@@ -159,7 +159,7 @@ pages.myFetchSigninPassword = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data.status == "logged in"){
+        if (data.status == "logged in") {
           const signed_in_id = data.user_id
 
           localStorage.setItem("first_name", data.first_name);
@@ -169,35 +169,41 @@ pages.myFetchSigninPassword = () => {
           const urlParams = new URLSearchParams(window.location.search);
           const class_code = urlParams.get('c_code');
           const invited_student_id = urlParams.get('user_id')
-          if(class_code && invited_student_id){
+          if (class_code && invited_student_id) {
             const id_data = new FormData()
             id_data.append('invited_student_id', invited_student_id)
             id_data.append('signed_in_id', signed_in_id)
             fetch(pages.base_url + 'verify-enrollment-using-email.php', {
-            method: "POST",
-            body: id_data
-              }).then(response => response.json())
-          .then(data2 => {
-            if (data2.status === 'id verified'){
-              join_class_data = new FormData()
+              method: "POST",
+              body: id_data
+            }).then(response => response.json())
+              .then(data2 => {
+                if (data2.status === 'id verified') {
+                  join_class_data = new FormData()
 
-              join_class_data.append('user_id', signed_in_id)
-              join_class_data.append('class_code', class_code)
+                  join_class_data.append('user_id', signed_in_id)
+                  join_class_data.append('class_code', class_code)
 
-              fetch(pages.base_url + 'join-class.php', {
-                  method: "POST",
-                  body: join_class_data,
-                }).then(response => response.json())
-                .then(data3 => {
-                  if (data3.status == 'class joined successfully') {
-                    window.location.href = "classroom.html"
-                  }}).catch((error) => console.log("Error In Email API: ", error));
-                }})} else {
-                  window.location.href = "classroom.html"
+                  fetch(pages.base_url + 'join-class.php', {
+                    method: "POST",
+                    body: join_class_data,
+                  }).then(response => response.json())
+                    .then(data3 => {
+                      if (data3.status == 'class joined successfully') {
+                        window.location.href = "classroom.html"
+                      }
+                    }).catch((error) => console.log("Error In Email API: ", error));
                 }
-                
-            }})})}
-      
+              })
+          } else {
+            window.location.href = "classroom.html"
+          }
+
+        }
+      })
+  })
+}
+
 
 
 pages.handleResponse = (data, email = null) => {
@@ -235,7 +241,7 @@ pages.handleResponse = (data, email = null) => {
 pages.openSidebar = () => {
   const sidebar = document.getElementById("mySidebar");
   sidebar.classList.add("show");
- 
+
 };
 
 pages.closeSidebar = () => {
@@ -250,12 +256,12 @@ pages.closeSidebar = () => {
 
 pages.userInfo = () => {
   const userInfoTab = document.querySelector('.user-info-tab');
-    if (userInfoTab.style.display === 'none') {
-      userInfoTab.style.display = 'block';
-      pages.displayUserInfo();
-    } else {
-      userInfoTab.style.display = 'none';
-    }
+  if (userInfoTab.style.display === 'none') {
+    userInfoTab.style.display = 'block';
+    pages.displayUserInfo();
+  } else {
+    userInfoTab.style.display = 'none';
+  }
 
 }
 
@@ -417,9 +423,6 @@ pages.createClass = () => {
   const section = document.getElementById("input-section").value;
   const subject = document.getElementById("input-subject").value;
   const room = document.getElementById("input-room").value;
-  console.log(classname, section, subject, room);
-
-  // localStorage.setItem("user_id", data.user_id);
 
   const pass_data = new FormData();
   pass_data.append("user_id", localStorage.getItem("user_id"));
@@ -487,6 +490,32 @@ pages.showPeople = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "flex";
   document.getElementById("inside-class-classwork").style.display = "none";
+
+  const teacher_list = document.querySelector('.teacher-list')
+  const student_list = document.querySelector('.student-list')
+
+  const class_id = localStorage.getItem('clicked_class_id')
+  const show_people_data = new FormData()
+  show_people_data.append('class_id', class_id)
+
+  fetch(pages.base_url + "people.php", {
+    method: "POST",
+    body: show_people_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(element => {
+        if (data.role == teacher) {
+          teacher_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
+        }
+        else if (data.role == student) {
+          student_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
+        }
+      })
+    })
+    .catch((error) => console.log("Error In  Create Class: ", error));
+
+
 }
 
 pages.showClasswork = () => {
@@ -568,23 +597,23 @@ pages.createAssignment = () => {
   const due = document.getElementById("input-assignment-due-date").value
 
   const assignment_info = new FormData()
-  assignment_info.append("class_id",localStorage.getItem("clicked_class_id"))
+  assignment_info.append("class_id", localStorage.getItem("clicked_class_id"))
   assignment_info.append("title", title)
-  assignment_info.append("description",instruction)
-  assignment_info.append("due_date",due)
-  
-  fetch(pages.base_url + "assignment-info.php",{
-    method:"POST",
-    body:assignment_info,
+  assignment_info.append("description", instruction)
+  assignment_info.append("due_date", due)
+
+  fetch(pages.base_url + "assignment-info.php", {
+    method: "POST",
+    body: assignment_info,
   }).then(response => response.json())
-  .then(data =>{
-    if (data.status == "assignment posted successfully"){
-      pages.hideAssignmentInfo()
-      pages.showClasswork()
-    }else{
-      console.log("assignment was not sent:: " + data.status)
-    }
-  }).catch(error => console.log("ERror in assignment-info API: " + error))
+    .then(data => {
+      if (data.status == "assignment posted successfully") {
+        pages.hideAssignmentInfo()
+        pages.showClasswork()
+      } else {
+        console.log("assignment was not sent:: " + data.status)
+      }
+    }).catch(error => console.log("ERror in assignment-info API: " + error))
 
 }
 
@@ -674,10 +703,22 @@ pages.goHome = () => {
 }
 
 // pages.checkEnrollmentEmail = () => {
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const class_code = urlParams.get('c_code');
-  // const invited_student_id = urlParams.get('user_id')
-  // if(class_code && invited_student_id){
-    
-  // }
+// const urlParams = new URLSearchParams(window.location.search);
+// const class_code = urlParams.get('c_code');
+// const invited_student_id = urlParams.get('user_id')
+// if(class_code && invited_student_id){
+
 // }
+// }
+
+
+pages.peopleCard = (first_name, last_name) => {
+  return `
+  <li>
+  <div class="person">
+    <img src="../assets/Images/default-profile-icon.jpg" alt="Student Icon" class="userIcon">
+    <span class="person-name">${first_name} ${last_name}</span>
+  </div>
+</li>
+  `;
+}
