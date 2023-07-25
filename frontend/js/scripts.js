@@ -2,13 +2,13 @@ const pages = {};
 
 
 class Class {
-  constructor(class_id, class_name, class_section, class_subject, class_room, total_students_number, class_code, meet_link, role) {
+  constructor(class_id, class_name, class_section, class_subject, class_room, total_number_students, class_code, meet_link, role) {
     this.class_id = class_id;
     this.class_name = class_name;
     this.class_section = class_section;
     this.class_subject = class_subject;
     this.class_room = class_room;
-    this.total_students_number = total_students_number;
+    this.total_number_students = total_number_students;
     this.class_code = class_code;
     this.role = role;
 
@@ -396,7 +396,6 @@ pages.showClassesDashboard = () => {
   const show_classes_form_data = new FormData();
   show_classes_form_data.append('user_id', user_id);
 
-  const classes_objects = [];
   clicked_class = null;
   localStorage.setItem('clicked_class_id', null);
 
@@ -413,7 +412,7 @@ pages.showClassesDashboard = () => {
           element.class_section,
           element.class_subject,
           element.class_room,
-          element.total_students_number,
+          element.total_number_students,
           element.class_code,
           element.meet_link,
           element.role
@@ -434,7 +433,6 @@ pages.showClassesDashboard = () => {
           item.addEventListener('click', (event) => {
             const classId = event.currentTarget.dataset.classId;
             clicked_class = classes_objects.find(item => item.class_id == classId);
-            console.log(clicked_class);
             localStorage.setItem('clicked_class_id', clicked_class.class_id);
 
             if (clicked_class.role === 'teacher') {
@@ -523,7 +521,7 @@ pages.enterClassTeacher = () => {
   document.getElementById("middleSection").style.display = "block";
   document.getElementById("goole-nav-icon").style.display = "none";
   document.getElementById("add-class-button").style.display = "none";
-  document.getElementById("studentCount").style.display = "none";
+  document.getElementById("student-count").style.display = "none";
   document.getElementById("class-meeting-link-box").style.display = "none";
   document.getElementById("add-students-icon").style.display = "block";
   document.getElementById("create-assignment").style.display = "flex";
@@ -536,6 +534,7 @@ pages.enterClassTeacher = () => {
 pages.enterClassStudent = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
+  document.getElementById("student-count").style.display = "block";
   document.getElementById("goole-nav-icon").style.display = "none";
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("create-assignment").style.display = "none";
@@ -591,6 +590,9 @@ pages.showPeople = () => {
   document.getElementById("inside-class-people").style.display = "flex";
   document.getElementById("inside-class-classwork").style.display = "none";
 
+  const total_students = document.getElementById("student-count");
+  total_students.innerText = clicked_class.total_number_students;
+
   const teacher_list = document.querySelector('.teacher-list')
   const student_list = document.querySelector('.student-list')
   
@@ -620,6 +622,7 @@ pages.showPeople = () => {
 
 
 }
+const assignments_objects = [];
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
@@ -630,7 +633,6 @@ pages.showClasswork = () => {
   const class_id = localStorage.getItem('clicked_class_id');
   const show_assignments_form_data = new FormData();
   show_assignments_form_data.append('class_id', class_id);
-  const assignments_objects = [];
   
   fetch(pages.base_url + 'get-assignments.php', {
     method: "POST",
