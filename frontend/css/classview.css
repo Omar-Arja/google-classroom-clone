@@ -112,7 +112,8 @@
 
 .class-stream-body {
   display: flex;
-  flex-wrap: reverse;
+  flex-wrap: wrap;  
+  justify-content: center;
 }
 
 .class-stream-body .functionality-dates {
@@ -292,6 +293,7 @@
   .assignment{
     display: flex;
     flex: 1;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid rgba(0, 0, 0, 0.5); 
