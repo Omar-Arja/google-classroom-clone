@@ -515,12 +515,13 @@ pages.createClass = () => {
 pages.enterClassTeacher = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
+  document.getElementById("add-students-icon").style.display = "block";
+  document.getElementById("create-assignment").style.display = "flex";
+  document.getElementById("class-meeting-code-box").style.display = "flex";
   document.getElementById("goole-nav-icon").style.display = "none";
   document.getElementById("add-class-button").style.display = "none";
   document.getElementById("student-count").style.display = "none";
   document.getElementById("class-meeting-link-box").style.display = "none";
-  document.getElementById("add-students-icon").style.display = "block";
-  document.getElementById("create-assignment").style.display = "flex";
   document.getElementById("class-code").innerText = clicked_class.class_code;
   const title = document.getElementById("nav-title")
   title.innerText = clicked_class.class_name
