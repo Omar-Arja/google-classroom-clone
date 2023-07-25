@@ -737,7 +737,7 @@ pages.createAssignment = () => {
   assignment_info.append("description", instruction)
   assignment_info.append("due_date", due)
 
-  fetch(pages.base_url + "create_assignment.php", {
+  fetch(pages.base_url + "create-assignment.php", {
     method: "POST",
     body: assignment_info,
   }).then(response => response.json())
@@ -865,8 +865,35 @@ pages.openAnnounce = () => {
 }
 
 pages.sendAnnounce = () => {
+  const announcement_text_input = document.getElementById('announcementText')
+  const announcement_text_value = announcement_text_input.value
+  if (announcement_text_value){
+    const class_id = localStorage.getItem('clicked_class_id')
+    const user_id = localStorage.getItem('user_id')
+
+    const announcement_form_data = new FormData
+    announcement_form_data.append('class_id', class_id)
+    announcement_form_data.append('id_user', user_id)
+    announcement_form_data.append('content', announcement_text_value)
+
+    fetch(pages.base_url + 'add-announcement.php', {
+      method: "POST",
+      body: announcement_form_data
+    }).then(response => response.json()
+    .then(data => {
+      if (data.status == 'Success'){
+        document.getElementById("notification-form").style.display = "none";
+        document.getElementById("open-announce").style.display = "flex";
+        pages.showStream()
+      }
+    }))
+    
+
+  }
   document.getElementById("notification-form").style.display = "none";
   document.getElementById("open-announce").style.display = "flex";
+
+  
 }
 
 

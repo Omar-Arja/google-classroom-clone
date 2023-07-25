@@ -21,7 +21,7 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['conten
         }
 
     // 3- add stream
-    $stream_content .= ' posted a new material: '.$content;
+    $stream_content .= ' posted a new assignment: '.$content;
 
     $query02 = $mysqli->prepare('insert into streams(class_id, user_id, content, post_date,number_of_likes) values(?,?,?,Now(),0)');
     $query02->bind_param('iis', $class_id,$user_id,$stream_content);
