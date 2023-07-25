@@ -2,7 +2,7 @@ const pages = {};
 
 
 class Class {
-  constructor(class_id, class_name, class_section, class_subject, class_room, total_students_number, class_code, role) {
+  constructor(class_id, class_name, class_section, class_subject, class_room, total_students_number, class_code, meet_link, role) {
     this.class_id = class_id;
     this.class_name = class_name;
     this.class_section = class_section;
@@ -11,6 +11,14 @@ class Class {
     this.total_students_number = total_students_number;
     this.class_code = class_code;
     this.role = role;
+
+    if (meet_link) {
+      this.meet_link = meet_link;
+    }
+    else {
+      this.meet_link = "#";
+    }
+
   }
 
   displayClassCard() {
@@ -407,6 +415,7 @@ pages.showClassesDashboard = () => {
           element.class_room,
           element.total_students_number,
           element.class_code,
+          element.meet_link,
           element.role
         );
 
@@ -425,6 +434,7 @@ pages.showClassesDashboard = () => {
           item.addEventListener('click', (event) => {
             const classId = event.currentTarget.dataset.classId;
             clicked_class = classes_objects.find(item => item.class_id == classId);
+            console.log(clicked_class);
             localStorage.setItem('clicked_class_id', clicked_class.class_id);
 
             if (clicked_class.role === 'teacher') {
