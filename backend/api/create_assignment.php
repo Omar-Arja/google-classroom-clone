@@ -25,7 +25,8 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['title'
     $query01 = $mysqli->prepare('insert into assignments(class_id, title, description, due_date) values(?,?,?,?)');
     $query01->bind_param('isss', $class_id,$title,$description,$due_date);
     $query01->execute();
-    $query01->store_result();
+    $assignment_id = $query01->insert_id;
+    // $query01->store_result();
     if($query01->error) {
         $response['status'] = "Error";
         $response['message'] = "Error adding assignments: " . $query01->error;
@@ -34,10 +35,10 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['title'
         $stream_content .= ' posted a new assignment: '.$title.': '.$title;
 
         // 3- add stream
-        $query02 = $mysqli->prepare('insert into streams(class_id, user_id, content, post_date,number_of_likes) values(?,?,?,?,0)');
-        $query02->bind_param('isss', $class_id,$user_id,$stream_content,$due_date);
+        $query02 = $mysqli->prepare('insert into streams(class_id, user_id, content, post_date,number_of_likes, assignment_id) values(?,?,?,now(),0,?)');
+        $query02->bind_param('issi', $class_id,$user_id,$stream_content, $assignment_id);
         $query02->execute();
-        $query02->store_result();
+        // $query02->store_result();
 
         if($query02->error) {
             $response['status'] = "Error";

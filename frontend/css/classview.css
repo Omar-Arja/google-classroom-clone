@@ -2,6 +2,7 @@
 .assignment-info-tab,
 .overlay-join,
 .overlay-invite,
+.assignment-details-modal,
 .overlay-edit {
     display: none;
     position: fixed;
@@ -14,6 +15,7 @@
   }
   
   .box,
+  .assignment-container,
 .box-invite,
 .box-join,
 .box-edit {
@@ -33,6 +35,13 @@
     padding-left: 30px;
   }
 
+  .assignment-container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 90vw;
+    min-height: 90vh;
+  }
   .assignment-info-tab h2{
     color: #000;
   }
@@ -449,4 +458,81 @@ button {
 
 .notification-form button:hover {
   background-color: #0056b3;
+}
+
+.assignment-container{
+  gap: 2rem;
+  max-height: 50vh;
+}
+
+.assignment-header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.assignment-title{
+  font-size: 1.5rem;
+  padding-top: 10px;
+}
+
+.assignment-btns{
+  align-self: flex-end;
+  margin-top: auto;
+  width: 100%;
+}
+
+#file_input{
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#file_input:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.8s;
+}
+
+
+
+.assignment-modal-close-btn{
+  right: 0;
+}
+
+.assignment-close-div{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1.5rem;
+}
+
+.assignment-modal-btn, input::file-selector-button{
+  font-size: 1rem;
+  width: 70px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+}
+
+input::file-selector-button{
+  font-size: 0.8rem;
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.assignment-modal-btn:hover{
+  background-color: rgba(0, 0, 0, 0.08);
+  transition: 0.8s;
+}
+
+.assignment-details{
+    display: block;
+    overflow: auto;
+    text-overflow: ellipsis;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-weight: 300;
 }

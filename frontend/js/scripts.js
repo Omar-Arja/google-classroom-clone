@@ -101,7 +101,7 @@ class Assignment {
 
   displayAssignmentCard() {
     return `
-    <li class="classwork-list" onclick="pages.showDetails">
+    <li class="classwork-list" onclick="document.getElementById('assignment-details-modal').style.display = 'block'">
       <div class="assignment">
         <div class="info-about-asg">
           <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
@@ -478,6 +478,7 @@ pages.cancelBox = () => {
   document.getElementById("overlay2").style.display = "none";
   document.getElementById("overlay3").style.display = "none";
   document.getElementById("overlay-send-invite-via-email").style.display = "none";
+  document.getElementById("assignment-details-modal").style.display = "none";
 };
 
 pages.createClass = () => {
@@ -726,11 +727,12 @@ pages.createAssignment = () => {
 
   const assignment_info = new FormData()
   assignment_info.append("class_id", localStorage.getItem("clicked_class_id"))
+  assignment_info.append("id_user", localStorage.getItem("user_id"))
   assignment_info.append("title", title)
   assignment_info.append("description", instruction)
   assignment_info.append("due_date", due)
 
-  fetch(pages.base_url + "assignment-info.php", {
+  fetch(pages.base_url + "create_assignment.php", {
     method: "POST",
     body: assignment_info,
   }).then(response => response.json())
@@ -859,4 +861,33 @@ pages.openAnnounce = () => {
 pages.sendAnnounce = () => {
   document.getElementById("notification-form").style.display = "none";
   document.getElementById("open-announce").style.display = "block";
+}
+
+
+pages.uploadSubmission = () => {
+const upload_btn = document.getElementById('submit-file')
+const file_input = document.getElementById('file-input')
+upload_btn.addEventListener('click', (e) => {
+  e.preventDefault()
+  const file_to_submit = file_input.files[0]
+  
+  if (file_to_submit){
+    const user_id = localStorage.getItem('user_id')
+    const file_form_data = new FormData
+    //send assignment id
+    file_form_data.append('submission',file_to_submit)
+    file_form_data.append('user_id', user_id)
+    fetch(pages.base_url + 'upload-submissions.php', {
+      method: "POST",
+      body: file_form_data
+    }).then(response => response.json())
+    .then(data => {
+      if (data.status == 'File uploaded successfully.'){
+        document.getElementById("assignment-details-modal").style.display = "none";
+      }
+    })
+    .catch(error => console.log(error))
+
+  }
+})
 }
