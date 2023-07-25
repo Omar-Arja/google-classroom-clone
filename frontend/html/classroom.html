@@ -206,7 +206,7 @@
             <div class="notification-form" id="notification-form">
               <h2>Announcement</h2>
               <div id="announcementForm">
-                <input type="text" id="announcementText" placeholder="Enter your announcement here" />
+                <textarea type="text" id="announcementText" placeholder="Enter your announcement here"></textarea>
                 <button type="button" id="postButton-announce" onclick="pages.sendAnnounce()">Post</button>
               </div>
             </div>
@@ -238,7 +238,7 @@
             <div class="box">
               <h2>Assignment</h2>
               <input type="text" placeholder="Title" id="input-assignment-title">
-              <input type="text" placeholder="Instructions" id="input-assignment-instruction">
+              <textarea type="text" placeholder="Instructions" id="input-assignment-instruction"></textarea>
               <div class="buttons-creat-class">
                 <input type="datetime-local" placeholder="Subject" id="input-assignment-due-date">
                 <button onclick="pages.cancelBox()">Cancel</button>
