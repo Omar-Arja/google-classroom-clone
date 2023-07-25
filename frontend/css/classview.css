@@ -96,10 +96,10 @@
 .inside-class-stream {
   display: none;
   flex-direction: column;
-  width: fill;
   margin-top: 15px;
   margin-left: 13%;
   margin-right: 13%;
+  grid-row-gap: 25px;
   display: none;
 }
 
@@ -454,7 +454,7 @@ button {
 }
 
 
-.notification-form input[type="text"] {
+.notification-form textarea[type="text"] {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -468,6 +468,10 @@ button {
   top: 20px;
   left: 20px;
   color: #999;
+}
+
+#announcementText{
+  padding: 20px 11px 0 24px;
 }
 
 .notification-form button {
