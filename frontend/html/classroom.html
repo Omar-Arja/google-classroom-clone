@@ -68,7 +68,7 @@
     <header>
       <nav>
         <div class="left-section">
-          <button class="sidebar-btn" id="sidebar-btn">☰</button>
+          <button class="sidebar-btn" id="sidebar-btn" onclick="pages.openSidebar()">☰</button>
           <img
             src="../assets/Images/google.svg"
             alt="Google Logo"
@@ -95,6 +95,7 @@
             id="add-class-button"
             src="../assets/Images/plus-icon.jpg"
             alt="Plus icon"
+            onclick="pages.showBox()"
           />
           <img
             class="icon"
@@ -105,6 +106,7 @@
             class="userIcon"
             src="../assets/Images/default-profile-icon.jpg"
             alt="Default icon"
+            onclick = "pages.userInfo()" 
           />
         </div>
         <div class="user-info-tab" id="user-info-tab">
@@ -209,28 +211,23 @@
       <div class="inside-class-classwork" id="inside-class-classwork">
         <div class="create-assignment" id="create-assignment">
           <button class="create-assignment" id="create-assignment" onclick="pages.showAssignmentInfo()">+ Create</button>
+          
           <div class="assignment-info-tab" id="assignment-info-tab">
             <div class="box">
               <h2>Assignment</h2>
               <input type="text" placeholder="Title" id="input-assignment-title">
               <input type="text" placeholder="Instructions" id="input-assignment-instruction">
               <div class="buttons-creat-class">
-                <input type="date" placeholder="Subject" id="input-assignment-due-date">
+                <input type="datetime-local" placeholder="Subject" id="input-assignment-due-date">
                 <button onclick="pages.cancelBox()">Cancel</button>
                 <button onclick="pages.createAssignment()">Create</button>
               </div>
             </div>
           </div>
+          
         </div>
         <ul class="assignment-list">
-          <li>
-            <div class="assignment">
-              <div class="info-about-asg">
-                <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
-                <span class="assignment-name">test</span>
-              </div>
-              <h6 class="assignment-due-date">Due date</h6>              
-            </div>
+
           </li>
         </ul>
     </div>
@@ -252,7 +249,7 @@
 
           <h2 class="teach-title">Teachers</h2>
           <ul class="teacher-list">
-            <li>
+            <!-- <li>
               <div class="person">
                 <img src="../assets/Images/default-profile-icon.jpg" alt="Teacher Icon" class="userIcon">
                 <span class="person-name">test</span>
@@ -263,7 +260,7 @@
                 <img src="../assets/Images/default-profile-icon.jpg" alt="Teacher Icon" class="userIcon">
                 <span class="person-name">test</span>
               </div>
-            </li>
+            </li> -->
           </ul>
           <div class="student-tab-people">
             <h2>Students </h2>
@@ -271,12 +268,12 @@
             <img src="../assets/Images/add-user-icon.png" alt="Add User Icon" class="userIcon" id="add-students-icon" onclick='pages.showOverlaySendEmailInvite()'>
           </div>
           <ul class="student-list">
-            <li>
+            <!-- <li>
               <div class="person">
                 <img src="../assets/Images/default-profile-icon.jpg" alt="Student Icon" class="userIcon">
                 <span class="person-name">test</span>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
       
@@ -284,13 +281,14 @@
 
     <script src="../js/scripts.js"></script>
     <script>
-      pages.openSidebar();
+      
       pages.closeSidebar();
-      pages.userInfo();
+      
       pages.showClassesDashboard();
-      pages.showBox()
+      
       pages.joinClassViaCode()
       pages.editUserInfo()
+      pages.sendInviteEmail()
       // pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>

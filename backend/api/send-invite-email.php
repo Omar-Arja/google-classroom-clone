@@ -33,9 +33,9 @@ if($query->fetch()){
     $query2->store_result();
     $query2->bind_result($class_name, $class_code);
     if($query2->fetch()){
-        $hashed_class_code = password_hash($class_code, PASSWORD_BCRYPT);
+        // $hashed_class_code = password_hash($class_code, PASSWORD_BCRYPT);
 
-        $invite_link = 'http://localhost/google-classroom-clone/frontend/html/index.html?user_id='. $hashed_id .'&c_code=' . $hashed_class_code;
+        $invite_link = 'http://localhost/google-classroom-clone/frontend/html/index.html?user_id='. $hashed_id .'&c_code=' . $class_code;
 
         $mail = new PHPMailer(true);
 

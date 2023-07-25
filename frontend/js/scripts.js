@@ -56,6 +56,7 @@ class Class {
   }
 }
 
+<<<<<<< HEAD
 class Stream {
     constructor(stream_id, class_id, user_id,content,post_date,number_of_likes) {
     this.stream_id = stream_id;
@@ -79,6 +80,31 @@ class Stream {
         `;
         }
 }
+=======
+class Assignment {
+  constructor(assignment_id, title, description, due_date) {
+    this.assignment_id = assignment_id;
+    this.title = title;
+    this.description = description;
+    this.due_date = due_date;
+  }
+
+  displayAssignmentCard() {
+    return `
+    <li class="classwork-list" onclick="pages.showDetails">
+      <div class="assignment">
+        <div class="info-about-asg">
+          <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
+          <span class="assignment-name">${this.title}</span>
+        </div>
+        <span class="assignment-due-date">${this.due_date}</span>         
+      </div>
+    </li>
+`
+  }
+}
+
+>>>>>>> 1551707ad5cc33bf15af9c6854bb003ef6678085
 
 
 
@@ -92,17 +118,12 @@ pages.myFetchSignup = () => {
   const signup_btn = document.getElementById("signup-btn");
   signup_btn.addEventListener("click", (e) => {
     e.preventDefault();
-    const first_name = document.getElementById("first-name-input");
-    const last_name = document.getElementById("last-name-input");
-    const email = document.getElementById("email-input");
-    const password = document.getElementById("password-input");
-    const ver_password = document.getElementById("ver-pass-input");
 
-    const first_name_val = first_name.value;
-    const last_name_val = last_name.value;
-    const email_val = email.value;
-    const password_val = password.value;
-    const ver_password_val = ver_password.value;
+    const first_name_val = document.getElementById("first-name-input").value;
+    const last_name_val = document.getElementById("last-name-input").value;
+    const email_val = document.getElementById("email-input").value;
+    const password_val = document.getElementById("password-input").value;
+    const ver_password_val = document.getElementById("ver-pass-input").value;
 
     if (
       password_val == ver_password_val &&
@@ -192,11 +213,52 @@ pages.myFetchSigninPassword = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        pages.handleResponse(data);
+        if (data.status == "logged in") {
+          const signed_in_id = data.user_id
+
+          localStorage.setItem("first_name", data.first_name);
+          localStorage.setItem("last_name", data.last_name);
+          localStorage.setItem("user_id", signed_in_id);
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const class_code = urlParams.get('c_code');
+          const invited_student_id = urlParams.get('user_id')
+          if (class_code && invited_student_id) {
+            const id_data = new FormData()
+            id_data.append('invited_student_id', invited_student_id)
+            id_data.append('signed_in_id', signed_in_id)
+            fetch(pages.base_url + 'verify-enrollment-using-email.php', {
+              method: "POST",
+              body: id_data
+            }).then(response => response.json())
+              .then(data2 => {
+                if (data2.status === 'id verified') {
+                  join_class_data = new FormData()
+
+                  join_class_data.append('user_id', signed_in_id)
+                  join_class_data.append('class_code', class_code)
+
+                  fetch(pages.base_url + 'join-class.php', {
+                    method: "POST",
+                    body: join_class_data,
+                  }).then(response => response.json())
+                    .then(data3 => {
+                      if (data3.status == 'class joined successfully') {
+                        window.location.href = "classroom.html"
+                      }
+                    }).catch((error) => console.log("Error In Email API: ", error));
+                }
+              })
+          } else {
+            window.location.href = "classroom.html"
+          }
+
+        }
       })
-      .catch((error) => console.log("Error In Email API: ", error));
-  });
-};
+  })
+}
+
+
 
 pages.handleResponse = (data, email = null) => {
   const response = data.status;
@@ -215,27 +277,25 @@ pages.handleResponse = (data, email = null) => {
       email_text.innerText = email;
       break;
 
-    case "logged in":
-      localStorage.setItem("first_name", data.first_name);
-      localStorage.setItem("last_name", data.last_name);
-      localStorage.setItem("user_id", data.user_id);
-      window.location.href = "classroom.html"
-      break;
+    // case "logged in":
+    //   localStorage.setItem("first_name", data.first_name);
+    //   localStorage.setItem("last_name", data.last_name);
+    //   localStorage.setItem("user_id", data.user_id);
+    //   window.location.href = "classroom.html"
+    //   break;
 
     case "class created successfully":
-      pages.hideBox()
-      window.location.href = "classroom.html"
+      pages.cancelBox();
+      pages.enterClassTeacher();
     default:
       console.log("handleResponse Error");
   }
 };
 
 pages.openSidebar = () => {
-  const open_sidebar = document.getElementById("sidebar-btn");
   const sidebar = document.getElementById("mySidebar");
-  open_sidebar.onclick = () => {
-    sidebar.classList.add("show");
-  };
+  sidebar.classList.add("show");
+
 };
 
 pages.closeSidebar = () => {
@@ -249,17 +309,14 @@ pages.closeSidebar = () => {
 };
 
 pages.userInfo = () => {
-  const userIcon = document.querySelector('.userIcon');
   const userInfoTab = document.querySelector('.user-info-tab');
+  if (userInfoTab.style.display === 'none') {
+    userInfoTab.style.display = 'block';
+    pages.displayUserInfo();
+  } else {
+    userInfoTab.style.display = 'none';
+  }
 
-  userIcon.addEventListener('click', function () {
-    if (userInfoTab.style.display === 'none') {
-      userInfoTab.style.display = 'block';
-      pages.displayUserInfo();
-    } else {
-      userInfoTab.style.display = 'none';
-    }
-  });
 }
 
 pages.displayUserInfo = () => {
@@ -318,7 +375,10 @@ pages.editUserInfo = () => {
     }
   })
 }
+
 const classes_objects = [];
+let clicked_class = null;
+
 
 pages.showClassesDashboard = () => {
   const user_id = localStorage.getItem('user_id');
@@ -326,8 +386,8 @@ pages.showClassesDashboard = () => {
   show_classes_form_data.append('user_id', user_id);
 
   const classes_objects = [];
-  let clicked_class = null;
-  localStorage.setItem('clicked_class', clicked_class);
+  clicked_class = null;
+  localStorage.setItem('clicked_class_id', null);
 
   fetch(pages.base_url + 'classes.php', {
     method: "POST",
@@ -363,7 +423,6 @@ pages.showClassesDashboard = () => {
             const classId = event.currentTarget.dataset.classId;
             clicked_class = classes_objects.find(item => item.class_id == classId);
             localStorage.setItem('clicked_class_id', clicked_class.class_id);
-            console.log(localStorage.getItem('clicked_class_id'))
 
             if (clicked_class.role === 'teacher') {
               pages.enterClassTeacher();
@@ -401,13 +460,8 @@ pages.showOverlay3 = () => {
 }
 
 pages.showBox = () => {
-  const add_class_button = document.getElementById('add-class-button')
-  const class_options = document.getElementById("class-options")
-  add_class_button.addEventListener('click', () => {
-    class_options.style.display = 'flex';
-  })
-}
-  ;
+  document.getElementById("class-options").style.display = 'flex';
+};
 
 
 pages.cancelBox = () => {
@@ -423,9 +477,6 @@ pages.createClass = () => {
   const section = document.getElementById("input-section").value;
   const subject = document.getElementById("input-subject").value;
   const room = document.getElementById("input-room").value;
-  console.log(classname, section, subject, room);
-
-  // localStorage.setItem("user_id", data.user_id);
 
   const pass_data = new FormData();
   pass_data.append("user_id", localStorage.getItem("user_id"));
@@ -463,7 +514,8 @@ pages.enterClassTeacher = () => {
   document.getElementById("add-students-icon").style.display = "block";
   document.getElementById("create-assignment").style.display = "flex";
   const title = document.getElementById("nav-title")
-  title.innerText = "Teacher View"
+  title.innerText = clicked_class.class_name
+
   pages.showStream();
 }
 
@@ -475,8 +527,8 @@ pages.enterClassStudent = () => {
   document.getElementById("create-assignment").style.display = "none";
   document.getElementById("add-students-icon").style.display = "none";
   document.getElementById("class-meeting-code-box").style.display = "none";
-  let title = document.getElementById("nav-title")
-  title.innerText = "Student View"
+  const title = document.getElementById("nav-title")
+  title.innerText = clicked_class.class_name
 
   pages.showStream();
 }
@@ -524,12 +576,66 @@ pages.showPeople = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "flex";
   document.getElementById("inside-class-classwork").style.display = "none";
+
+  const teacher_list = document.querySelector('.teacher-list')
+  const student_list = document.querySelector('.student-list')
+  
+  teacher_list.innerHTML = '';
+  student_list.innerHTML = '';
+
+  const class_id = localStorage.getItem('clicked_class_id')
+  const show_people_data = new FormData()
+  show_people_data.append('class_id', class_id)
+
+  fetch(pages.base_url + "people.php", {
+    method: "POST",
+    body: show_people_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(element => {
+        if (element.role == "teacher") {
+          teacher_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
+        }
+        else if (element.role == "student") {
+          student_list.innerHTML += pages.peopleCard(element.first_name, element.last_name)
+        }
+      })
+    })
+    .catch((error) => console.log("Error: ", error));
+
+
 }
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
+
+  document.querySelector('.assignment-list').innerHTML = ''
+  const class_id = localStorage.getItem('clicked_class_id');
+  const show_assignments_form_data = new FormData();
+  show_assignments_form_data.append('class_id', class_id);
+  const assignments_objects = [];
+  
+  fetch(pages.base_url + 'get-assignments.php', {
+    method: "POST",
+    body: show_assignments_form_data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(element => {
+        const assignment_obj = new Assignment(
+          element.assignment_id,
+          element.title,
+          element.description,
+          element.due_date,
+        );
+        assignments_objects.push(assignment_obj);
+        
+        document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
+      });
+    })
 }
 
 pages.resetPasswordEmail = () => {
@@ -594,12 +700,34 @@ pages.resetPassword = () => {
 pages.showAssignmentInfo = () => {
   document.getElementById("assignment-info-tab").style.display = "flex";
 }
+pages.hideAssignmentInfo = () => {
+  document.getElementById("assignment-info-tab").style.display = "none";
+}
 
 
 pages.createAssignment = () => {
+  const title = document.getElementById("input-assignment-title").value
+  const instruction = document.getElementById("input-assignment-instruction").value
+  const due = document.getElementById("input-assignment-due-date").value
 
-  console.log('yes')
-  pages.cancelBox()
+  const assignment_info = new FormData()
+  assignment_info.append("class_id", localStorage.getItem("clicked_class_id"))
+  assignment_info.append("title", title)
+  assignment_info.append("description", instruction)
+  assignment_info.append("due_date", due)
+
+  fetch(pages.base_url + "assignment-info.php", {
+    method: "POST",
+    body: assignment_info,
+  }).then(response => response.json())
+    .then(data => {
+      if (data.status == "assignment posted successfully") {
+        pages.hideAssignmentInfo()
+        pages.showClasswork()
+      } else {
+        console.log("assignment was not sent:: " + data.status)
+      }
+    }).catch(error => console.log("ERror in assignment-info API: " + error))
 
 }
 
@@ -641,16 +769,15 @@ pages.sendInviteEmail = () => {
   const send_invite_to_input = document.getElementById('email-to-invite-input')
   const send_invite_btn = document.getElementById('invite-class-with-email-btn')
   const send_invite_email_error_msg = document.getElementById('send-invite-email-error')
-  send_invite_btn.addEventListener('click' , () => {
+  send_invite_btn.addEventListener('click', () => {
     const send_invite_to_email = send_invite_to_input.value
-    if (!send_invite_to_email){
+    if (!send_invite_to_email) {
       send_invite_email_error_msg.innerText = 'Please enter an email'
       send_invite_email_error_msg.style.display = 'block'
     } else {
       const send_invite_data = new FormData()
       send_invite_data.append('email', send_invite_to_email)
-      // send_invite_data.append('class_id', Class.class_id)
-      send_invite_data.append('class_id', 9)
+      send_invite_data.append('class_id', localStorage.getItem('clicked_class_id'))
 
       send_invite_data.append('sender_first_name', invite_sender_first_name)
       send_invite_data.append('sender_last_name', invite_sender_last_name)
@@ -658,31 +785,54 @@ pages.sendInviteEmail = () => {
       fetch(pages.base_url + 'send-invite-email.php', {
         method: "POST",
         body: send_invite_data
-      }).then(response =>  response.json())
-      .then(data => {
-        if(data.status == 'Message has been sent'){
-          send_invite_email_error_msg.style.display = 'none'
-          send_invite_email_error_msg.innerText = 'Invite sent successfully'
-          send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
-          send_invite_email_error_msg.style.display = 'block'
-        } else {
-          send_invite_email_error_msg.style.display = 'none'
-          send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
-          send_invite_email_error_msg.style.display = 'block'
-        }
-      }).catch((error) => error);
+      }).then(response => response.json())
+        .then(data => {
+          if (data.status == 'Message has been sent') {
+            send_invite_email_error_msg.style.display = 'none'
+            send_invite_email_error_msg.innerText = 'Invite sent successfully'
+            send_invite_email_error_msg.style.color = 'rgb(26, 232, 36)'
+            send_invite_email_error_msg.style.display = 'block'
+          } else {
+            send_invite_email_error_msg.style.display = 'none'
+            send_invite_email_error_msg.innerText = 'Something went wrong, please try again.'
+            send_invite_email_error_msg.style.display = 'block'
+          }
+        }).catch((error) => error);
     }
-  }) 
+  })
 
 }
 
 pages.goHome = () => {
-  document.getElementById("inside-class-stream").style.display = "none";
-  document.getElementById("inside-class-people").style.display = "none";
-  document.getElementById("inside-class-classwork").style.display = "none";
-  document.getElementById("class-cards-container").style.display = "flex";
-  const title = document.getElementById("nav-title")
-  title.innerText = "ClassRoom"
-  document.getElementById("goole-nav-icon").style.display = "flex";
-  document.getElementById("add-class-button").style.display = "flex";
+  location.reload()
+  // document.getElementById("inside-class-stream").style.display = "none";
+  // document.getElementById("inside-class-people").style.display = "none";
+  // document.getElementById("inside-class-classwork").style.display = "none";
+  // document.getElementById("class-cards-container").style.display = "flex";
+  // document.getElementById("middleSection").style.display = "none";
+  // const title = document.getElementById("nav-title")
+  // title.innerText = "ClassRoom"
+  // document.getElementById("goole-nav-icon").style.display = "flex";
+  // document.getElementById("add-class-button").style.display = "inline";
+}
+
+// pages.checkEnrollmentEmail = () => {
+// const urlParams = new URLSearchParams(window.location.search);
+// const class_code = urlParams.get('c_code');
+// const invited_student_id = urlParams.get('user_id')
+// if(class_code && invited_student_id){
+
+// }
+// }
+
+
+pages.peopleCard = (first_name, last_name) => {
+  return `
+  <li>
+  <div class="person">
+    <img src="../assets/Images/default-profile-icon.jpg" alt="Student Icon" class="userIcon">
+    <span class="person-name">${first_name} ${last_name}</span>
+  </div>
+</li>
+  `;
 }
