@@ -570,9 +570,16 @@ input::file-selector-button{
 }
 
 .stream-assignment, .stream-assignment>div{
+  
   flex-direction: row;
   min-height: 80px;
   align-items: center;
+}
+
+.stream-text{
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .stream-assignment>div>.stream-date{
