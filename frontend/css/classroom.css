@@ -26,6 +26,14 @@ nav {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+#nav-title{
+  font: "Product Sans", Arial, Helvetica, sans-serif;
+  font-size: 22.1px;
+  font-weight: 400;
+  color: rgb(95, 99, 104);
 }
 
 .middle-section {
@@ -244,6 +252,9 @@ nav {
 
 .sidebar-class-name {
   font-size: 0.9rem;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .sidebar-class-section {

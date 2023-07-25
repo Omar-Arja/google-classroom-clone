@@ -1,7 +1,7 @@
 const pages = {};
 
-pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-//pages.base_url = "http://localhost/GoogleClassroom/";
+// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+pages.base_url = "http://localhost/GoogleClassroom/";
 // pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 class Class {
