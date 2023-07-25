@@ -139,12 +139,11 @@
   margin: 10px;
   align-items: stretch;
   height: fit-content;
+  padding: 10px 15px;
 }
 
 .notifactions .userIcon {
   align-self: flex-start;
-  margin-left: 20px;
-  margin-top: 1rem;
 }
 
 .inside-class-people {
@@ -401,4 +400,53 @@ button {
 .stream-content{
   font-size: 0.95rem;
   font-weight: 400;
+}
+
+
+.stream-right{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 28px;
+}
+
+
+.notification-form {
+  display: none;
+  margin-top: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.notification-form h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
+.notification-form input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.notification-form button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.notification-form button:hover {
+  background-color: #0056b3;
 }

@@ -190,21 +190,46 @@
               <div class="test-card">Upcoming<br />Due tomorrow<br />sdsd</div>
             </div>
           </div>
-          <div class="stream-updates">
-            
-            <!-- <div class="notifactions">
+          <div class="stream-right">
+
+            <div class="notifactions" id="open-announce" onclick="pages.openAnnounce()">
               <img
                 class="userIcon"
                 src="../assets/Images/default-profile-icon.jpg"
                 alt="Default icon"
               />
               <div>
-                <h5>Sender Name</h5>
-                <p>title of assignment: details</p>
+                <h5>Announce something to your class</h5>
               </div>
-            </div> -->
+            </div>
+
+            <div class="notification-form" id="notification-form">
+              <h2>Announcement</h2>
+              <div id="announcementForm">
+                <input type="text" id="announcementText" placeholder="Enter your announcement here" />
+                <button type="button" id="postButton-announce" onclick="pages.sendAnnounce()">Post</button>
+              </div>
+            </div>
+
+
+
+            <div class="stream-updates">
+              <div class="notifactions">
+                <img
+                  class="userIcon"
+                  src="../assets/Images/default-profile-icon.jpg"
+                  alt="Default icon"
+                />
+                <div>
+                  <h5>Sender Name</h5>
+                  <p>title of assignment: details</p>
+                </div>
+              </div>
+            </div>
           
           </div>
+            
+          
         </div>
       </div>
 
@@ -284,12 +309,12 @@
       
       pages.closeSidebar();
       
-      pages.showClassesDashboard();
+      // pages.showClassesDashboard();
       
       pages.joinClassViaCode()
       pages.editUserInfo()
-      pages.sendInviteEmail()
-      // pages.enterClassTeacher();
+      // pages.sendInviteEmail()
+      pages.enterClassTeacher();
       // pages.enterClassStudent();
     </script>
   </body>
