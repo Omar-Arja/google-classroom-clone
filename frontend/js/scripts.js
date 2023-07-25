@@ -726,11 +726,12 @@ pages.createAssignment = () => {
 
   const assignment_info = new FormData()
   assignment_info.append("class_id", localStorage.getItem("clicked_class_id"))
+  assignment_info.append("id_user", localStorage.getItem("user_id"))
   assignment_info.append("title", title)
   assignment_info.append("description", instruction)
   assignment_info.append("due_date", due)
 
-  fetch(pages.base_url + "assignment-info.php", {
+  fetch(pages.base_url + "create_assignment.php", {
     method: "POST",
     body: assignment_info,
   }).then(response => response.json())
