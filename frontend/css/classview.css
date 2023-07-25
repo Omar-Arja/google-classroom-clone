@@ -154,7 +154,7 @@
 .notifactions .userIcon {
   align-self: flex-start;
   margin-left: 20px;
-  margin-top: 1rem;
+  margin-top: 0.7rem;
 }
 
 .inside-class-people {
@@ -296,7 +296,20 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid rgba(0, 0, 0, 0.5); 
-    padding: 15px;
+    padding: 0px;
+  }
+
+  
+  #icon-assignment > .userIcon {
+    display: flex;
+    align-self: center; 
+    align-items: center;
+  }
+
+  #icon-assignment .userIcon img{
+    display: flex;
+    align-self: center; 
+    margin-top: 0;
   }
 
   .info-about-asg{

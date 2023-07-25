@@ -1,7 +1,7 @@
 const pages = {};
 
-// pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-pages.base_url = "http://localhost/GoogleClassroom/";
+pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
+// pages.base_url = "http://localhost/GoogleClassroom/";
 // pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
 
 class Class {
@@ -36,7 +36,7 @@ class Class {
       </div>
     `;
   }
-  
+
   addSideBarItem() {
     return `
       <div class="class sidebar-class" data-class-id="${this.class_id}">
@@ -68,8 +68,8 @@ class Stream {
   displayStream(teacher_name, assignment_id) {
     if (assignment_id) {
       return `
-            <div class="notifactions stream-assignment">
-            <div class="stream-assignment-img">
+            <div class="notifactions stream-assignment assignment-item" data-class-id="${assignment_id}">
+            <div class="stream-assignment-img" id="icon-assignment" >
               <img class="userIcon" src="../assets/Images/assignment-icon.png" alt="Default icon" />
             </div>
 
@@ -80,7 +80,7 @@ class Stream {
             </div>
         `
     } else
-    return `
+      return `
             <div class="notifactions">
             <img class="userIcon" src="../assets/Images/default-profile-icon.jpg" alt="Default icon" />
             <div class="stream-text">
@@ -595,6 +595,40 @@ pages.showStream = () => {
 
       })
       //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
+      const class_id = localStorage.getItem('clicked_class_id');
+      const show_assignments_form_data = new FormData();
+      show_assignments_form_data.append('class_id', class_id);
+
+      assignments_objects = [];
+      fetch(pages.base_url + 'get-assignments.php', {
+        method: "POST",
+        body: show_assignments_form_data,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          data.forEach(element => {
+            const assignment_obj = new Assignment(
+              element.assignment_id,
+              element.title,
+              element.description,
+              element.due_date,
+            );
+            assignments_objects.push(assignment_obj);
+
+            const assignment_items = document.querySelectorAll('.assignment-item');
+            assignment_items.forEach(item => {
+              item.addEventListener('click', (event) => {
+                const assignmentId = event.currentTarget.dataset.classId;
+                clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
+                pages.showAssignmentDetails(clicked_assignment);
+              });
+            }
+            );
+
+
+          });
+        }).catch((error) => console.log("Error: ", error));
+
     })
 }
 
@@ -635,13 +669,14 @@ pages.showPeople = () => {
 
 
 }
-const assignments_objects = [];
+let assignments_objects = [];
 let clicked_assignment = null;
 
 pages.showClasswork = () => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
+  assignments_objects = [];
 
   document.querySelector('.assignment-list').innerHTML = ''
   const class_id = localStorage.getItem('clicked_class_id');
@@ -916,13 +951,13 @@ pages.sendAnnounce = () => {
       method: "POST",
       body: announcement_form_data
     }).then(response => response.json()
-    .then(data => {
-      if (data.status == 'Success'){
-        pages.cancelBoxAnnouncement()
-        pages.showStream()
-      }
-    }))
-  
+      .then(data => {
+        if (data.status == 'Success') {
+          pages.cancelBoxAnnouncement()
+          pages.showStream()
+        }
+      }))
+
 
   }
   document.getElementById("notification-form").style.display = "none";
@@ -965,7 +1000,7 @@ pages.uploadSubmission = () => {
 pages.setMeetlink = () => {
 
   const link = document.getElementById("set_link").value;
-  
+
   const meet_link = new FormData()
   meet_link.append("class_id", localStorage.getItem("clicked_class_id"))
   meet_link.append("meet_link", link)
@@ -974,11 +1009,12 @@ pages.setMeetlink = () => {
     method: "POST",
     body: meet_link,
   }).then(data => {
-        const join = document.getElementById("join-buttom");
-        join.href = "link"
-        pages.cancelBox()})
-        .catch(error => (error => console.log(error)))
-  }
+    const join = document.getElementById("join-buttom");
+    join.href = "link"
+    pages.cancelBox()
+  })
+    .catch(error => (error => console.log(error)))
+}
 
 pages.setLinkyab = () => {
   document.getElementById("modal_set_link").style.display = "block";
