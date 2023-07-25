@@ -348,12 +348,15 @@ button {
   box-sizing: border-box;
 }
 .set_link_button {
-  width: 100%;
-  
-  color: gray;
-  padding: 14px 20px;
-  margin: 8px 0;
+  /* display: block; */
+  color: rgb(255, 255, 255);
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 0.875rem;
+  background-color: #1a73e8;
+  border-radius: 5px;
+  padding: 10px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  margin: 10px;
+  width: 100%;
 }
