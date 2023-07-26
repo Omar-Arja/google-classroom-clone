@@ -725,7 +725,7 @@ pages.resetPassword = () => {
     const new_pass = document.getElementById('new-pass-try1').value
     const new_pass_retry = document.getElementById('new-pass-try2').value
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('user_id');
+    const token = urlParams.get('tkn');
     if (new_pass === new_pass_retry) {
       const reset_pass_data = new FormData()
       reset_pass_data.append('email', email)
