@@ -654,7 +654,7 @@ pages.showClasswork = () => {
 
         document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
 
-        const assignment_items = document.querySelectorAll('.stream-assignment');
+        const assignment_items = document.querySelectorAll('.assignment-item');
         assignment_items.forEach(item => {
           item.addEventListener('click', (event) => {
             const assignmentId = event.currentTarget.dataset.classId;
