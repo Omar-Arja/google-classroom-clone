@@ -111,7 +111,7 @@ class Assignment {
           <img src="../assets/Images/assignment.png" alt="Assignment Icon" class="userIcon">
           <span class="assignment-name">${this.title}</span>
         </div>
-        <span class="assignment-due-date">${this.due_date}</span>         
+        <span class="assignment-due-date">${this.due_date.substring(6, 16)}</span>         
       </div>
     </li>
 `
@@ -944,9 +944,9 @@ pages.setMeetlink = () => {
     method: "POST",
     body: meet_link,
   }).then(response => response.json())
-  .then(data => {
-    pages.cancelBox();
-  })
+    .then(data => {
+      pages.cancelBox();
+    })
     .catch(error => console.log(error))
 }
 
