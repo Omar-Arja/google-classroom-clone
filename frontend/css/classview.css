@@ -137,7 +137,8 @@
   border-radius: 10px;
   margin: 10px;
   min-width: 162px;
-  padding: 10px 0px;
+  padding: 10px 10px;
+  box-sizing: content-box;
 }
 
 .notifactions {
@@ -299,7 +300,7 @@
     padding: 0px;
   }
 
-  
+
   #icon-assignment > .userIcon {
     display: flex;
     align-self: center; 

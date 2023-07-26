@@ -1,8 +1,7 @@
 const pages = {};
 
 pages.base_url = "http://localhost/google-classroom-clone/backend/api/";
-// pages.base_url = "http://localhost/GoogleClassroom/";
-// pages.base_url = "http://localhost/SEF/google-classroom-clone/backend/api/";
+
 
 class Class {
   constructor(class_id, class_name, class_section, class_subject, class_room, total_number_students, class_code, meet_link, role) {
@@ -283,13 +282,6 @@ pages.handleResponse = (data, email = null) => {
       email_text.innerText = email;
       break;
 
-    // case "logged in":
-    //   localStorage.setItem("first_name", data.first_name);
-    //   localStorage.setItem("last_name", data.last_name);
-    //   localStorage.setItem("user_id", data.user_id);
-    //   window.location.href = "classroom.html"
-    //   break;
-
     case "class created successfully":
       pages.cancelBox();
       pages.enterClassTeacher();
@@ -517,13 +509,6 @@ pages.createClass = () => {
 
 };
 
-// pages.enterClass =() => {
-//     document.getElementById("class-cards-container").style.display = "none";
-//     document.getElementById("middleSection").style.display = "block";
-//     document.getElementById("goole-nav-icon").remove();
-//     pages.showStream();
-// }
-
 pages.enterClassTeacher = () => {
   document.getElementById("class-cards-container").style.display = "none";
   document.getElementById("middleSection").style.display = "block";
@@ -566,13 +551,11 @@ pages.showStream = () => {
   document.getElementById("inside-class-stream").style.display = "flex";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "none";
-  // const class_id = localStorage.getItem('class_id');
   const class_id = localStorage.getItem('clicked_class_id')
 
   const show_streams_form_data = new FormData();
   show_streams_form_data.append('class_id', class_id);
 
-  //const streams_objects = [];
   fetch(pages.base_url + 'get-streams.php', {
     method: "POST",
     body: show_streams_form_data,
@@ -592,44 +575,15 @@ pages.showStream = () => {
 
         //streams_objects.push(stream_obj);
         document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name, element.assignment_id);
-
       })
-      //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
-      const class_id = localStorage.getItem('clicked_class_id');
-      const show_assignments_form_data = new FormData();
-      show_assignments_form_data.append('class_id', class_id);
 
-      assignments_objects = [];
-      fetch(pages.base_url + 'get-assignments.php', {
-        method: "POST",
-        body: show_assignments_form_data,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          data.forEach(element => {
-            const assignment_obj = new Assignment(
-              element.assignment_id,
-              element.title,
-              element.description,
-              element.due_date,
-            );
-            assignments_objects.push(assignment_obj);
+      const join = document.getElementById("join-button");
+      join.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = clicked_class.meet_link;
+      });
 
-            const assignment_items = document.querySelectorAll('.assignment-item');
-            assignment_items.forEach(item => {
-              item.addEventListener('click', (event) => {
-                const assignmentId = event.currentTarget.dataset.classId;
-                clicked_assignment = assignments_objects.find(item => item.assignment_id == assignmentId);
-                pages.showAssignmentDetails(clicked_assignment);
-              });
-            }
-            );
-
-
-          });
-        }).catch((error) => console.log("Error: ", error));
-
-    })
+    }).catch((error) => console.log("Error: ", error));
 }
 
 pages.showPeople = () => {
@@ -898,25 +852,7 @@ pages.sendInviteEmail = () => {
 
 pages.goHome = () => {
   location.reload()
-  // document.getElementById("inside-class-stream").style.display = "none";
-  // document.getElementById("inside-class-people").style.display = "none";
-  // document.getElementById("inside-class-classwork").style.display = "none";
-  // document.getElementById("class-cards-container").style.display = "flex";
-  // document.getElementById("middleSection").style.display = "none";
-  // const title = document.getElementById("nav-title")
-  // title.innerText = "ClassRoom"
-  // document.getElementById("goole-nav-icon").style.display = "flex";
-  // document.getElementById("add-class-button").style.display = "inline";
 }
-
-// pages.checkEnrollmentEmail = () => {
-// const urlParams = new URLSearchParams(window.location.search);
-// const class_code = urlParams.get('c_code');
-// const invited_student_id = urlParams.get('user_id')
-// if(class_code && invited_student_id){
-
-// }
-// }
 
 
 pages.peopleCard = (first_name, last_name) => {
@@ -976,9 +912,8 @@ pages.uploadSubmission = () => {
 
     if (file_to_submit) {
       const user_id = localStorage.getItem('user_id')
-      clicked_assignment_id = clicked_assignment.assignment_id
+      const clicked_assignment_id = clicked_assignment.assignment_id
       const file_form_data = new FormData();
-      console.log(clicked_assignment_id)
       file_form_data.append('assignment_id', clicked_assignment_id)
       file_form_data.append('submission', file_to_submit)
       file_form_data.append('user_id', user_id)
@@ -1008,14 +943,14 @@ pages.setMeetlink = () => {
   fetch(pages.base_url + "set-meet-link.php", {
     method: "POST",
     body: meet_link,
-  }).then(data => {
-        const join = document.getElementById("join-button");
-        join.href = "link"
-        pages.cancelBox()})
-        .catch(error => (error => console.log(error)))
-  }
+  }).then(response => response.json())
+  .then(data => {
+    pages.cancelBox();
+  })
+    .catch(error => console.log(error))
+}
 
-pages.setLinkyab = () => {
+pages.setLinktab = () => {
   document.getElementById("modal_set_link").style.display = "block";
 }
 
