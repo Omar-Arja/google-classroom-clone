@@ -6,7 +6,7 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['conten
     $user_id = $_POST['id_user'];
     $content = $_POST['content'];
    
-    // 1- get the teacher name
+    // get the teacher name
     $query = $mysqli->prepare('SELECT users.first_name,users.last_name	
                                FROM users
                                WHERE user_id=?
@@ -19,9 +19,6 @@ if(isset($_POST['class_id']) && isset($_POST['id_user']) && isset($_POST['conten
     if($query->fetch()){
         $stream_content = $first_name.' '.$last_name;
         }
-
-    // 3- add stream
-    $stream_content .= ' posted a new assignment: '.$content;
 
     $query02 = $mysqli->prepare('insert into streams(class_id, user_id, content, post_date,number_of_likes) values(?,?,?,Now(),0)');
     $query02->bind_param('iis', $class_id,$user_id,$content);

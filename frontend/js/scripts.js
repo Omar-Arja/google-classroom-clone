@@ -594,6 +594,13 @@ pages.showStream = () => {
         document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name, element.assignment_id);
 
       })
+
+      const join = document.getElementById("join-button");
+      join.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = clicked_class.meet_link;
+      });
+
       //   document.querySelector('.stream-updates').innerHTML += streams_objects.displayStream();
       const class_id = localStorage.getItem('clicked_class_id');
       const show_assignments_form_data = new FormData();
@@ -1008,14 +1015,14 @@ pages.setMeetlink = () => {
   fetch(pages.base_url + "set-meet-link.php", {
     method: "POST",
     body: meet_link,
-  }).then(data => {
-        const join = document.getElementById("join-button");
-        join.href = "link"
-        pages.cancelBox()})
-        .catch(error => (error => console.log(error)))
-  }
+  }).then(response => response.json())
+  .then(data => {
+    pages.cancelBox();
+  })
+    .catch(error => console.log(error))
+}
 
-pages.setLinkyab = () => {
+pages.setLinktab = () => {
   document.getElementById("modal_set_link").style.display = "block";
 }
 
