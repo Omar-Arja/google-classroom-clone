@@ -33,7 +33,6 @@ $query->bind_result($user_id, $first_name);
 if($query->fetch()){
     $token = generateCode();
     $expiry = time() + 3600;
-    // $hashed_id = password_hash($user_id, PASSWORD_BCRYPT);
     $reset_link = 'http://localhost/google-classroom-clone/frontend/html/passwordreset.html?tkn='. $token;
 
     $mail = new PHPMailer(true);
@@ -70,21 +69,12 @@ if($query->fetch()){
     }
     
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $response['status'] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }       
 } else {
-    echo "No user found with the provided email.";
+    $response['status'] = "No user found with the provided email.";
 };
 
-// echo $reset_link;
-// $reset_link = 'http://localhost/google-classroom-clone/html/passwordreset.htmlindex.html?id_user='.$user_id;
-
-    // $response['status'] = 'logged in';
-    // $response['user_id'] = $user_id;
-    // $response['first_name'] = $first_name;
-    // $response['last_name'] = $last_name;
-    // $response['email'] = $email;
-
-
+echo json_encode($response);
 
 // ?>
