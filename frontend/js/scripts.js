@@ -86,7 +86,7 @@ class Stream {
             <div class="stream-text">
                 <div class="stream-title">
                   <span class="stream-teacher-name">${teacher_name}</span>
-                  <span class="stream-date">${this.post_date}</span>
+                  <span class="stream-date">${this.post_date.substring(5, 16)}</span>
                 </div>
                 
                 <span class="stream-content">${this.content}</span>
@@ -700,7 +700,7 @@ pages.showClasswork = () => {
 
         document.querySelector('.assignment-list').innerHTML += assignment_obj.displayAssignmentCard();
 
-        const assignment_items = document.querySelectorAll('.assignment-item');
+        const assignment_items = document.querySelectorAll('.stream-assignment');
         assignment_items.forEach(item => {
           item.addEventListener('click', (event) => {
             const assignmentId = event.currentTarget.dataset.classId;
