@@ -26,7 +26,7 @@ if($query->fetch()){
             $query3 = $mysqli->prepare('update users set password = ? where email = ?');
             $hashed_new_password = password_hash($new_password, PASSWORD_BCRYPT);
             $query3->bind_param('ss', $hashed_new_password, $email_to_reset_pass);
-            
+
                 if ($query3->execute()) {
                     $response['status'] = "password updated successfully";
                 } else {
@@ -39,7 +39,6 @@ if($query->fetch()){
             } else {
                 $response['status'] = 'invalid token.';
             }
+            echo json_encode($response);
         }
     
-
-echo json_encode($response);

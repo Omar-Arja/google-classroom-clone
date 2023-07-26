@@ -734,6 +734,12 @@ pages.resetPassword = () => {
       fetch(pages.base_url + 'reset-password.php', {
         method: "POST",
         body: reset_pass_data,
+      }).then(response => response.json())
+      .then(data => {
+        if (data.status == 'password updated successfully'){
+          localStorage.clear();
+          window.location.href = "index.html";
+        }
       })
         .catch((error) => console.log("Error In Email API: ", error));
     }
