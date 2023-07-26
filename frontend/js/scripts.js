@@ -143,12 +143,10 @@ pages.myFetchSignup = () => {
       signup_data.append("last_name", last_name_val);
       signup_data.append("email", email_val);
       signup_data.append("password", password_val);
-      // signup_data.append('role', chosen_role)
 
       fetch(pages.base_url + "signup.php", {
         method: "POST",
         body: signup_data,
-        // redirect: 'follow',
       })
         .then((response) => response.json())
         .then((data) => {
@@ -945,6 +943,7 @@ pages.setMeetlink = () => {
     body: meet_link,
   }).then(response => response.json())
     .then(data => {
+      clicked_class.meet_link = data.link;
       pages.cancelBox();
     })
     .catch(error => console.log(error))

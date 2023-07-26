@@ -12,6 +12,7 @@ $query->execute();
 
 if ($query->affected_rows > 0) {
     $response['status'] = 'meet link updated successfully';
+    $response['link'] = $meet_link;
 }
 else {
     $response['status'] = 'failed to update meet link';
