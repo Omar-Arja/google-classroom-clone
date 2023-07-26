@@ -171,6 +171,12 @@ nav {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+}
+
+.class-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
 }
 
 .class-card-background-image {
