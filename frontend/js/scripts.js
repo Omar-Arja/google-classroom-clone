@@ -571,9 +571,17 @@ pages.showStream = () => {
           element.assignment_id
         );
 
-        //streams_objects.push(stream_obj);
         document.querySelector('.stream-updates').innerHTML += stream_obj.displayStream(element.teacher_name, element.assignment_id);
       })
+
+      const assignment_items = document.querySelectorAll('.assignment-item');
+      assignment_items.forEach(item => {
+        item.addEventListener('click', (event) => {
+          const assignmentId = event.currentTarget.dataset.classId;
+          pages.showClasswork(assignmentId);
+        });
+      }
+      );
 
       const join = document.getElementById("join-button");
       join.addEventListener("click", (e) => {
@@ -624,7 +632,7 @@ pages.showPeople = () => {
 let assignments_objects = [];
 let clicked_assignment = null;
 
-pages.showClasswork = () => {
+pages.showClasswork = (id_assignment = null) => {
   document.getElementById("inside-class-stream").style.display = "none";
   document.getElementById("inside-class-people").style.display = "none";
   document.getElementById("inside-class-classwork").style.display = "flex";
@@ -664,6 +672,13 @@ pages.showClasswork = () => {
 
 
       });
+
+      if (id_assignment) {
+        const clicked_assignment_stream = assignments_objects.find(item => item.assignment_id == id_assignment);
+        pages.showAssignmentDetails(clicked_assignment_stream);
+      }
+
+
     }).catch((error) => console.log("Error: ", error));
 }
 
